@@ -21,7 +21,7 @@ public class CourseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @Column
-    private  String Coursename;
+    private  String CourseName;
     @Column
     private Long CourseMakerId;
 
@@ -30,7 +30,7 @@ public class CourseEntity {
         //엔티티 생성 및 반환
         return new CourseEntity(
                 dto.getId(),
-                dto.getCoursename(),
+                dto.getCourseName(),
                 dto.getCourseMakerId());
 
     }
@@ -39,8 +39,8 @@ public class CourseEntity {
 //    public void patch(CourseDto dto) {
 //
 //        //객체를 갱신
-//        if(dto.getCoursename()!=null)
-//            this.Coursename = dto.getCoursename();
+//        if(dto.getCourseName()!=null)
+//            this.CourseName = dto.getCourseName();
 //        if(dto.getCourseMakerId()!=null)
 //            this.CourseMakerId = dto.getCourseMakerId();
 //

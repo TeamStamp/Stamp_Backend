@@ -23,6 +23,7 @@ public class Comment {
     private  String Username;
     @Column
     private String body;
+
     @ManyToOne// 해당 댓글 엔티티 여러개가, 하나의 Article에 연관된다!
     @JoinColumn(name = "article_id")//"article_id" 컬럼에 Atrticle의 대표....
     private Article article;

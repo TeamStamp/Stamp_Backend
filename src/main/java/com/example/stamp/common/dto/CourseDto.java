@@ -13,14 +13,14 @@ import lombok.ToString;
 @ToString
 public class CourseDto {
     private Long Id;
-    private String Coursename;
+    private String CourseName;
     private Long CourseMakerId;
 
     public static CourseDto createCourseDto(CourseEntity Course) {
         return new CourseDto(
 
                 Course.getId(),
-                Course.getCoursename(),
+                Course.getCourseName(),
                 Course.getCourseMakerId()
         );
 
