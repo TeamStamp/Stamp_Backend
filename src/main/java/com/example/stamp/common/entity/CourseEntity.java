@@ -9,6 +9,8 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,14 +26,16 @@ public class CourseEntity {
     private  String CourseName;
     @Column
     private Long CourseMakerId;
+    @OneToMany(mappedBy = "Course",orphanRemoval = true)
+    private List<CommentEntity> comments = new ArrayList<>();
 
-
-    public static CourseEntity createCourse(CourseDto dto) {
+    public static CourseEntity createCourse(CourseDto dto,List<CommentEntity> comments) {
         //엔티티 생성 및 반환
         return new CourseEntity(
                 dto.getId(),
                 dto.getCourseName(),
-                dto.getCourseMakerId());
+                dto.getCourseMakerId(),
+                comments);
 
     }
 

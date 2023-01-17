@@ -2,6 +2,7 @@ package com.example.stamp.common.entity;
 
 
 
+import com.example.stamp.TeamPocket.entity.Article;
 import com.example.stamp.common.dto.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,21 +22,31 @@ public class CommentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @Column
-    private  Long CourseId;
-    @Column
-    private Long WriterId;
+
     @Column
     private String Comment;
 
+    @ManyToOne
+    @JoinColumn(name = "WriterId")
+    private UserEntity Writer;
 
-    public static CommentEntity createComment(CommentDto dto) {
+
+    @ManyToOne
+    @JoinColumn(name = "CourseId")
+    private CourseEntity Course;
+    public void changeUserEntity(CourseEntity Course){
+        this.Course = Course;
+        Course.getComments().add(this);
+    }
+
+
+
+    public static CommentEntity createComment(CommentDto dto,UserEntity user, CourseEntity course) {
         //엔티티 생성 및 반환
         return new CommentEntity(
                 dto.getId(),
-                dto.getCourseId(),
-                dto.getWriterId(),
-                dto.getComment());
+                dto.getComment(),
+                user,course);
 
     }
 

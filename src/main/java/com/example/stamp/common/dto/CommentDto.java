@@ -14,17 +14,17 @@ import lombok.ToString;
 @ToString
 public class CommentDto {
     private Long Id;
-    private Long CourseId;
-    private Long WriterId;
     private String Comment;
+    private Long WriterId;
+    private Long CourseId;
 
     public static CommentDto createCommentDto(CommentEntity comment) {
         return new CommentDto(
 
                 comment.getId(),
-                comment.getCourseId(),
-                comment.getWriterId(),
-                comment.getComment()
+                comment.getComment(),
+                comment.getWriter().getId(),
+                comment.getCourse().getId()
         );
 
     }

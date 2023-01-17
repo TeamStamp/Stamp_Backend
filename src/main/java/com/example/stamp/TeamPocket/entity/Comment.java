@@ -42,7 +42,6 @@ public class Comment {
                 dto.getUsername(),
                 dto.getBody(),
                 article);
-
     }
 
     public void patch(CommentDto dto) {
