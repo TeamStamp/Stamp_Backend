@@ -13,18 +13,19 @@ import lombok.ToString;
 @ToString
 public class DayDto {
     private Long Id;
+    private Integer DayX;
     private Long CourseId;
     private Long PlaceId;
-    private Integer DayX;
 
 
     public static DayDto createDayDto(DayEntity Day) {
         return new DayDto(
 
                 Day.getId(),
-                Day.getCourseId(),
-                Day.getPlaceId(),
-                Day.getDayX()
+                Day.getDayX(),
+                Day.getCourse().getId(),
+                Day.getPlace().getId()
+
         );
     }
 }

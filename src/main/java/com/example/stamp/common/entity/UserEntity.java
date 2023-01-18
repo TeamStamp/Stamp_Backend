@@ -37,8 +37,17 @@ public class UserEntity {
     @OneToMany(mappedBy = "Writer",orphanRemoval = true)
     private List<CommentEntity> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "CourseMaker",orphanRemoval = true)
+    private List<CourseEntity> courses = new ArrayList<>();
 
-    public static UserEntity createUser(UserDto dto,List<CommentEntity> comments) {
+    @OneToMany(mappedBy = "Visitor",orphanRemoval = true)
+    private List<VisitedCourseEntity> visitedcourses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "Visitor",orphanRemoval = true)
+    private List<VisitedPlaceEntity> visitedcpalces = new ArrayList<>();
+
+    public static UserEntity createUser(UserDto dto,List<CommentEntity> comments,List<CourseEntity> courses,
+                                        List<VisitedCourseEntity> visitedcourses,List<VisitedPlaceEntity> visitedcpalces) {
         //엔티티 생성 및 반환
         return new UserEntity(
                 dto.getId(),
@@ -46,7 +55,7 @@ public class UserEntity {
                 dto.getUserId(),
                 dto.getPassword(),
                 dto.getNOS(),
-                comments);
+                comments,courses,visitedcourses,visitedcpalces);
 
     }
 

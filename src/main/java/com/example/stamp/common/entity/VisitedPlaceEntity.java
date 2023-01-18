@@ -20,17 +20,26 @@ public class VisitedPlaceEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column
-    private Long VisitorId;
+    @ManyToOne
+    @JoinColumn(name = "VisitorId")
+    private UserEntity Visitor;
+    public void changeUserEntity(UserEntity Visitor){
+        this.Visitor = Visitor;
+        Visitor.getVisitedcpalces().add(this);
+    }
+    @ManyToOne
+    @JoinColumn(name = "PlaceId")
+    private PlaceEntity VisitedPlace;
+    public void changePlaceEntity(PlaceEntity VisitedPlace){
+        this.VisitedPlace = VisitedPlace;
+        VisitedPlace.getVisiteduser().add(this);
+    }
 
-    @Column
-    private Long PlaceId;
-
-    public static VisitedPlaceEntity createVisitedPlace(VisitedPlaceDto dto) {
+    public static VisitedPlaceEntity createVisitedPlace(VisitedPlaceDto dto,UserEntity Visitor,PlaceEntity Place) {
         //엔티티 생성 및 반환
         return new VisitedPlaceEntity(
                 dto.getId(),
-                dto.getVisitorId(),
-                dto.getPlaceId());
+                Visitor,
+                Place);
     }
 }

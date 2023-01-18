@@ -17,12 +17,12 @@ public class VisitedPlaceDto {
     private Long VisitorId;
     private Long PlaceId;
 
-    public static VisitedPlaceDto createVisitedPlaceDto(VisitedPlaceEntity Visitedplace) {
+    public static VisitedPlaceDto createVisitedPlaceDto(VisitedPlaceEntity VisitedPlace) {
         return new VisitedPlaceDto(
 
-                Visitedplace.getId(),
-                Visitedplace.getVisitorId(),
-                Visitedplace.getPlaceId()
+                VisitedPlace.getId(),
+                VisitedPlace.getVisitor().getId(),
+                VisitedPlace.getVisitedPlace().getId()
         );
 
     }

@@ -26,7 +26,5 @@ public class CommentDto {
                 comment.getWriter().getId(),
                 comment.getCourse().getId()
         );
-
     }
-
 }

@@ -16,12 +16,14 @@ public class CourseDto {
     private String CourseName;
     private Long CourseMakerId;
 
+
     public static CourseDto createCourseDto(CourseEntity Course) {
         return new CourseDto(
 
                 Course.getId(),
                 Course.getCourseName(),
-                Course.getCourseMakerId()
+                Course.getCourseMaker().getId()
+
         );
 
     }

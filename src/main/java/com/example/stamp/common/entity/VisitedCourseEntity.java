@@ -19,17 +19,26 @@ public class VisitedCourseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @Column
-    private Long VisitorId;
 
-    @Column
-    private Long CourseId;
+    @ManyToOne
+    @JoinColumn(name = "VisitorId")
+    private UserEntity Visitor;
+    public void changeUserEntity(UserEntity Visitor){
+        this.Visitor = Visitor;
+        Visitor.getVisitedcourses().add(this);
+    }
+    @ManyToOne
+    @JoinColumn(name = "CourseId")
+    private CourseEntity VisitedCourse;
+    public void changeCourseEntity(CourseEntity VisitedCourse){
+        this.VisitedCourse = VisitedCourse;
+        VisitedCourse.getVisiteduser().add(this);
+    }
 
-    public static VisitedCourseEntity createVisitedPlace(VisitedCourseDto dto) {
+    public static VisitedCourseEntity createVisitedPlace(VisitedCourseDto dto,UserEntity user, CourseEntity course) {
         //엔티티 생성 및 반환
         return new VisitedCourseEntity(
                 dto.getId(),
-                dto.getVisitorId(),
-                dto.getCourseId());
+                user,course);
     }
 }

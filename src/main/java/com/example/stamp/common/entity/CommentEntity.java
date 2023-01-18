@@ -38,7 +38,7 @@ public class CommentEntity {
     @ManyToOne
     @JoinColumn(name = "CourseId")
     private CourseEntity Course;
-    public void changeUserEntity(CourseEntity Course){
+    public void changeCourseEntity(CourseEntity Course){
         this.Course = Course;
         Course.getComments().add(this);
     }

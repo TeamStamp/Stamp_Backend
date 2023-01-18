@@ -9,6 +9,8 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,14 +31,19 @@ public class PlaceEntity {
     @Column
     private String Lon;
 
+    @OneToMany(mappedBy = "VisitedPlace",orphanRemoval = true)
+    private List<VisitedPlaceEntity> visiteduser = new ArrayList<>();
 
-    public static PlaceEntity createPlace(PlaceDto dto) {
+    @OneToMany(mappedBy = "Place",orphanRemoval = true)
+    private List<DayEntity> visitedday = new ArrayList<>();
+
+    public static PlaceEntity createPlace(PlaceDto dto,List<VisitedPlaceEntity> visiteduser,List<DayEntity> visitedday) {
         //엔티티 생성 및 반환
         return new PlaceEntity(
                  dto.getId(),
                 dto.getPlacename(),
                 dto.getLat(),
-                dto.getLon());
+                dto.getLon(),visiteduser,visitedday);
 
     }
 

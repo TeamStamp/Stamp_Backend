@@ -22,20 +22,30 @@ public class DayEntity {
     private Long Id;
 
     @Column
-    private Long CourseId;
-
-    @Column
-    private Long PlaceId;
-
-    @Column
     private Integer DayX;
 
-    public static DayEntity createDay(DayDto dto) {
+    @ManyToOne
+    @JoinColumn(name = "CourseId")
+    private CourseEntity Course;
+    public void changeCourseEntity(CourseEntity DayCourse){
+        this.Course = Course;
+        Course.getVisitedday().add(this);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "PlaceId")
+    private PlaceEntity Place;
+    public void changePlaceEntity(PlaceEntity DayPlace){
+        this.Place = Place;
+        Place.getVisitedday().add(this);
+    }
+
+    public static DayEntity createDay(DayDto dto, CourseEntity course,PlaceEntity place) {
         //엔티티 생성 및 반환
         return new DayEntity(
                 dto.getId(),
-                dto.getCourseId(),
-                dto.getPlaceId(),
-                dto.getDayX());
+                dto.getDayX(),
+                course, place
+                );
     }
 }

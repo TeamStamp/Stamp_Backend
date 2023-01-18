@@ -24,18 +24,31 @@ public class CourseEntity {
     private Long Id;
     @Column
     private  String CourseName;
-    @Column
-    private Long CourseMakerId;
+
+    @ManyToOne
+    @JoinColumn(name = "CourseMakerId")
+    private UserEntity CourseMaker;
+    public void changeUserEntity(UserEntity CourseMaker){
+        this.CourseMaker = CourseMaker;
+        CourseMaker.getCourses().add(this);
+    }
+
+
     @OneToMany(mappedBy = "Course",orphanRemoval = true)
     private List<CommentEntity> comments = new ArrayList<>();
 
-    public static CourseEntity createCourse(CourseDto dto,List<CommentEntity> comments) {
+    @OneToMany(mappedBy = "Visitor",orphanRemoval = true)
+    private List<VisitedCourseEntity> visiteduser = new ArrayList<>();
+
+    @OneToMany(mappedBy = "Place",orphanRemoval = true)
+    private List<DayEntity> visitedday = new ArrayList<>();
+
+    public static CourseEntity createCourse(CourseDto dto,List<CommentEntity> comments,UserEntity user, List<VisitedCourseEntity> visiteduser, List<DayEntity> visitedday) {
         //엔티티 생성 및 반환
         return new CourseEntity(
                 dto.getId(),
-                dto.getCourseName(),
-                dto.getCourseMakerId(),
-                comments);
+                dto.getCourseName()
+                ,user,comments,visiteduser,visitedday);
 
     }
 

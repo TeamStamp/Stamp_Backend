@@ -20,8 +20,8 @@ public class VisitedCourseDto {
         return new VisitedCourseDto(
 
                 VisitedCourse.getId(),
-                VisitedCourse.getVisitorId(),
-                VisitedCourse.getCourseId()
+                VisitedCourse.getVisitor().getId(),
+                VisitedCourse.getVisitedCourse().getId()
         );
 
     }
