@@ -29,6 +29,10 @@ public class CommentEntity {
     @ManyToOne
     @JoinColumn(name = "WriterId")
     private UserEntity Writer;
+    public void changeUserEntity(UserEntity Writer){
+        this.Writer = Writer;
+        Writer.getComments().add(this);
+    }
 
 
     @ManyToOne

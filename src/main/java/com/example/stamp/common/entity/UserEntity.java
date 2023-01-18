@@ -11,6 +11,8 @@ import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,15 +34,19 @@ public class UserEntity {
     @Column
     private Integer NOS;
 
+    @OneToMany(mappedBy = "Writer",orphanRemoval = true)
+    private List<CommentEntity> comments = new ArrayList<>();
 
-    public static UserEntity createUser(UserDto dto) {
+
+    public static UserEntity createUser(UserDto dto,List<CommentEntity> comments) {
         //엔티티 생성 및 반환
         return new UserEntity(
                 dto.getId(),
                 dto.getUsername(),
                 dto.getUserId(),
                 dto.getPassword(),
-                dto.getNOS());
+                dto.getNOS(),
+                comments);
 
     }
 
