@@ -47,16 +47,5 @@ public class PlaceEntity {
 
     }
 
-    //예외처리 하게 되면 사용
-//    public void patch(PlaceDto dto) {
-//
-//        //객체를 갱신
-//        if(dto.getPlacename()!=null)
-//            this.Placename = dto.getPlacename();
-//        if(dto.getLat()!=null)
-//            this.Lat = dto.getLat();
-//        if(dto.getLon()!=null)
-//            this.Lon = dto.getLon();
-//
-//    }
+
 }

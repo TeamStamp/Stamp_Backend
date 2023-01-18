@@ -58,6 +58,15 @@ public class UserEntity {
                 comments,courses,visitedcourses,visitedcpalces);
 
     }
-
+    public void patch(UserEntity user){
+        if(user.Username != null)
+            this.Username = user.Username;
+       if(user.UserId != null)
+            this.UserId = user.UserId;
+       if(user.Password != null)
+            this.Password = user.Password;
+       if(user.NOS != null)
+            this.NOS = user.NOS;
+    }
 
 }

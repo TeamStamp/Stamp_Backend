@@ -53,6 +53,11 @@ public class CommentEntity {
                 user,course);
 
     }
+    public void patch(CommentEntity comment){
+        if(comment.Comment != null)
+            this.Comment = comment.Comment;
+
+    }
 
 
 }
