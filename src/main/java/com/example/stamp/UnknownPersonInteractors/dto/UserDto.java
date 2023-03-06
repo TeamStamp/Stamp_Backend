@@ -2,7 +2,7 @@ package com.example.stamp.UnknownPersonInteractors.dto;
 
 
 
-import com.example.stamp.DataGateway.UserEntity;
+import com.example.stamp.DataGateway.Entitiy.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

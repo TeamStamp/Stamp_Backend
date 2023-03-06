@@ -1,6 +1,6 @@
 package com.example.stamp.CourseLoadController;
 
-import com.example.stamp.DataGateway.CourseEntity;
+import com.example.stamp.DataGateway.Entitiy.CourseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
 package com.example.stamp.CourseCommentController;
 
 
-import com.example.stamp.DataGateway.CommentEntity;
+import com.example.stamp.DataGateway.Entitiy.CommentEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

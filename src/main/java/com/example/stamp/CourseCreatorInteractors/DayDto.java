@@ -1,6 +1,6 @@
 package com.example.stamp.CourseCreatorInteractors;
 
-import com.example.stamp.DataGateway.DayEntity;
+import com.example.stamp.DataGateway.Entitiy.DayEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

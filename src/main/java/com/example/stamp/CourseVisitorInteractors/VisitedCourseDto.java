@@ -1,6 +1,6 @@
 package com.example.stamp.CourseVisitorInteractors;
 
-import com.example.stamp.DataGateway.VisitedCourseEntity;
+import com.example.stamp.DataGateway.Entitiy.VisitedCourseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

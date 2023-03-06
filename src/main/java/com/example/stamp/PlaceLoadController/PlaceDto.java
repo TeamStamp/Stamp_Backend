@@ -1,7 +1,7 @@
 package com.example.stamp.PlaceLoadController;
 
 
-import com.example.stamp.DataGateway.PlaceEntity;
+import com.example.stamp.DataGateway.Entitiy.PlaceEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

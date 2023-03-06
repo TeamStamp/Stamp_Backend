@@ -1,4 +1,4 @@
-package com.example.stamp.DataGateway;
+package com.example.stamp.DataGateway.Entitiy;
 import com.example.stamp.CourseVisitorInteractors.VisitedCourseDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
