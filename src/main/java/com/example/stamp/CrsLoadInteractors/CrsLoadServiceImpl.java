@@ -6,7 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,9 +25,15 @@ public class CrsLoadServiceImpl implements CrsLoadService{
         return entity.getId();
 
     }
-    public List<CrsEntity> index() {
 
-        return repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+    @Transactional(readOnly = true)
+    public List<ResponseCrsDto> getAllCrs() {
+        List<ResponseCrsDto> list = new ArrayList<>();
+        List<CrsEntity> Crs = repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+
+        Crs.stream().forEach(crs -> list.add(ResponseCrsDto.of(crs)));
+
+        return list;
     }
 //
 //    public CrsRepository show(Long id) {

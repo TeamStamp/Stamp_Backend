@@ -2,6 +2,7 @@ package com.example.stamp.CrsLoadInteractors;
 
 
 
+import com.example.stamp.DataGateway.entity.CrsEntity;
 import lombok.*;
 
 @Builder
@@ -13,5 +14,10 @@ public class ResponseCrsDto {
     private String CrsName;
     private Long CrsMaker;
 
-
+    public static ResponseCrsDto of(CrsEntity entity){
+        return ResponseCrsDto.builder()
+                .id(entity.getId())
+                .CrsName(entity.getCrsName())
+                .build();
+    }
 }
