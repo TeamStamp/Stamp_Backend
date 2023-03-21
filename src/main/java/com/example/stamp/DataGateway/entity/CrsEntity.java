@@ -29,7 +29,6 @@ public class CrsEntity {
 
     @ManyToOne
     @JoinColumn(name = "CrsMakerId", nullable = false)
-    @JsonBackReference
     private UserEntity CrsMaker;
 
 

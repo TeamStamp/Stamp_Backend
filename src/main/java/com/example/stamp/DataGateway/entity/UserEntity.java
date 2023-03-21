@@ -1,6 +1,7 @@
 package com.example.stamp.DataGateway.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +31,7 @@ public class UserEntity {
     @Column
     private Integer NOS;
     @OneToMany(mappedBy = "CrsMaker",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
-    @JsonManagedReference
+    @JsonIgnoreProperties("crsMaker")
     private Set<CrsEntity> courses = new HashSet<>();
 
     public void add(CrsEntity Crs){
