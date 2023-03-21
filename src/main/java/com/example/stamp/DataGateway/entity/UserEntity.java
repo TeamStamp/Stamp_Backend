@@ -1,21 +1,21 @@
 package com.example.stamp.DataGateway.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
-@Getter
-@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Slf4j
+@Data
+
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,7 @@ public class UserEntity {
     @Column
     private Integer NOS;
     @OneToMany(mappedBy = "CrsMaker",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonManagedReference
     private Set<CrsEntity> courses = new HashSet<>();
 
     public void add(CrsEntity Crs){

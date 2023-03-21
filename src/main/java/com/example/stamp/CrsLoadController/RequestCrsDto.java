@@ -1,25 +1,16 @@
 package com.example.stamp.CrsLoadController;
 
 
-import com.example.stamp.DataGateway.entity.CrsEntity;
 import lombok.*;
 
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@ToString
+@Data
 public class RequestCrsDto {
     private Long id;
-    private String CourseName;
-    private Long CourseMaker;
-
-
-    public RequestCrsDto(CrsEntity crsEntity) {
-
-        this.id = crsEntity.getId();
-        this.CourseName = crsEntity.getCrsName();
-        this.CourseMaker = crsEntity.getCrsMaker().getId();
-    }
+    private String CrsName;
+    private Long CrsMaker;
 
 
 }

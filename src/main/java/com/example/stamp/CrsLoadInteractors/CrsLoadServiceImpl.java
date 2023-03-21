@@ -1,6 +1,8 @@
 package com.example.stamp.CrsLoadInteractors;
 
+import com.example.stamp.CrsLoadController.RequestCrsDto;
 import com.example.stamp.DataGateway.entity.CrsEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -8,14 +10,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CrsLoadServiceImpl {
-    @Autowired
-    private CrsRepository CrsRepository;
+@RequiredArgsConstructor
+public class CrsLoadServiceImpl implements CrsLoadService{
 
+    private final CrsRepository repository;
 
+    @Override
+    public Long register(RequestCrsDto dto){
+
+        CrsEntity entity = dtoToEntity(dto);
+        repository.save(entity);
+        return entity.getId();
+
+    }
     public List<CrsEntity> index() {
 
-        return CrsRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        return repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 //
 //    public CrsRepository show(Long id) {

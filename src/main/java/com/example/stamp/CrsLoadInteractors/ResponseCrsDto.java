@@ -10,10 +10,8 @@ import lombok.*;
 @Data
 public class ResponseCrsDto {
     private Long id;
-    private String CourseName;
-    private Long CourseMaker;
-
-
+    private String CrsName;
+    private Long CrsMaker;
 
 
 }
