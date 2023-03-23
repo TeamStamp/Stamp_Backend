@@ -1,4 +1,4 @@
-package com.example.stamp.DataGateway.entity;
+package com.example.stamp.Entities;
 
 
 
@@ -6,14 +6,14 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import javax.persistence.*;
 
+@Builder
 @Entity
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Slf4j
-@Data
+
 public class CrsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,11 +27,6 @@ public class CrsEntity {
     private UserEntity CrsMaker;
 
 
-
-//    public void add(UserEntity CourseMaker){
-//        this.CourseMaker = CourseMaker;
-//        CourseMaker.getCourses().add(this);
-//    }
 
 
 }

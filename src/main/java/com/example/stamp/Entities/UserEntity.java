@@ -1,4 +1,4 @@
-package com.example.stamp.DataGateway.entity;
+package com.example.stamp.Entities;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
