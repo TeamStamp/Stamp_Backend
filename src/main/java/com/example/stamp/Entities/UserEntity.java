@@ -29,14 +29,14 @@ public class UserEntity {
     //NumberOfStamps(스탬프 수)
     @Column
     private Integer NOS;
-    @OneToMany(mappedBy = "CrsMaker",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
-    @JsonIgnoreProperties("crsMaker")
-    private Set<CrsEntity> courses = new HashSet<>();
+//    @OneToMany(mappedBy = "CrsMaker",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+//    @JsonIgnoreProperties("crsMaker")
+//    private Set<CrsEntity> courses = new HashSet<>();
 
-    public void add(CrsEntity Crs){
-        Crs.setCrsMaker(this);       //onwer
-       getCourses().add(Crs);
-    }
+//    public void add(CrsEntity Crs){
+//        Crs.setCrsMaker(this);       //onwer
+//       getCourses().add(Crs);
+//    }
 
 
 

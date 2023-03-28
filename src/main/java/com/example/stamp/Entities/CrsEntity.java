@@ -21,10 +21,12 @@ public class CrsEntity {
 
     @Column
     private  String CrsName;
+    @Column
+    private  String CrsMakerToken;
 
-    @ManyToOne
-    @JoinColumn(name = "CrsMakerId", nullable = false)
-    private UserEntity CrsMaker;
+//    @ManyToOne
+//    @JoinColumn(name = "CrsMakerId", nullable = false)
+//    private UserEntity CrsMaker;
 
 
 

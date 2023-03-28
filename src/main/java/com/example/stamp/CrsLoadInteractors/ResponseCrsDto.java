@@ -13,12 +13,13 @@ import lombok.*;
 public class ResponseCrsDto {
     private Long id;
     private String CrsName;
-    private Long CrsMaker;
+    private String CrsMakerToken;
 
     public static ResponseCrsDto of(CrsEntity entity){
         return ResponseCrsDto.builder()
                 .id(entity.getId())
                 .CrsName(entity.getCrsName())
+                .CrsMakerToken(entity.getCrsMakerToken())
                 .build();
     }
 }
