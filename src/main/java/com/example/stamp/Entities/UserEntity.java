@@ -21,14 +21,13 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @Column
-    private  String Username;
+    private  String Nickname;
     @Column
-    private String UserId;
+    private String Email;
     @Column
     private String Password;
-    //NumberOfStamps(스탬프 수)
     @Column
-    private Integer NOS;
+    private String ImageUrl;
 //    @OneToMany(mappedBy = "CrsMaker",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
 //    @JsonIgnoreProperties("crsMaker")
 //    private Set<CrsEntity> courses = new HashSet<>();

@@ -3,6 +3,7 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import javax.persistence.*;
 
+
 @Builder
 @Entity
 @Getter
@@ -10,25 +11,25 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Slf4j
-
-public class CrsEntity {
+public class PlcEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-
     @Column
-    private  String CrsName;
+    private  String PlcName;
     @Column
-    private  String CrsMakerToken;
+    private  String PlcMakerToken;
+    //위도
+    @Column
+    private String Lat;
+    //경도
+    @Column
+    private String Lng;
+    @Column
+    private String ImgUrl;
+    @Column
+    private String Category;
     @Column
     private Boolean IsAccept;
-    @Column
-    private String ImageUrl;
-//    @ManyToOne
-//    @JoinColumn(name = "CrsMakerId", nullable = false)
-//    private UserEntity CrsMaker;
-
-
-
 
 }

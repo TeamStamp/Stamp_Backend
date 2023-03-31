@@ -1,4 +1,4 @@
-package example.stamp.CrsLoadInteractors;
+package example.stamp.test;
 import com.example.stamp.CrsLoadInteractors.CrsLoadServiceImpl;
 import com.example.stamp.CrsLoadInteractors.CrsRepository;
 import com.example.stamp.CrsLoadInteractors.RequestCrsDto;
@@ -40,8 +40,8 @@ public class CrsLoadServiceImplTest {
         // 초기 데이터 설정
         List<CrsEntity> crsList = new ArrayList<>();
 
-        CrsEntity crs1 = CrsEntity.builder().id(1L).CrsName("Crs1").CrsMakerToken("1").build();
-        CrsEntity crs2 = CrsEntity.builder().id(2L).CrsName("Crs2").CrsMakerToken("1").build();
+        CrsEntity crs1 = CrsEntity.builder().Id(1L).CrsName("Crs1").CrsMakerToken("1").ImageUrl("AAA").build();
+        CrsEntity crs2 = CrsEntity.builder().Id(2L).CrsName("Crs2").CrsMakerToken("1").ImageUrl("BBB").build();
 
         crsList.add(crs1);
         crsList.add(crs2);
@@ -63,16 +63,16 @@ public class CrsLoadServiceImplTest {
     @Test
     public void testGetCrs() {
         // 레포지토리 동작을 모킹합니다.
-        CrsEntity crs = CrsEntity.builder().id(1L).CrsName("Crs1").CrsMakerToken("1").build();
+        CrsEntity crs = CrsEntity.builder().Id(1L).CrsName("Crs1").CrsMakerToken("1").ImageUrl("AAA").build();
         when(repository.findById(1L)).thenReturn(Optional.of(crs));
         // 서비스 메서드를 호출합니다.
-        RequestCrsDto request = RequestCrsDto.builder().id(1L).build();
+        RequestCrsDto request = RequestCrsDto.builder().Id(1L).build();
         ResponseCrsDto response = service.getCrs(request);
         // 결과를 검증합니다.
         assertEquals("Crs1", response.getCrsName());
         assertEquals("1", response.getCrsMakerToken());
         // 로그를 출력합니다.
-        System.out.println("Expected: id=1, CrsName=Crs1, CrsMakerToken=1");
+        System.out.println("Expected: id=1, CrsName=Crs1, CrsMakerToken=1 ImageUrl=AAA");
         System.out.println("Actual: " + response);
 
         // 초기 데이터 삭제
