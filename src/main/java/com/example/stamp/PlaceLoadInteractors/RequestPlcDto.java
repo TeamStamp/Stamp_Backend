@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class RequestPlcDto {
-    private Long Id;
+    private Long id;
     public static PlcEntity of(RequestPlcDto dto){
         PlcEntity entity = PlcEntity.builder()
-                .Id(dto.getId())
+                .id(dto.getId())
                 .build();
         return entity;
     }

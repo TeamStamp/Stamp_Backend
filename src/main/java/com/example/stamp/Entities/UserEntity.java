@@ -19,7 +19,7 @@ import java.util.Set;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     @Column
     private  String Nickname;
     @Column
@@ -27,15 +27,21 @@ public class UserEntity {
     @Column
     private String Password;
     @Column
-    private String ImageUrl;
-//    @OneToMany(mappedBy = "CrsMaker",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
-//    @JsonIgnoreProperties("crsMaker")
-//    private Set<CrsEntity> courses = new HashSet<>();
-
-//    public void add(CrsEntity Crs){
-//        Crs.setCrsMaker(this);       //onwer
-//       getCourses().add(Crs);
-//    }
+    private String ImgUrl;
+    @OneToMany(mappedBy = "UserId",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnoreProperties("UserId")
+    private Set<CrsEntity> course = new HashSet<>();
+    @OneToMany(mappedBy = "UserId",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnoreProperties("UserId")
+    private Set<PlcEntity> place = new HashSet<>();
+    public void add(CrsEntity Crs){
+        Crs.setUserId(this);       //onwer
+       getCourse().add(Crs);
+    }
+    public void add(PlcEntity Plc){
+        Plc.setUserId(this);       //onwer
+        getPlace().add(Plc);
+    }
 
 
 

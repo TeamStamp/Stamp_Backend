@@ -6,10 +6,10 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 public class RequestCrsDto {
-    private Long Id;
+    private Long id;
     public static CrsEntity of(RequestCrsDto dto){
         CrsEntity entity = CrsEntity.builder()
-                .Id(dto.getId())
+                .id(dto.getId())
                 .build();
         return entity;
     }

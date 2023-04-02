@@ -4,6 +4,9 @@ import com.example.stamp.CrsLoadInteractors.CrsRepository;
 import com.example.stamp.CrsLoadInteractors.RequestCrsDto;
 import com.example.stamp.CrsLoadInteractors.ResponseCrsDto;
 import com.example.stamp.Entities.CrsEntity;
+import com.example.stamp.Entities.UserEntity;
+import com.example.stamp.UnknownPersonInteractors.dto.UserRequestDto;
+import com.example.stamp.UnknownPersonInteractors.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -39,9 +42,10 @@ public class CrsLoadServiceImplTest {
     public void testGetAllCrs() {
         // 초기 데이터 설정
         List<CrsEntity> crsList = new ArrayList<>();
-
-        CrsEntity crs1 = CrsEntity.builder().Id(1L).CrsName("Crs1").CrsMakerToken("1").ImageUrl("AAA").build();
-        CrsEntity crs2 = CrsEntity.builder().Id(2L).CrsName("Crs2").CrsMakerToken("1").ImageUrl("BBB").build();
+        UserEntity user1 = new UserEntity(1L,null,null,null,null,null,null);
+        UserEntity user2= new UserEntity(2L,null,null,null,null,null,null);
+        CrsEntity crs1 = CrsEntity.builder().id(1L).CrsName("Crs1").ImgUrl("AAA").UserId(user1).build();
+        CrsEntity crs2 = CrsEntity.builder().id(2L).CrsName("Crs2").ImgUrl("BBB").UserId(user2).build();
 
         crsList.add(crs1);
         crsList.add(crs2);
@@ -63,16 +67,18 @@ public class CrsLoadServiceImplTest {
     @Test
     public void testGetCrs() {
         // 레포지토리 동작을 모킹합니다.
-        CrsEntity crs = CrsEntity.builder().Id(1L).CrsName("Crs1").CrsMakerToken("1").ImageUrl("AAA").build();
+        UserEntity user1 = new UserEntity(1L,null,null,null,null,null,null);
+        CrsEntity crs = CrsEntity.builder().id(1L).CrsName("Crs1").ImgUrl("AAA").UserId(user1).build();
         when(repository.findById(1L)).thenReturn(Optional.of(crs));
         // 서비스 메서드를 호출합니다.
-        RequestCrsDto request = RequestCrsDto.builder().Id(1L).build();
+        RequestCrsDto request = RequestCrsDto.builder().id(1L).build();
         ResponseCrsDto response = service.getCrs(request);
         // 결과를 검증합니다.
         assertEquals("Crs1", response.getCrsName());
-        assertEquals("1", response.getCrsMakerToken());
+        assertEquals("AAA", response.getImgUrl());
+        assertEquals(1L, response.getUserId());
         // 로그를 출력합니다.
-        System.out.println("Expected: id=1, CrsName=Crs1, CrsMakerToken=1 ImageUrl=AAA");
+        System.out.println("Expected: " + ResponseCrsDto.of(crs));
         System.out.println("Actual: " + response);
 
         // 초기 데이터 삭제

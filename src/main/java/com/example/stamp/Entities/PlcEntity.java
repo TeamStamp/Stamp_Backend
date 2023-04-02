@@ -14,11 +14,9 @@ import javax.persistence.*;
 public class PlcEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     @Column
     private  String PlcName;
-    @Column
-    private  String PlcMakerToken;
     //위도
     @Column
     private String Lat;
@@ -31,5 +29,8 @@ public class PlcEntity {
     private String Category;
     @Column
     private Boolean IsAccept;
+    @ManyToOne
+    @JoinColumn(name = "UserId", nullable = true)
+    private UserEntity UserId;
 
 }

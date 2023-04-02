@@ -22,7 +22,7 @@ public class PlcLoadController {
     public List<ResponsePlcDto> index(){return PlcLoadService.getAllPlc();}
 
 
-    @PostMapping("/api/course")
+    @PostMapping("/api/place")
     public ResponsePlcDto getPlc(@RequestBody RequestPlcDto dto){
         return PlcLoadService.getPlc(dto);
     }

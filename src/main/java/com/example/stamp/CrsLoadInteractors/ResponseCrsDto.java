@@ -3,6 +3,7 @@ package com.example.stamp.CrsLoadInteractors;
 
 
 import com.example.stamp.Entities.CrsEntity;
+
 import lombok.*;
 
 @Builder
@@ -11,16 +12,16 @@ import lombok.*;
 @Data
 
 public class ResponseCrsDto {
-    private Long Id;
+    private Long id;
     private String CrsName;
-    private String CrsMakerToken;
-    private String ImageUrl;
+    private String ImgUrl;
+    private Long UserId;
     public static ResponseCrsDto of(CrsEntity entity){
         return ResponseCrsDto.builder()
-                .Id(entity.getId())
+                .id(entity.getId())
                 .CrsName(entity.getCrsName())
-                .CrsMakerToken(entity.getCrsMakerToken())
-                .ImageUrl(entity.getImageUrl())
+                .ImgUrl(entity.getImgUrl())
+                .UserId(entity.getUserId().getId())
                 .build();
     }
 }

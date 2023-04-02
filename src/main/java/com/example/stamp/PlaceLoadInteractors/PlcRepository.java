@@ -12,10 +12,7 @@ import java.util.List;
 @Repository
 public interface PlcRepository extends CrudRepository<PlcEntity,Long> {
 
-
    List<PlcEntity> findAll(Sort id);
-
-
 
 
 }

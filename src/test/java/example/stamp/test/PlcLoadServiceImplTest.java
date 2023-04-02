@@ -1,6 +1,8 @@
 package example.stamp.test;
 
+import com.example.stamp.CrsLoadInteractors.ResponseCrsDto;
 import com.example.stamp.Entities.PlcEntity;
+import com.example.stamp.Entities.UserEntity;
 import com.example.stamp.PlaceLoadInteractors.PlcLoadServiceImpl;
 import com.example.stamp.PlaceLoadInteractors.PlcRepository;
 import com.example.stamp.PlaceLoadInteractors.RequestPlcDto;
@@ -39,9 +41,10 @@ public class PlcLoadServiceImplTest {
     public void testGetAllPlc() {
         // 초기 데이터 설정
         List<PlcEntity> plcList = new ArrayList<>();
-
-        PlcEntity plc1 = PlcEntity.builder().Id(1L).PlcName("Plc1").PlcMakerToken("1").Lat("123").Lng("321").Category("음식점").ImgUrl("AAA").build();
-        PlcEntity plc2 = PlcEntity.builder().Id(2L).PlcName("Plc2").PlcMakerToken("1").Lat("111").Lng("222").Category("숙소").ImgUrl("BBB").build();
+        UserEntity user1 = new UserEntity(1L,null,null,null,null,null,null);
+        UserEntity user2= new UserEntity(2L,null,null,null,null,null,null);
+        PlcEntity plc1 = PlcEntity.builder().id(1L).PlcName("Plc1").Lat("123").Lng("321").Category("음식점").ImgUrl("AAA").UserId(user1).build();
+        PlcEntity plc2 = PlcEntity.builder().id(2L).PlcName("Plc2").Lat("111").Lng("222").Category("숙소").ImgUrl("BBB").UserId(user2).build();
 
         plcList.add(plc1);
         plcList.add(plc2);
@@ -63,16 +66,22 @@ public class PlcLoadServiceImplTest {
     @Test
     public void testGetPlc() {
         // 레포지토리 동작을 모킹합니다.
-        PlcEntity plc = PlcEntity.builder().Id(1L).PlcName("Plc1").PlcMakerToken("1").Lat("123").Lng("321").Category("음식점").ImgUrl("AAA").build();
+        UserEntity user1 = new UserEntity(1L,null,null,null,null,null,null);
+        PlcEntity plc = PlcEntity.builder().id(1L).PlcName("Plc1").Lat("123").Lng("321").Category("음식점").ImgUrl("AAA").UserId(user1).build();
         when(repository.findById(1L)).thenReturn(Optional.of(plc));
         // 서비스 메서드를 호출합니다.
-        RequestPlcDto request = RequestPlcDto.builder().Id(1L).build();
+        RequestPlcDto request = RequestPlcDto.builder().id(1L).build();
         ResponsePlcDto response = service.getPlc(request);
         // 결과를 검증합니다.
         assertEquals("Plc1", response.getPlcName());
-        assertEquals("1", response.getPlcMakerToken());
+        assertEquals("123", response.getLat());
+        assertEquals("321", response.getLng());
+        assertEquals("음식점", response.getCategory());
+        assertEquals("AAA", response.getImgUrl());
+        assertEquals(1, response.getUserId());
+
         // 로그를 출력합니다.
-        System.out.println("Expected: id=1, PlcName=Plc1, PlcMakerToken=1, Lat=123, Lng=321, Category=음식점, ImgUrl=AAA");
+        System.out.println("Expected: " + ResponsePlcDto.of(plc) );
         System.out.println("Actual: " + response);
 
         // 초기 데이터 삭제

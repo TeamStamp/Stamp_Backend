@@ -14,22 +14,22 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class ResponsePlcDto {
-    private Long Id;
+    private Long id;
     private String PlcName;
-    private String PlcMakerToken;
     private String Lat;
     private String Lng;
     private String ImgUrl;
     private String Category;
+    private Long UserId;
     public static ResponsePlcDto of(PlcEntity entity){
         return ResponsePlcDto.builder()
-                .Id(entity.getId())
+                .id(entity.getId())
                 .PlcName(entity.getPlcName())
-                .PlcMakerToken(entity.getPlcMakerToken())
                 .Lat(entity.getLat())
                 .Lng(entity.getLng())
                 .ImgUrl(entity.getImgUrl())
                 .Category(entity.getCategory())
+                .UserId(entity.getUserId().getId())
                 .build();
     }
 }

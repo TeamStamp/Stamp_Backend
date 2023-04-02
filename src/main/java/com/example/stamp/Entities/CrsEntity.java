@@ -14,19 +14,17 @@ import javax.persistence.*;
 public class CrsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @Column
     private  String CrsName;
     @Column
-    private  String CrsMakerToken;
-    @Column
     private Boolean IsAccept;
     @Column
-    private String ImageUrl;
-//    @ManyToOne
-//    @JoinColumn(name = "CrsMakerId", nullable = false)
-//    private UserEntity CrsMaker;
+    private String ImgUrl;
+    @ManyToOne
+    @JoinColumn(name = "UserId", nullable = true)
+    private UserEntity UserId;
 
 
 
