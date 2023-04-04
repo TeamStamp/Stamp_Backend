@@ -2,6 +2,7 @@ package com.example.stamp.CrsLoadController;
 import com.example.stamp.CrsLoadInteractors.CrsLoadService;
 import com.example.stamp.CrsLoadInteractors.RequestCrsDto;
 import com.example.stamp.CrsLoadInteractors.ResponseCrsDto;
+import com.example.stamp.CrsLoadInteractors.ResponseOneCrsDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class CrsLoadController {
 
 
     @PostMapping("/api/course")
-    public ResponseCrsDto getCrs(@RequestBody RequestCrsDto dto){
+    public ResponseOneCrsDto getCrs(@RequestBody RequestCrsDto dto){
         return CrsLoadService.getCrs(dto);
     }
 

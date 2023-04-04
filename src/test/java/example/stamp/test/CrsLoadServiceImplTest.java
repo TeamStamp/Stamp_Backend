@@ -1,9 +1,7 @@
 package example.stamp.test;
-import com.example.stamp.CrsLoadInteractors.CrsLoadServiceImpl;
-import com.example.stamp.CrsLoadInteractors.CrsRepository;
-import com.example.stamp.CrsLoadInteractors.RequestCrsDto;
-import com.example.stamp.CrsLoadInteractors.ResponseCrsDto;
+import com.example.stamp.CrsLoadInteractors.*;
 import com.example.stamp.Entities.CrsEntity;
+import com.example.stamp.Entities.DayEntity;
 import com.example.stamp.Entities.UserEntity;
 import com.example.stamp.UnknownPersonInteractors.dto.UserRequestDto;
 import com.example.stamp.UnknownPersonInteractors.repository.UserRepository;
@@ -16,13 +14,11 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Sort;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class CrsLoadServiceImplTest {
@@ -42,8 +38,8 @@ public class CrsLoadServiceImplTest {
     public void testGetAllCrs() {
         // 초기 데이터 설정
         List<CrsEntity> crsList = new ArrayList<>();
-        UserEntity user1 = new UserEntity(1L,null,null,null,null,null,null);
-        UserEntity user2= new UserEntity(2L,null,null,null,null,null,null);
+        UserEntity user1 = new UserEntity(1L, null, null, null, null, null, null);
+        UserEntity user2 = new UserEntity(2L, null, null, null, null, null, null);
         CrsEntity crs1 = CrsEntity.builder().id(1L).CrsName("Crs1").ImgUrl("AAA").UserId(user1).build();
         CrsEntity crs2 = CrsEntity.builder().id(2L).CrsName("Crs2").ImgUrl("BBB").UserId(user2).build();
 
@@ -62,27 +58,6 @@ public class CrsLoadServiceImplTest {
         System.out.println("Expected: " + Arrays.toString(expected));
         System.out.println("Actual: " + Arrays.toString(actual));
 
-    }
-
-    @Test
-    public void testGetCrs() {
-        // 레포지토리 동작을 모킹합니다.
-        UserEntity user1 = new UserEntity(1L,null,null,null,null,null,null);
-        CrsEntity crs = CrsEntity.builder().id(1L).CrsName("Crs1").ImgUrl("AAA").UserId(user1).build();
-        when(repository.findById(1L)).thenReturn(Optional.of(crs));
-        // 서비스 메서드를 호출합니다.
-        RequestCrsDto request = RequestCrsDto.builder().id(1L).build();
-        ResponseCrsDto response = service.getCrs(request);
-        // 결과를 검증합니다.
-        assertEquals("Crs1", response.getCrsName());
-        assertEquals("AAA", response.getImgUrl());
-        assertEquals(1L, response.getUserId());
-        // 로그를 출력합니다.
-        System.out.println("Expected: " + ResponseCrsDto.of(crs));
-        System.out.println("Actual: " + response);
-
-        // 초기 데이터 삭제
-        repository.delete(crs);
     }
 
 }

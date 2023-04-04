@@ -8,5 +8,5 @@ public interface CrsLoadService {
 
     List<ResponseCrsDto> getAllCrs();
 
-    ResponseCrsDto getCrs(RequestCrsDto dto);
+    ResponseOneCrsDto getCrs(RequestCrsDto dto);
 }

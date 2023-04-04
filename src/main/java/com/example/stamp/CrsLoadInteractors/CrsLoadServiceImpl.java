@@ -22,8 +22,8 @@ public class CrsLoadServiceImpl implements CrsLoadService{
     }
 
     @Transactional(readOnly = true)
-    public ResponseCrsDto getCrs(RequestCrsDto dto){
-        ResponseCrsDto Dto = ResponseCrsDto.of(repository.findById(dto.getId()).get());
+    public ResponseOneCrsDto getCrs(RequestCrsDto dto){
+        ResponseOneCrsDto Dto = ResponseOneCrsDto.of(repository.findById(dto.getId()).get());
         return Dto;}
 
 }

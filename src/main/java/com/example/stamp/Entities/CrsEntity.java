@@ -1,7 +1,10 @@
 package com.example.stamp.Entities;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Builder
 @Entity
@@ -25,8 +28,12 @@ public class CrsEntity {
     @ManyToOne
     @JoinColumn(name = "UserId", nullable = true)
     private UserEntity UserId;
-
-
-
+    @OneToMany(mappedBy = "CrsId",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnoreProperties("CrsId")
+    private Set<DayEntity> Dayx = new HashSet<>();
+    public void add(DayEntity Day){
+        Day.setCrsId(this);       //onwer
+        getDayx().add(Day);
+    }
 
 }
