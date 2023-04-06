@@ -11,3 +11,6 @@ INSERT INTO Plc_Entity (Plc_Name,Lat,Lng,Img_Url,Category,Is_Accept,User_Id) VAL
 INSERT INTO Day_In_Plc (Day_Id,Plc_Id) VALUES (1,1);
 INSERT INTO Day_In_Plc (Day_Id,Plc_Id) VALUES (1,2);
 INSERT INTO Day_In_Plc (Day_Id,Plc_Id) VALUES (2,2);
+INSERT INTO Plc_Cmt (User_Id,Plc_Id,Content) VALUES (1,2,'ㅋㅋㅋㅋㅋㅋㅋ');
+INSERT INTO Plc_Cmt (User_Id,Plc_Id,Content) VALUES (1,2,'ㅎㅇ요');
+INSERT INTO Plc_Cmt (User_Id,Plc_Id,Content) VALUES (1,2,'ㄹㅈㄷ');

@@ -1,4 +1,4 @@
-package com.example.stamp.Mnager.controller;
+package com.example.stamp.Mnager.repository.controller;
 
 
 import com.example.stamp.Mnager.dto.ArticleDTO;
