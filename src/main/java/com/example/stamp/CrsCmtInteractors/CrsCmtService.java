@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface CrsCmtService {
 
-   List<ResponseCrsCmtDto> getCmt(RequestCrsCmtDto dto);
+   List<ResponseCrsCmtDto> getCmt(RequestCrsCmtDto.RequestLoadCrsCmtDto dto);
 
-   ResponseCrsCmtDto setCmt(RequestSetCrsCmtDto dto);
-   void updateCmt(RequestUpdateCrsCmtDto dto);
-   void deleteCmt(RequestDeleteCrsCmtDto dto);
+   ResponseCrsCmtDto setCmt(RequestCrsCmtDto.RequestSetCrsCmtDto dto);
+   void updateCmt(RequestCrsCmtDto.RequestUpdateCrsCmtDto dto);
+   void deleteCmt(RequestCrsCmtDto.RequestDeleteCrsCmtDto dto);
 }

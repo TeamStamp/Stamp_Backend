@@ -17,13 +17,13 @@ public class CrsCmtServiceImpl implements CrsCmtService {
 
     //장소별 댓글 조회
     @Transactional(readOnly = true)
-    public List<ResponseCrsCmtDto> getCmt(RequestCrsCmtDto dto){
+    public List<ResponseCrsCmtDto> getCmt(RequestCrsCmtDto.RequestLoadCrsCmtDto dto){
         List<ResponseCrsCmtDto> list = new ArrayList<>();
         repository.findByCrsId(dto.getCrsId()).stream().forEach(CrsCmt -> list.add(ResponseCrsCmtDto.of(CrsCmt)));
         return list;}
 
     //댓글 작성
-    public ResponseCrsCmtDto setCmt(RequestSetCrsCmtDto dto){
+    public ResponseCrsCmtDto setCmt(RequestCrsCmtDto.RequestSetCrsCmtDto dto){
          ResponseCrsCmtDto.of(repository.save(dto.of()));
         return null;
     }
@@ -31,10 +31,11 @@ public class CrsCmtServiceImpl implements CrsCmtService {
     //댓글 수정
     //댓글의 아이디와 수정할 컨텐츠를 매개변수(dto 타입)으로 받아옴
     //엔티티에서 아이디로 조회하여 타겟을 만들어 저장함
-    //그 타겟에 컨텐츠를 매개변수로 받아온 컨텐츠로 바꾸고  save함
+    //그 타겟에 컨텐츠를 매개변수로 받아온 컨텐츠로 바꾸고 save함
 
     @Transactional
-    public void updateCmt(RequestUpdateCrsCmtDto dto){
+    public void updateCmt(RequestCrsCmtDto.RequestUpdateCrsCmtDto dto){
+
         // 댓글의 아이디와 수정할 컨텐츠를 매개변수(dto 타입)으로 받아옴
         ResponseCrsCmtDto target = ResponseCrsCmtDto.off(repository.findById(dto.getId()));
         // 엔티티에서 아이디로 조회하여 타겟을 만들어 저장함
@@ -45,7 +46,7 @@ public class CrsCmtServiceImpl implements CrsCmtService {
     }
     //댓글 삭제
     @Transactional
-    public void deleteCmt(RequestDeleteCrsCmtDto dto){
+    public void deleteCmt(RequestCrsCmtDto.RequestDeleteCrsCmtDto dto){
 
         // dto에서 받아온 아이디로 찾아서 전체 엔티티와대응하는 Dto에저장
         ResponseCrsCmtDto target = ResponseCrsCmtDto.off(repository.findById(dto.getId()));

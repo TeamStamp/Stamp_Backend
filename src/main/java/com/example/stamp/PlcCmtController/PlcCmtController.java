@@ -13,23 +13,23 @@ import java.util.List;
 public class PlcCmtController {
     private final PlcCmtService PlcCmtService;
     @PostMapping("/api/plccmt")
-    public List<ResponsePlcCmtDto> getCmt(@RequestBody RequestPlcCmtDto dto){
+    public List<ResponsePlcCmtDto> getCmt(@RequestBody RequestPlcCmtDto.RequestLoadPlcCmtDto dto){
         return PlcCmtService.getCmt(dto);
     }
 
     @PostMapping("/api/post/plccmt")
-    public ResponsePlcCmtDto setCmt(@RequestBody RequestSetPlcCmtDto dto){
+    public ResponsePlcCmtDto setCmt(@RequestBody RequestPlcCmtDto.RequestPostPlcCmtDto dto){
 
         return PlcCmtService.setCmt(dto);
     }
 
     @PostMapping("/api/update/plccmt")
-    public void updateCmt(@RequestBody RequestUpdatePlcCmtDto dto){
+    public void updateCmt(@RequestBody RequestPlcCmtDto.RequestUpdatePlcCmtDto dto){
         PlcCmtService.updateCmt(dto);
     }
 
     @PostMapping("/api/delete/plccmt")
-    public void deleteCmt(@RequestBody RequestDeletePlcCmtDto dto){
+    public void deleteCmt(@RequestBody RequestPlcCmtDto.RequestDeletePlcCmtDto dto){
         PlcCmtService.deleteCmt(dto);
     }
 }
