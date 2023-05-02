@@ -1,8 +1,8 @@
-package com.example.stamp.Mnager.api;
+package com.example.stamp.Manager.api;
 
-import com.example.stamp.Mnager.dto.ArticleDTO;
-import com.example.stamp.Mnager.entity.Article;
-import com.example.stamp.Mnager.service.ArticleService;
+import com.example.stamp.Manager.dto.ArticleDTO;
+import com.example.stamp.Manager.entity.Article;
+import com.example.stamp.Manager.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

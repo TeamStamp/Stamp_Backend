@@ -1,4 +1,4 @@
-package com.example.stamp.PlcCmtInteractors;
+package com.example.stamp.CrsCmtInteractors;
 
 
 
@@ -12,19 +12,19 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PlcCmtServiceImpl implements PlcCmtService{
-    private final PlcCmtRepository repository;
+public class CrsCmtServiceImpl implements CrsCmtService {
+    private final CrsCmtRepository repository;
 
     //장소별 댓글 조회
     @Transactional(readOnly = true)
-    public List<ResponsePlcCmtDto> getCmt(RequestPlcCmtDto dto){
-        List<ResponsePlcCmtDto> list = new ArrayList<>();
-        repository.findByPlcId(dto.getPlcId()).stream().forEach(PlcCmt -> list.add(ResponsePlcCmtDto.of(PlcCmt)));
+    public List<ResponseCrsCmtDto> getCmt(RequestCrsCmtDto dto){
+        List<ResponseCrsCmtDto> list = new ArrayList<>();
+        repository.findByCrsId(dto.getCrsId()).stream().forEach(CrsCmt -> list.add(ResponseCrsCmtDto.of(CrsCmt)));
         return list;}
 
     //댓글 작성
-    public ResponsePlcCmtDto setCmt(RequestSetPlcCmtDto dto){
-         ResponsePlcCmtDto.of(repository.save(dto.of()));
+    public ResponseCrsCmtDto setCmt(RequestSetCrsCmtDto dto){
+         ResponseCrsCmtDto.of(repository.save(dto.of()));
         return null;
     }
 
@@ -34,9 +34,9 @@ public class PlcCmtServiceImpl implements PlcCmtService{
     //그 타겟에 컨텐츠를 매개변수로 받아온 컨텐츠로 바꾸고  save함
 
     @Transactional
-    public void updateCmt(RequestUpdatePlcCmtDto dto){
+    public void updateCmt(RequestUpdateCrsCmtDto dto){
         // 댓글의 아이디와 수정할 컨텐츠를 매개변수(dto 타입)으로 받아옴
-        ResponsePlcCmtDto target = ResponsePlcCmtDto.off(repository.findById(dto.getId()));
+        ResponseCrsCmtDto target = ResponseCrsCmtDto.off(repository.findById(dto.getId()));
         // 엔티티에서 아이디로 조회하여 타겟을 만들어 저장함
         target.setContent(dto.getContent());
         //그 타겟에 컨텐츠를 매개변수로 받아온 컨텐츠로 바꾸고  save함
@@ -45,10 +45,10 @@ public class PlcCmtServiceImpl implements PlcCmtService{
     }
     //댓글 삭제
     @Transactional
-    public void deleteCmt(RequestDeletePlcCmtDto dto){
+    public void deleteCmt(RequestDeleteCrsCmtDto dto){
 
         // dto에서 받아온 아이디로 찾아서 전체 엔티티와대응하는 Dto에저장
-        ResponsePlcCmtDto target = ResponsePlcCmtDto.off(repository.findById(dto.getId()));
+        ResponseCrsCmtDto target = ResponseCrsCmtDto.off(repository.findById(dto.getId()));
         //해당 dto를 엔티티로 변환 후 delete
         repository.deleteAllByid(target.getId());
 

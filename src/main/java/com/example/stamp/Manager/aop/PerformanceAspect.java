@@ -1,4 +1,4 @@
-package com.example.stamp.Mnager.aop;
+package com.example.stamp.Manager.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -14,11 +14,11 @@ import org.springframework.util.StopWatch;
 public class PerformanceAspect {
 
     //특정 어노테이션을 대상지정
-    @Pointcut("@annotation(com.example.stamp.Mnager.annotation.RunningTime)")
+    @Pointcut("@annotation(com.example.stamp.Manager.annotation.RunningTime)")
     private void enableRunningTime(){}
 
     //기본 패키지의 모든 메소드
-    @Pointcut("execution(* com.example.stamp.Mnager..*.*(..))")
+    @Pointcut("execution(* com.example.stamp.Manager..*.*(..))")
     private void cut(){}
 
     //실행시점 설정: 두 조건을 모두 만족하는 대상을 전후로 부가 기능을 삽입

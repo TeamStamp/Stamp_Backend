@@ -1,4 +1,4 @@
-package com.example.stamp.Mnager.annotation;
+package com.example.stamp.Manager.annotation;
 
 
 import java.lang.annotation.ElementType;

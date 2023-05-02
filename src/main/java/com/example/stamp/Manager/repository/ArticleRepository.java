@@ -1,6 +1,6 @@
-package com.example.stamp.Mnager.repository;
+package com.example.stamp.Manager.repository;
 
-import com.example.stamp.Mnager.entity.Article;
+import com.example.stamp.Manager.entity.Article;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

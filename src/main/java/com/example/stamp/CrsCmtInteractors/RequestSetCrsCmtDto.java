@@ -1,8 +1,6 @@
-package com.example.stamp.PlcCmtInteractors;
+package com.example.stamp.CrsCmtInteractors;
 
-import com.example.stamp.Entities.PlcCmt;
-import com.example.stamp.Entities.PlcEntity;
-import com.example.stamp.Entities.UserEntity;
+import com.example.stamp.Entities.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,17 +10,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class RequestSetPlcCmtDto {
+public class RequestSetCrsCmtDto {
 
     private Long UserId;
-    private Long PlcId;
+    private Long CrsId;
     private String Content;
 
 
-    protected PlcCmt of(){
-        return PlcCmt.builder()
+    protected CrsCmt of(){
+        return CrsCmt.builder()
                 .UserId(UserEntity.builder().id(this.UserId).build())
-                .PlcId(PlcEntity.builder().id(this.PlcId).build())
+                .CrsId(CrsEntity.builder().id(this.CrsId).build())
                 .Content(this.Content)
                 .build();
     }

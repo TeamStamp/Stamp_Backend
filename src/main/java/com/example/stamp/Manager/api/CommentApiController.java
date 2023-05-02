@@ -1,8 +1,8 @@
-package com.example.stamp.Mnager.api;
+package com.example.stamp.Manager.api;
 
-import com.example.stamp.Mnager.annotation.RunningTime;
-import com.example.stamp.Mnager.dto.CommentDto;
-import com.example.stamp.Mnager.service.CommentService;
+import com.example.stamp.Manager.annotation.RunningTime;
+import com.example.stamp.Manager.dto.CommentDto;
+import com.example.stamp.Manager.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

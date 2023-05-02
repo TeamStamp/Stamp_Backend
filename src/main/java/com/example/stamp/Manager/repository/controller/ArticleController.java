@@ -1,11 +1,11 @@
-package com.example.stamp.Mnager.repository.controller;
+package com.example.stamp.Manager.repository.controller;
 
 
-import com.example.stamp.Mnager.dto.ArticleDTO;
-import com.example.stamp.Mnager.dto.CommentDto;
-import com.example.stamp.Mnager.entity.Article;
-import com.example.stamp.Mnager.repository.ArticleRepository;
-import com.example.stamp.Mnager.service.CommentService;
+import com.example.stamp.Manager.dto.ArticleDTO;
+import com.example.stamp.Manager.dto.CommentDto;
+import com.example.stamp.Manager.entity.Article;
+import com.example.stamp.Manager.repository.ArticleRepository;
+import com.example.stamp.Manager.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

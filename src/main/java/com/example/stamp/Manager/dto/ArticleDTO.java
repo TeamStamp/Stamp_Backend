@@ -1,6 +1,6 @@
-package com.example.stamp.Mnager.dto;
+package com.example.stamp.Manager.dto;
 
-import com.example.stamp.Mnager.entity.Article;
+import com.example.stamp.Manager.entity.Article;
 import lombok.*;
 
 @AllArgsConstructor

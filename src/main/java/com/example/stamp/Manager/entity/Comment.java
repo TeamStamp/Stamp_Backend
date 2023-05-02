@@ -1,6 +1,6 @@
-package com.example.stamp.Mnager.entity;
+package com.example.stamp.Manager.entity;
 
-import com.example.stamp.Mnager.dto.CommentDto;
+import com.example.stamp.Manager.dto.CommentDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
-package com.example.stamp.Mnager.dto;
+package com.example.stamp.Manager.dto;
 
-import com.example.stamp.Mnager.entity.Comment;
+import com.example.stamp.Manager.entity.Comment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

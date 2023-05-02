@@ -1,10 +1,7 @@
 package com.example.stamp.PlcCmtController;
 
 
-import com.example.stamp.PlcCmtInteractors.PlcCmtService;
-import com.example.stamp.PlcCmtInteractors.RequestPlcCmtDto;
-import com.example.stamp.PlcCmtInteractors.RequestSetPlcCmtDto;
-import com.example.stamp.PlcCmtInteractors.ResponsePlcCmtDto;
+import com.example.stamp.PlcCmtInteractors.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,5 +21,15 @@ public class PlcCmtController {
     public ResponsePlcCmtDto setCmt(@RequestBody RequestSetPlcCmtDto dto){
 
         return PlcCmtService.setCmt(dto);
+    }
+
+    @PostMapping("/api/update/plccmt")
+    public void updateCmt(@RequestBody RequestUpdatePlcCmtDto dto){
+        PlcCmtService.updateCmt(dto);
+    }
+
+    @PostMapping("/api/delete/plccmt")
+    public void deleteCmt(@RequestBody RequestDeletePlcCmtDto dto){
+        PlcCmtService.deleteCmt(dto);
     }
 }

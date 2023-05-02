@@ -1,4 +1,4 @@
-package com.example.stamp.Mnager.entity;
+package com.example.stamp.Manager.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

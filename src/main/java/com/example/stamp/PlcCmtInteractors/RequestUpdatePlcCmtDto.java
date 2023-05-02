@@ -1,8 +1,6 @@
 package com.example.stamp.PlcCmtInteractors;
 
 import com.example.stamp.Entities.PlcCmt;
-import com.example.stamp.Entities.PlcEntity;
-import com.example.stamp.Entities.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,20 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class RequestSetPlcCmtDto {
+public class RequestUpdatePlcCmtDto {
 
-    private Long UserId;
-    private Long PlcId;
+
+    private Long Id;
     private String Content;
 
 
     protected PlcCmt of(){
         return PlcCmt.builder()
-                .UserId(UserEntity.builder().id(this.UserId).build())
-                .PlcId(PlcEntity.builder().id(this.PlcId).build())
                 .Content(this.Content)
                 .build();
     }
-
-
 }

@@ -1,8 +1,8 @@
-package com.example.stamp.PlcCmtInteractors;
+package com.example.stamp.CrsCmtInteractors;
 
 
+import com.example.stamp.Entities.CrsCmt;
 import com.example.stamp.Entities.PlcCmt;
-import com.example.stamp.Entities.PlcEntity;
 import com.example.stamp.Entities.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,14 +15,14 @@ import java.util.Optional;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class ResponsePlcCmtDto {
+public class ResponseCrsCmtDto {
     private Long id;
     private Long UserId;
     private String Content;
 
 
-    public static ResponsePlcCmtDto of(PlcCmt entity){
-        return ResponsePlcCmtDto.builder()
+    public static ResponseCrsCmtDto of(CrsCmt entity){
+        return ResponseCrsCmtDto.builder()
                 .id(entity.getId())
                 .UserId(entity.getUserId().getId())
                 .Content(entity.getContent())
@@ -34,16 +34,16 @@ public class ResponsePlcCmtDto {
                 .Content(this.Content)
                 .build();
     }
-    public static ResponsePlcCmtDto off(Optional<PlcCmt> entity) {
+    public static ResponseCrsCmtDto off(Optional<CrsCmt> entity) {
         if (!entity.isPresent()) {
             return null;
         }
 
-        PlcCmt plcCmt = entity.get();
-        return ResponsePlcCmtDto.builder()
-                .id(plcCmt.getId())
-                .UserId(plcCmt.getUserId().getId())
-                .Content(plcCmt.getContent())
+        CrsCmt crsCmt = entity.get();
+        return ResponseCrsCmtDto.builder()
+                .id(crsCmt.getId())
+                .UserId(crsCmt.getUserId().getId())
+                .Content(crsCmt.getContent())
                 .build();
     }
 }

@@ -14,3 +14,6 @@ INSERT INTO Day_In_Plc (Day_Id,Plc_Id) VALUES (2,2);
 INSERT INTO Plc_Cmt (User_Id,Plc_Id,Content) VALUES (1,2,'ㅋㅋㅋㅋㅋㅋㅋ');
 INSERT INTO Plc_Cmt (User_Id,Plc_Id,Content) VALUES (1,2,'ㅎㅇ요');
 INSERT INTO Plc_Cmt (User_Id,Plc_Id,Content) VALUES (1,2,'ㄹㅈㄷ');
+INSERT INTO Crs_Cmt (User_Id,Crs_Id,Content) VALUES (1,2,'가');
+INSERT INTO Crs_Cmt (User_Id,Crs_Id,Content) VALUES (1,2,'나');
+INSERT INTO Crs_Cmt (User_Id,Crs_Id,Content) VALUES (1,2,'다');

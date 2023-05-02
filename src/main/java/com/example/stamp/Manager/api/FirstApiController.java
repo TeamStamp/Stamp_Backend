@@ -1,4 +1,4 @@
-package com.example.stamp.Mnager.api;
+package com.example.stamp.Manager.api;
 
 
 import org.springframework.web.bind.annotation.GetMapping;

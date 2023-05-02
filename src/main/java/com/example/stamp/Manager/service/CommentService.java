@@ -1,10 +1,10 @@
-package com.example.stamp.Mnager.service;
+package com.example.stamp.Manager.service;
 
-import com.example.stamp.Mnager.dto.CommentDto;
-import com.example.stamp.Mnager.entity.Article;
-import com.example.stamp.Mnager.entity.Comment;
-import com.example.stamp.Mnager.repository.ArticleRepository;
-import com.example.stamp.Mnager.repository.CommentRepository;
+import com.example.stamp.Manager.dto.CommentDto;
+import com.example.stamp.Manager.entity.Article;
+import com.example.stamp.Manager.entity.Comment;
+import com.example.stamp.Manager.repository.ArticleRepository;
+import com.example.stamp.Manager.repository.CommentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
