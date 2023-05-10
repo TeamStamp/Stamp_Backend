@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -36,5 +37,21 @@ public class PlcEntity {
     @JoinColumn(name = "UserId", nullable = true)
     private UserEntity UserId;
 
+    @OneToMany(mappedBy = "PlcId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<DayInPlc> dayInPlcs;
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(PlcName);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PlcEntity)) return false;
+        PlcEntity plc = (PlcEntity) o;
+        return Objects.equals(PlcName, plc.PlcName);
+    }
 
 }

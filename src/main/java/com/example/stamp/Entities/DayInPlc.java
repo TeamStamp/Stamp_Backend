@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -22,6 +23,8 @@ public class DayInPlc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
+    private Date DateTime;
     @ManyToOne
     @JoinColumn(name = "DayId", nullable = true)
     private DayEntity DayId;
