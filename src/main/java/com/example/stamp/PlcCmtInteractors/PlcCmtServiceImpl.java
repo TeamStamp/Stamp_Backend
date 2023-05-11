@@ -35,9 +35,8 @@ public class PlcCmtServiceImpl implements PlcCmtService{
 
     @Transactional
     public void updateCmt(RequestPlcCmtDto.RequestUpdatePlcCmtDto dto){
-        // 댓글의 아이디와 수정할 컨텐츠를 매개변수(dto 타입)으로 받아옴
+
         ResponsePlcCmtDto target = ResponsePlcCmtDto.off(repository.findById(dto.getId()));
-        // 엔티티에서 아이디로 조회하여 타겟을 만들어 저장함
         target.setContent(dto.getContent());
         //그 타겟에 컨텐츠를 매개변수로 받아온 컨텐츠로 바꾸고  save함
         repository.updateContentById(target.getId(), target.getContent());

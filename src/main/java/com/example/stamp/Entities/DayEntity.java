@@ -18,6 +18,7 @@ public class DayEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private Integer Dayx;
     @ManyToOne
     @JoinColumn(name = "CrsId", nullable = true)
