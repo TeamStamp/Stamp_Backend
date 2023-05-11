@@ -24,4 +24,6 @@ public class CrsLoadController {
         return CrsLoadService.getCrs(dto);
     }
 
+    @PostMapping("/api/deleteCrs")
+    public void deleteCrs(@RequestBody RequestCrsDto dto){CrsLoadService.deleteCrs(dto);};
 }

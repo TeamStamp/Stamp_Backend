@@ -9,4 +9,6 @@ public interface CrsLoadService {
     List<ResponseCrsDto> getAllCrs();
 
     ResponseOneCrsDto getCrs(RequestCrsDto dto);
+
+    void deleteCrs(RequestCrsDto dto);
 }

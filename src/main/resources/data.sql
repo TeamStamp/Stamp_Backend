@@ -1,7 +1,7 @@
 
 INSERT INTO User_Entity(Id,Nickname,Email,Password,Img_Url) VALUES (1,'문공표','asdasd@gmail.com','asdasd','sadasdasfxc');
 INSERT INTO Crs_Entity (Crs_Name,Is_Accept,Img_Url,User_Id) VALUES ('Crs1',1,'sadasd',1);
-INSERT INTO Crs_Entity (Crs_Name,Is_Accept,Img_Url,User_Id) VALUES ('Crs2',1,'sadasd',1);
+INSERT INTO Crs_Entity (Crs_Name,Is_Accept,Img_Url,User_Id) VALUES ('Crs2',0,'sadasd',1);
 INSERT INTO Day_Entity (Dayx,Crs_Id) VALUES (1,1);
 INSERT INTO Day_Entity (Dayx,Crs_Id) VALUES (2,1);
 INSERT INTO Day_Entity (Dayx,Crs_Id) VALUES (3,1);
