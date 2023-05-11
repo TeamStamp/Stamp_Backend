@@ -33,6 +33,8 @@ public class PlcEntity {
     private String Category;
     @Column
     private Boolean IsAccept;
+    @Column
+    private Long Cost;
     @ManyToOne
     @JoinColumn(name = "UserId", nullable = true)
     private UserEntity UserId;

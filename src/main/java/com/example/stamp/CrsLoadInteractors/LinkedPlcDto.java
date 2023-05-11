@@ -18,6 +18,7 @@ public class LinkedPlcDto {
     private Date DateTime;
     private String PlcName;
     private String ImgUrl;
+    private Long Cost;
     public static LinkedPlcDto of(PlcEntity entity) {
 
         DayInPlc dayInPlc = entity.getDayInPlcs()
@@ -30,6 +31,7 @@ public class LinkedPlcDto {
                 .DateTime(dayInPlc.getDateTime())
                 .PlcName(entity.getPlcName())
                 .ImgUrl(entity.getImgUrl())
+                .Cost(entity.getCost())
                 .build();
     }
 }

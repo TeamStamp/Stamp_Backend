@@ -2,7 +2,6 @@ package com.example.stamp.PlcCmtInteractors;
 
 
 import com.example.stamp.Entities.PlcCmt;
-import com.example.stamp.Entities.PlcEntity;
 import com.example.stamp.Entities.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -21,6 +21,8 @@ public class ResponsePlcDto {
     private String ImgUrl;
     private String Category;
     private Long UserId;
+
+    private Long Cost;
     public static ResponsePlcDto of(PlcEntity entity){
         return ResponsePlcDto.builder()
                 .id(entity.getId())
@@ -30,6 +32,7 @@ public class ResponsePlcDto {
                 .ImgUrl(entity.getImgUrl())
                 .Category(entity.getCategory())
                 .UserId(entity.getUserId().getId())
+                .Cost(entity.getCost())
                 .build();
     }
 }
