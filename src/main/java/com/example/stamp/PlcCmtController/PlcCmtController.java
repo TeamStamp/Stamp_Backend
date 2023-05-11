@@ -18,9 +18,9 @@ public class PlcCmtController {
     }
 
     @PostMapping("/api/post/plccmt")
-    public ResponsePlcCmtDto setCmt(@RequestBody RequestPlcCmtDto.RequestPostPlcCmtDto dto){
+    public void setCmt(@RequestBody RequestPlcCmtDto.RequestSetPlcCmtDto dto){
 
-        return PlcCmtService.setCmt(dto);
+        PlcCmtService.setCmt(dto);
     }
 
     @PostMapping("/api/update/plccmt")

@@ -1,12 +1,10 @@
 package com.example.stamp.CrsCmtInteractors;
-
-
-
-
+import com.example.stamp.Entities.CrsCmt;
+import com.example.stamp.Entities.CrsEntity;
+import com.example.stamp.Entities.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,32 +13,42 @@ import java.util.List;
 public class CrsCmtServiceImpl implements CrsCmtService {
     private final CrsCmtRepository repository;
 
-    //장소별 댓글 조회
+    //댓글조회
     @Transactional(readOnly = true)
-    public List<ResponseCrsCmtDto> getCmt(RequestCrsCmtDto.RequestLoadCrsCmtDto dto){
-        List<ResponseCrsCmtDto> list = new ArrayList<>();
-        repository.findByCrsId(dto.getCrsId()).stream().forEach(CrsCmt -> list.add(ResponseCrsCmtDto.of(CrsCmt)));
-        return list;}
+    public List<ResponseCrsCmtDto> getCmt(RequestCrsCmtDto.RequestLoadCrsCmtDto dto) {
+        List<CrsCmt> entityList = repository.findByCrsId(dto.getCrsId());
+        List<ResponseCrsCmtDto> dtoList = new ArrayList<>();
+        entityList.forEach(entity -> dtoList.add(of(entity)));
+        return dtoList;
+    }
+    private ResponseCrsCmtDto of(CrsCmt entity) {
+        return ResponseCrsCmtDto.builder()
+                .id(entity.getId())
+                .UserId(entity.getUserId().getId())
+                .Content(entity.getContent())
+                .build();
+    }
+
 
     //댓글 작성
-    public ResponseCrsCmtDto setCmt(RequestCrsCmtDto.RequestSetCrsCmtDto dto){
-         ResponseCrsCmtDto.of(repository.save(dto.of()));
-        return null;
+    public void setCmt(RequestCrsCmtDto.RequestSetCrsCmtDto dto){
+         repository.save(of(dto));
+    }
+    private CrsCmt of(RequestCrsCmtDto.RequestSetCrsCmtDto dto) {
+         return CrsCmt.builder()
+                        .UserId(UserEntity.builder().id(dto.getUserId()).build())
+                        .CrsId(CrsEntity.builder().id(dto.getCrsId()).build())
+                        .Content(dto.getContent())
+                        .build();
     }
 
     //댓글 수정
-    //댓글의 아이디와 수정할 컨텐츠를 매개변수(dto 타입)으로 받아옴
-    //엔티티에서 아이디로 조회하여 타겟을 만들어 저장함
-    //그 타겟에 컨텐츠를 매개변수로 받아온 컨텐츠로 바꾸고 save함
-
     @Transactional
     public void updateCmt(RequestCrsCmtDto.RequestUpdateCrsCmtDto dto){
 
-        // 댓글의 아이디와 수정할 컨텐츠를 매개변수(dto 타입)으로 받아옴
-        ResponseCrsCmtDto target = ResponseCrsCmtDto.off(repository.findById(dto.getId()));
-        // 엔티티에서 아이디로 조회하여 타겟을 만들어 저장함
+
+        CrsCmt target = repository.findById(dto.getId()).get();
         target.setContent(dto.getContent());
-        //그 타겟에 컨텐츠를 매개변수로 받아온 컨텐츠로 바꾸고  save함
         repository.updateContentById(target.getId(), target.getContent());
 
     }
@@ -48,9 +56,7 @@ public class CrsCmtServiceImpl implements CrsCmtService {
     @Transactional
     public void deleteCmt(RequestCrsCmtDto.RequestDeleteCrsCmtDto dto){
 
-        // dto에서 받아온 아이디로 찾아서 전체 엔티티와대응하는 Dto에저장
-        ResponseCrsCmtDto target = ResponseCrsCmtDto.off(repository.findById(dto.getId()));
-        //해당 dto를 엔티티로 변환 후 delete
+        CrsCmt target = repository.findById(dto.getId()).get();
         repository.deleteAllByid(target.getId());
 
     }

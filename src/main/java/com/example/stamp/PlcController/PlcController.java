@@ -1,9 +1,9 @@
-package com.example.stamp.PlaceLoadController;
+package com.example.stamp.PlcController;
 
 
-import com.example.stamp.PlaceLoadInteractors.PlcLoadService;
-import com.example.stamp.PlaceLoadInteractors.RequestPlcDto;
-import com.example.stamp.PlaceLoadInteractors.ResponsePlcDto;
+import com.example.stamp.PlcInteractors.PlcService;
+import com.example.stamp.PlcInteractors.RequestPlcDto;
+import com.example.stamp.PlcInteractors.ResponsePlcDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,9 +14,9 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-public class PlcLoadController {
+public class PlcController {
 
-    private final PlcLoadService PlcLoadService;
+    private final PlcService PlcLoadService;
     //코스 전체 조회
     @GetMapping("/api/places")
     public List<ResponsePlcDto> index(){return PlcLoadService.getAllPlc();}

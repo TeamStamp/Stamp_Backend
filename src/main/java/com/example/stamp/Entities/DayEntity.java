@@ -1,7 +1,6 @@
 package com.example.stamp.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -12,7 +11,6 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Slf4j
 @Data
 public class DayEntity {
     @Id

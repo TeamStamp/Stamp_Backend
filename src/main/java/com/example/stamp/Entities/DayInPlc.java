@@ -1,11 +1,8 @@
 package com.example.stamp.Entities;
-
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
@@ -15,8 +12,8 @@ import java.util.Objects;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Slf4j
 @Data
+
 
 public class DayInPlc {
 

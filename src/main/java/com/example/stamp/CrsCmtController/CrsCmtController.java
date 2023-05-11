@@ -22,9 +22,9 @@ public class CrsCmtController {
     }
 
     @PostMapping("/api/post/crscmt")
-    public ResponseCrsCmtDto setCmt(@RequestBody RequestCrsCmtDto.RequestSetCrsCmtDto dto){
+    public void setCmt(@RequestBody RequestCrsCmtDto.RequestSetCrsCmtDto dto){
 
-        return CrsCmtService.setCmt(dto);
+       CrsCmtService.setCmt(dto);
     }
 
     @PostMapping("/api/update/crscmt")

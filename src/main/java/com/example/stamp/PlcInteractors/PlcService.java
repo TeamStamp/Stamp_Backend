@@ -1,11 +1,11 @@
-package com.example.stamp.PlaceLoadInteractors;
+package com.example.stamp.PlcInteractors;
 
 
 
 
 import java.util.List;
 
-public interface PlcLoadService {
+public interface PlcService {
 
 
     List<ResponsePlcDto> getAllPlc();

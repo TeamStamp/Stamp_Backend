@@ -8,9 +8,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-
-
-
 public class RequestCrsCmtDto {
 
 
@@ -24,16 +21,9 @@ public class RequestCrsCmtDto {
     @Data
     public static class RequestUpdateCrsCmtDto {
 
-
         private Long Id;
         private String Content;
 
-
-        protected CrsCmt of() {
-            return CrsCmt.builder()
-                    .Content(this.Content)
-                    .build();
-        }
     }
 
     @Builder
@@ -44,14 +34,6 @@ public class RequestCrsCmtDto {
             private Long CrsId;
             private String Content;
 
-
-            protected CrsCmt of() {
-                return CrsCmt.builder()
-                        .UserId(UserEntity.builder().id(this.UserId).build())
-                        .CrsId(CrsEntity.builder().id(this.CrsId).build())
-                        .Content(this.Content)
-                        .build();
-            }
         }
 
 

@@ -1,18 +1,16 @@
 package com.example.stamp.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Builder
 @Entity
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Slf4j
+
 
 public class CrsEntity {
     @Id

@@ -4,7 +4,6 @@ INSERT INTO Crs_Entity (Crs_Name,Is_Accept,Img_Url,User_Id) VALUES ('Crs1',1,'sa
 INSERT INTO Crs_Entity (Crs_Name,Is_Accept,Img_Url,User_Id) VALUES ('Crs2',0,'sadasd',1);
 INSERT INTO Day_Entity (Dayx,Crs_Id) VALUES (1,1);
 INSERT INTO Day_Entity (Dayx,Crs_Id) VALUES (2,1);
-INSERT INTO Day_Entity (Dayx,Crs_Id) VALUES (3,1);
 INSERT INTO Day_Entity (Dayx,Crs_Id) VALUES (1,2);
 INSERT INTO Plc_Entity (Plc_Name,Lat,Lng,Img_Url,Category,Is_Accept,User_Id,Cost) VALUES ('Plc1','123','123','sadasd','음식점',1,1,50000);
 INSERT INTO Plc_Entity (Plc_Name,Lat,Lng,Img_Url,Category,Is_Accept,User_Id,Cost) VALUES ('Plc2','321','321','sadasdss','도서관',1,1,5000);

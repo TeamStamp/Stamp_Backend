@@ -1,10 +1,6 @@
 package com.example.stamp.Entities;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import lombok.extern.slf4j.Slf4j;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,9 +9,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Slf4j
 @Data
-
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,16 +28,6 @@ public class UserEntity {
     @OneToMany(mappedBy = "UserId",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("UserId")
     private Set<PlcEntity> place = new HashSet<>();
-    public void add(CrsEntity Crs){
-        Crs.setUserId(this);       //onwer
-       getCourse().add(Crs);
-    }
-    public void add(PlcEntity Plc){
-        Plc.setUserId(this);       //onwer
-        getPlace().add(Plc);
-    }
-
-
 
 
 }

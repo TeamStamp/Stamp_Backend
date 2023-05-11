@@ -1,4 +1,4 @@
-package com.example.stamp.PlaceLoadInteractors;
+package com.example.stamp.PlcInteractors;
 
 
 import com.example.stamp.Entities.PlcEntity;
