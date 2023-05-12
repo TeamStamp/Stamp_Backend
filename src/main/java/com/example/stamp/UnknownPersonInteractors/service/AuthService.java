@@ -1,6 +1,6 @@
 package com.example.stamp.UnknownPersonInteractors.service;
 
-import com.example.stamp.UnknownPersonInteractors.domain.Auth;
+import com.example.stamp.Entities.UserEntity;
 import com.example.stamp.UnknownPersonInteractors.dto.RequestAuth;
 import com.example.stamp.UnknownPersonInteractors.dto.ResponseAuth;
 import com.example.stamp.UnknownPersonInteractors.repository.AuthRepository;
@@ -32,12 +32,12 @@ public class AuthService implements AuthServiceInterface{
     @Transactional
     @Override
     public void register(RequestAuth.register registerDto) {
-        Auth user = authRepository.findByEmail(registerDto.getEmail());
+        UserEntity user = authRepository.findByEmail(registerDto.getEmail());
         if(user != null){
             throw new RegisterFailedException();
         }
 
-        user = authRepository.findByUsername(registerDto.getUsername());
+        user = authRepository.findByNickname(registerDto.getNickname());
         if(user != null){
             throw new RegisterFailedException();
         }
@@ -46,10 +46,10 @@ public class AuthService implements AuthServiceInterface{
 
         String encryptedPassword = SHA256Util.getEncrypt(registerDto.getPassword(),salt);
 
-        user = Auth.builder()
+        user = UserEntity.builder()
                 .email(registerDto.getEmail())
                 .password(encryptedPassword)
-                .username(registerDto.getUsername())
+                .nickname(registerDto.getNickname())
                 .salt(salt)
                 .build();
         authRepository.save(user);
@@ -58,7 +58,7 @@ public class AuthService implements AuthServiceInterface{
     @Override
     @Transactional
     public Optional<ResponseAuth.login> login(RequestAuth.login loginDto) {
-        Auth user = authRepository.findByEmail(loginDto.getEmail());
+        UserEntity user = authRepository.findByEmail(loginDto.getEmail());
         if(user == null)
             throw new LoginFailedException();
 
@@ -84,27 +84,27 @@ public class AuthService implements AuthServiceInterface{
     @Override
     @Transactional
     public void update(String email, RequestAuth.update updateDto) {
-        Auth user = authRepository.findByEmail(email);
+        UserEntity user = authRepository.findByEmail(email);
         if(user == null)
             throw new NotFoundUserException();
-        Auth user1 = authRepository.findByUsername(updateDto.getUsername());
+        UserEntity user1 = authRepository.findByNickname(updateDto.getNickname());
         if(user1 != null && !user.equals(user1))
             throw new RegisterFailedException();
 
         String salt = SHA256Util.generateSalt();
         String encryptedPassword = SHA256Util.getEncrypt(updateDto.getPassword(), salt);
-        user.update(encryptedPassword,updateDto.getUsername(),salt);
+        user.update(encryptedPassword,updateDto.getNickname(),salt);
     }
 
     @Override
     @Transactional
     public ResponseAuth.info getUserInfo(String email) {
-        Auth user = authRepository.findByEmail(email);
+        UserEntity user = authRepository.findByEmail(email);
         if (user == null)
             throw new NotFoundUserException();
         ResponseAuth.info response = ResponseAuth.info.builder()
                 .email(user.getEmail())
-                .username(user.getUsername())
+                .nickname(user.getNickname())
                 .build();
         return response;
     }

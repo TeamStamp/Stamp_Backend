@@ -7,22 +7,22 @@ public class RequestAuth {
     @Builder
     @Data
     public static class register{
-        private String email;
-        private String password;
-        private String username;
+        private String Email;
+        private String Password;
+        private String Nickname;
     }
 
     @Builder
     @Data
     public static class login{
-        private String email;
-        private String password;
+        private String Email;
+        private String Password;
     }
 
     @Builder
     @Data
     public static class update{
-        private String password;
-        private String username;
+        private String Password;
+        private String Nickname;
     }
 }

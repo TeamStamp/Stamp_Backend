@@ -14,6 +14,6 @@ public class ResponseAuth {
     @Builder
     public static class info{
         private String email;
-        private String username;
+        private String nickname;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.stamp.UnknownpPrsonController;
+package com.example.stamp.UnknownPersonController;
 
 import com.example.stamp.UnknownPersonInteractors.dto.RequestAuth;
 import com.example.stamp.UnknownPersonInteractors.dto.ResponseAuth;
