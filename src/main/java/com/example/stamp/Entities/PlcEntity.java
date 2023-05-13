@@ -35,8 +35,7 @@ public class PlcEntity {
     @JoinColumn(name = "usr")
     private UserEntity usr;
 
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
+
     @OneToMany(mappedBy = "plc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<DayInPlc> dayInPlcs;
 

@@ -28,8 +28,7 @@ public class CrsEntity {
     @JoinColumn(name = "usr", nullable = true)
     private UserEntity usr;
 
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
+
     @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("crs")
     private Set<DayEntity> days = new HashSet<>();

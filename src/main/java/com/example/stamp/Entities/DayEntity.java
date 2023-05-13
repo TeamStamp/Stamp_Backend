@@ -20,8 +20,7 @@ public class DayEntity {
     @ManyToOne
     @JoinColumn(name = "crs", nullable = true)
     private CrsEntity crs;
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
+
     @OneToMany(mappedBy = "aDay",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("day")
     private Set<DayInPlc> plc = new HashSet<>();

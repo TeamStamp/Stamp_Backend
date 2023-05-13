@@ -34,8 +34,7 @@ public class UserEntity {
     @JsonIgnoreProperties("usr")
     private Set<CrsEntity> crs = new HashSet<>();
 
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
+
     @OneToMany(mappedBy = "usr",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("usr")
     private Set<PlcEntity> plc = new HashSet<>();
