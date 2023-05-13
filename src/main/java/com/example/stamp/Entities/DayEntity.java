@@ -16,17 +16,19 @@ public class DayEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer Dayx;
+    private Integer dayx;
     @ManyToOne
-    @JoinColumn(name = "CrsId", nullable = true)
-    private CrsEntity CrsId;
-    @OneToMany(mappedBy = "DayId",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
-    @JsonIgnoreProperties("DayId")
-    private Set<DayInPlc> place = new HashSet<>();
+    @JoinColumn(name = "crs", nullable = true)
+    private CrsEntity crs;
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "aDay",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnoreProperties("day")
+    private Set<DayInPlc> plc = new HashSet<>();
 
     @Override
     public int hashCode() {
-        return Objects.hash(Dayx);
+        return Objects.hash(dayx);
     }
 
     @Override
@@ -34,6 +36,6 @@ public class DayEntity {
         if (this == o) return true;
         if (!(o instanceof DayEntity)) return false;
         DayEntity day = (DayEntity) o;
-        return Objects.equals(Dayx, day.Dayx);
+        return Objects.equals(dayx, day.dayx);
     }
 }

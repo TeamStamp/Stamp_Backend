@@ -18,15 +18,15 @@ public class CrsCmt {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "UserId", nullable = true)
-    private UserEntity UserId;
+    @JoinColumn(name = "usr", nullable = true)
+    private UserEntity usr;
 
     @ManyToOne
-    @JoinColumn(name = "CrsId", nullable = true)
-    private CrsEntity CrsId;
+    @JoinColumn(name = "crs", nullable = true)
+    private CrsEntity crs;
 
     @Column
-    private String Content;
+    private String content;
 
 
 }

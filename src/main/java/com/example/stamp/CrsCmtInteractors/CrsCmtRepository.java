@@ -13,14 +13,14 @@ import java.util.List;
 @Repository
 public interface CrsCmtRepository extends CrudRepository<CrsCmt,Long> {
 
-    @Query(value = "SELECT * FROM  Crs_Cmt WHERE Crs_Id = :CrsId",nativeQuery = true)
-    List<CrsCmt> findByCrsId(@Param("CrsId") Long CrsId);
+    @Query(value = "SELECT * FROM  Crs_Cmt WHERE crs_Id = :crsId",nativeQuery = true)
+    List<CrsCmt> findByCrsId(@Param("crsId") Long crsId);
 
 
     //UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
 
     @Modifying
-    @Query(value = "UPDATE Crs_Cmt SET Content = :content WHERE id = :id", nativeQuery = true)
+    @Query(value = "UPDATE Crs_Cmt SET content = :content WHERE id = :id", nativeQuery = true)
     void updateContentById(@Param("id") Long id, @Param("content") String content);
 
     @Modifying

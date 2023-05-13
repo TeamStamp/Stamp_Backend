@@ -19,15 +19,15 @@ public class PlcCmt {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "UserId", nullable = true)
-    private UserEntity UserId;
+    @JoinColumn(name = "usr", nullable = true)
+    private UserEntity usr;
 
     @ManyToOne
-    @JoinColumn(name = "PlcId", nullable = true)
-    private PlcEntity PlcId;
+    @JoinColumn(name = "plc", nullable = true)
+    private PlcEntity plc;
 
     @Column
-    private String Content;
+    private String content;
 
 
 }

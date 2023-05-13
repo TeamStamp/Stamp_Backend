@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+
 @Builder
 @Entity
 @Data
@@ -18,20 +19,23 @@ public class CrsEntity {
     private Long id;
 
     @Column
-    private  String CrsName;
+    private  String crsName;
     @Column
-    private Boolean IsAccept;
+    private Boolean isAccept;
     @Column
-    private String ImgUrl;
+    private String imgUrl;
     @ManyToOne
-    @JoinColumn(name = "UserId", nullable = true)
-    private UserEntity UserId;
-    @OneToMany(mappedBy = "CrsId",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
-    @JsonIgnoreProperties("CrsId")
-    private Set<DayEntity> Dayx = new HashSet<>();
+    @JoinColumn(name = "usr", nullable = true)
+    private UserEntity usr;
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnoreProperties("crs")
+    private Set<DayEntity> days = new HashSet<>();
     public void add(DayEntity Day){
-        Day.setCrsId(this);       //onwer
-        getDayx().add(Day);
+        Day.setCrs(this);       //onwer
+        getDays().add(Day);
     }
 
 }

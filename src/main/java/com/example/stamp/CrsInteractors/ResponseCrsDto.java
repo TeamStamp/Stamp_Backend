@@ -9,34 +9,34 @@ public  class ResponseCrsDto {
     @Data
     public static class ResponseAllCrsCmtDto {
         private Long id;
-        private String CrsName;
-        private String ImgUrl;
-        private Long UserId;
+        private String crsName;
+        private String imgUrl;
+        private Long usr;
     }
     @Builder
     @Data
     public static class ResponseOneCrsDto {
         private Long id;
-        private String CrsName;
-        private String ImgUrl;
-        private Long UserId;
-        private Set<LinkedDayDto> Dayx;
+        private String crsName;
+        private String imgUrl;
+        private Long usr;
+        private Set<LinkedDayDto> days;
 
     }
     @Builder
     @Data
     public static class LinkedDayDto {
         private Long id;
-        private Integer Dayx;
-        private Set<LinkedPlcDto> Plc;
+        private Integer dayx;
+        private Set<LinkedPlcDto> plc;
     }
     @Builder
     @Data
     public static class LinkedPlcDto {
         private Long id;
-        private Date DateTime;
-        private String PlcName;
-        private String ImgUrl;
-        private Long Cost;
+        private Date dateTime;
+        private String plcName;
+        private String imgUrl;
+        private Long cost;
     }
 }

@@ -18,13 +18,13 @@ public class PlcServiceImpl implements PlcService {
     private ResponsePlcDto of(PlcEntity entity){
         return ResponsePlcDto.builder()
                 .id(entity.getId())
-                .PlcName(entity.getPlcName())
-                .Lat(entity.getLat())
-                .Lng(entity.getLng())
-                .ImgUrl(entity.getImgUrl())
-                .Category(entity.getCategory())
-                .UserId(entity.getUserId().getId())
-                .Cost(entity.getCost())
+                .plcName(entity.getPlcName())
+                .lat(entity.getLat())
+                .lng(entity.getLng())
+                .imgUrl(entity.getImgUrl())
+                .category(entity.getCategory())
+                .usr(entity.getUsr().getId())
+                .cost(entity.getCost())
                 .build();
     }
 

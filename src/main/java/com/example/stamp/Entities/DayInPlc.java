@@ -21,18 +21,18 @@ public class DayInPlc {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private Date DateTime;
+    private Date dateTime;
     @ManyToOne
-    @JoinColumn(name = "DayId", nullable = true)
-    private DayEntity DayId;
+    @JoinColumn(name = "aDay", nullable = true)
+    private DayEntity aDay;
     @ManyToOne
-    @JoinColumn(name = "PlcId", nullable = true)
-    private PlcEntity PlcId;
+    @JoinColumn(name = "plc", nullable = true)
+    private PlcEntity plc;
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(DayId, PlcId);
+        return Objects.hash(aDay, plc);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class DayInPlc {
         if (this == o) return true;
         if (!(o instanceof DayInPlc)) return false;
         DayInPlc dayInPlc = (DayInPlc) o;
-        return Objects.equals(DayId, dayInPlc.DayId) && Objects.equals(PlcId, dayInPlc.PlcId);
+        return Objects.equals(aDay, dayInPlc.aDay) && Objects.equals(plc, dayInPlc.plc);
     }
 
 }

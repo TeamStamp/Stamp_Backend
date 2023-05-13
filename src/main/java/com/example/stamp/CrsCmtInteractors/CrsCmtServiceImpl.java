@@ -16,7 +16,7 @@ public class CrsCmtServiceImpl implements CrsCmtService {
     //댓글조회
     @Transactional(readOnly = true)
     public List<ResponseCrsCmtDto> getCmt(RequestCrsCmtDto.RequestLoadCrsCmtDto dto) {
-        List<CrsCmt> entityList = repository.findByCrsId(dto.getCrsId());
+        List<CrsCmt> entityList = repository.findByCrsId(dto.getCrs());
         List<ResponseCrsCmtDto> dtoList = new ArrayList<>();
         entityList.forEach(entity -> dtoList.add(of(entity)));
         return dtoList;
@@ -24,8 +24,8 @@ public class CrsCmtServiceImpl implements CrsCmtService {
     private ResponseCrsCmtDto of(CrsCmt entity) {
         return ResponseCrsCmtDto.builder()
                 .id(entity.getId())
-                .UserId(entity.getUserId().getId())
-                .Content(entity.getContent())
+                .usr(entity.getUsr().getId())
+                .content(entity.getContent())
                 .build();
     }
 
@@ -36,9 +36,9 @@ public class CrsCmtServiceImpl implements CrsCmtService {
     }
     private CrsCmt of(RequestCrsCmtDto.RequestSetCrsCmtDto dto) {
          return CrsCmt.builder()
-                        .UserId(UserEntity.builder().id(dto.getUserId()).build())
-                        .CrsId(CrsEntity.builder().id(dto.getCrsId()).build())
-                        .Content(dto.getContent())
+                        .usr(UserEntity.builder().id(dto.getUsr()).build())
+                        .crs(CrsEntity.builder().id(dto.getCrs()).build())
+                        .content(dto.getContent())
                         .build();
     }
 

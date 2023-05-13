@@ -8,7 +8,7 @@ public class RequestPlcCmtDto {
     @Data
     public static class RequestLoadPlcCmtDto {
 
-        private Long PlcId;
+        private Long plc;
 
     }
 
@@ -16,9 +16,9 @@ public class RequestPlcCmtDto {
     @Data
     public static class RequestSetPlcCmtDto {
 
-        private Long UserId;
-        private Long PlcId;
-        private String Content;
+        private Long usr;
+        private Long plc;
+        private String content;
 
     }
 
@@ -27,8 +27,8 @@ public class RequestPlcCmtDto {
     public static class RequestUpdatePlcCmtDto {
 
 
-        private Long Id;
-        private String Content;
+        private Long id;
+        private String content;
 
     }
 
@@ -36,7 +36,7 @@ public class RequestPlcCmtDto {
     @Data
     public static class RequestDeletePlcCmtDto {
 
-        private Long Id;
+        private Long id;
 
     }
 

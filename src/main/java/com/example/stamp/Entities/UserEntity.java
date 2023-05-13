@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Table(name="UserEntity")
+
 @Entity
 @Builder
 @AllArgsConstructor
@@ -15,24 +15,30 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name="nickname")
+    @Column
     private String nickname;
-    @Column(name="email")
+    @Column
     private String email;
-    @Column(name="password")
+    @Column
     private String password;
 
-    @Column(name="salt")
+    @Column
     private String salt;
 
     @Column
     private String imgUrl;
-    @OneToMany(mappedBy = "UserId",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
-    @JsonIgnoreProperties("UserId")
-    private Set<CrsEntity> course = new HashSet<>();
-    @OneToMany(mappedBy = "UserId",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
-    @JsonIgnoreProperties("UserId")
-    private Set<PlcEntity> place = new HashSet<>();
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "usr",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnoreProperties("usr")
+    private Set<CrsEntity> crs = new HashSet<>();
+
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "usr",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnoreProperties("usr")
+    private Set<PlcEntity> plc = new HashSet<>();
 
     @Builder
     public UserEntity(String email, String password, String nickname, String salt){

@@ -16,32 +16,34 @@ public class PlcEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    private  String PlcName;
+    private  String plcName;
     //위도
     @Column
-    private String Lat;
+    private String lat;
     //경도
     @Column
-    private String Lng;
+    private String lng;
     @Column
-    private String ImgUrl;
+    private String imgUrl;
     @Column
-    private String Category;
+    private String category;
     @Column
-    private Boolean IsAccept;
+    private Boolean isAccept;
     @Column
-    private Long Cost;
+    private Long cost;
     @ManyToOne
-    @JoinColumn(name = "UserId", nullable = true)
-    private UserEntity UserId;
+    @JoinColumn(name = "usr")
+    private UserEntity usr;
 
-    @OneToMany(mappedBy = "PlcId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "plc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<DayInPlc> dayInPlcs;
 
 
     @Override
     public int hashCode() {
-        return Objects.hash(PlcName);
+        return Objects.hash(plcName);
     }
 
     @Override
@@ -49,7 +51,7 @@ public class PlcEntity {
         if (this == o) return true;
         if (!(o instanceof PlcEntity)) return false;
         PlcEntity plc = (PlcEntity) o;
-        return Objects.equals(PlcName, plc.PlcName);
+        return Objects.equals(plcName, plc.plcName);
     }
 
 }

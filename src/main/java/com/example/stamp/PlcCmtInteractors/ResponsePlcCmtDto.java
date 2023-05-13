@@ -8,8 +8,8 @@ import lombok.Data;
 @Data
 public class ResponsePlcCmtDto {
     private Long id;
-    private Long UserId;
-    private String Content;
+    private Long usr;
+    private String content;
 
 
 }

@@ -27,9 +27,9 @@ public class CrsServiceImpl implements CrsService {
         public static ResponseCrsDto.ResponseAllCrsCmtDto of(CrsEntity entity){
         return ResponseCrsDto.ResponseAllCrsCmtDto.builder()
                 .id(entity.getId())
-                .CrsName(entity.getCrsName())
-                .ImgUrl(entity.getImgUrl())
-                .UserId(entity.getUserId().getId())
+                .crsName(entity.getCrsName())
+                .imgUrl(entity.getImgUrl())
+                .usr(entity.getUsr().getId())
                 .build();
     }
 
@@ -41,17 +41,17 @@ public class CrsServiceImpl implements CrsService {
     public static ResponseCrsDto.ResponseOneCrsDto on (CrsEntity entity){
         return ResponseCrsDto.ResponseOneCrsDto.builder()
                 .id(entity.getId())
-                .CrsName(entity.getCrsName())
-                .ImgUrl(entity.getImgUrl())
-                .UserId(entity.getUserId().getId())
-                .Dayx(entity.getDayx().stream().map(CrsServiceImpl::on).collect(Collectors.toSet()))
+                .crsName(entity.getCrsName())
+                .imgUrl(entity.getImgUrl())
+                .usr(entity.getUsr().getId())
+                .days(entity.getDays().stream().map(CrsServiceImpl::on).collect(Collectors.toSet()))
                 .build();
     }
     public static ResponseCrsDto.LinkedDayDto on(DayEntity entity){
         return ResponseCrsDto.LinkedDayDto.builder()
                 .id(entity.getId())
-                .Dayx(entity.getDayx())
-                .Plc(entity.getPlace().stream().map(DayInPlc::getPlcId).map(CrsServiceImpl::on).collect(Collectors.toSet()))
+                .dayx(entity.getDayx())
+                .plc(entity.getPlc().stream().map(DayInPlc::getPlc).map(CrsServiceImpl::on).collect(Collectors.toSet()))
                 .build();
     }
 
@@ -59,15 +59,15 @@ public class CrsServiceImpl implements CrsService {
 
         DayInPlc dayInPlc = entity.getDayInPlcs()
                 .stream()
-                .filter(day -> day.getPlcId().equals(entity))
+                .filter(day -> day.getPlc().equals(entity))
                 .findFirst()
                 .orElse(null);
         return ResponseCrsDto.LinkedPlcDto.builder()
                 .id(entity.getId())
-                .DateTime(dayInPlc.getDateTime())
-                .PlcName(entity.getPlcName())
-                .ImgUrl(entity.getImgUrl())
-                .Cost(entity.getCost())
+                .dateTime(dayInPlc.getDateTime())
+                .plcName(entity.getPlcName())
+                .imgUrl(entity.getImgUrl())
+                .cost(entity.getCost())
                 .build();
     }
 
@@ -79,22 +79,22 @@ public class CrsServiceImpl implements CrsService {
             CrsEntity crs = target.get();
 
             // CrsEntity와 연관된 DayEntity의 참조를 수정하여 삭제
-            for (DayEntity day : crs.getDayx()) {
+            for (DayEntity day : crs.getDays()) {
                 // DayEntity와 연관된 DayInPlc의 참조를 수정하여 삭제
-                for (DayInPlc dayInPlc : day.getPlace()) {
-                    dayInPlc.setDayId(null);
+                for (DayInPlc dayInPlc : day.getPlc()) {
+                    dayInPlc.setADay(null);
                 }
-                day.getPlace().clear();
+                day.getPlc().clear();
 
-                day.setCrsId(null);
+                day.setCrs(null);
             }
-            crs.getDayx().clear();
+            crs.getDays().clear();
 
             // CrsEntity와 연관된 UserEntity의 참조를 수정하여 삭제
-            if (crs.getUserId() != null) {
-                UserEntity user = crs.getUserId();
-                user.getCourse().remove(crs);
-                crs.setUserId(null);
+            if (crs.getUsr() != null) {
+                UserEntity user = crs.getUsr();
+                user.getCrs().remove(crs);
+                crs.setUsr(null);
             }
 
             // CrsEntity 삭제

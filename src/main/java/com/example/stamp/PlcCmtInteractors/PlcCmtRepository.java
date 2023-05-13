@@ -12,14 +12,14 @@ import java.util.List;
 @Repository
 public interface PlcCmtRepository extends CrudRepository<PlcCmt,Long> {
 
-    @Query(value = "SELECT * FROM  Plc_Cmt WHERE Plc_Id = :PlcId",nativeQuery = true)
-    List<PlcCmt> findByPlcId(@Param("PlcId") Long PlcId);
+    @Query(value = "SELECT * FROM  Plc_Cmt WHERE plc_Id = :plcId",nativeQuery = true)
+    List<PlcCmt> findByPlcId(@Param("plcId") Long plcId);
 
 
     //UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
 
     @Modifying
-    @Query(value = "UPDATE Plc_Cmt SET Content = :content WHERE id = :id", nativeQuery = true)
+    @Query(value = "UPDATE Plc_Cmt SET content = :content WHERE id = :id", nativeQuery = true)
     void updateContentById(@Param("id") Long id, @Param("content") String content);
 
     @Modifying

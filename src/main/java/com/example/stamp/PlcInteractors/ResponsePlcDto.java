@@ -6,11 +6,11 @@ import lombok.Data;
 @Data
 public class ResponsePlcDto {
     private Long id;
-    private String PlcName;
-    private String Lat;
-    private String Lng;
-    private String ImgUrl;
-    private String Category;
-    private Long UserId;
-    private Long Cost;
+    private String plcName;
+    private String lat;
+    private String lng;
+    private String imgUrl;
+    private String category;
+    private Long usr;
+    private Long cost;
 }

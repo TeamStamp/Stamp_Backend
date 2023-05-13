@@ -19,7 +19,7 @@ public class PlcCmtServiceImpl implements PlcCmtService{
     //댓글조회
     @Transactional(readOnly = true)
     public List<ResponsePlcCmtDto> getCmt(RequestPlcCmtDto.RequestLoadPlcCmtDto dto) {
-        List<PlcCmt> entityList = repository.findByPlcId(dto.getPlcId());
+        List<PlcCmt> entityList = repository.findByPlcId(dto.getPlc());
         List<ResponsePlcCmtDto> dtoList = new ArrayList<>();
         entityList.forEach(entity -> dtoList.add(of(entity)));
         return dtoList;
@@ -27,8 +27,8 @@ public class PlcCmtServiceImpl implements PlcCmtService{
     private ResponsePlcCmtDto of(PlcCmt entity) {
         return ResponsePlcCmtDto.builder()
                 .id(entity.getId())
-                .UserId(entity.getUserId().getId())
-                .Content(entity.getContent())
+                .usr(entity.getUsr().getId())
+                .content(entity.getContent())
                 .build();
     }
 
@@ -39,9 +39,9 @@ public class PlcCmtServiceImpl implements PlcCmtService{
     }
     private PlcCmt of(RequestPlcCmtDto.RequestSetPlcCmtDto dto) {
         return PlcCmt.builder()
-                .UserId(UserEntity.builder().id(dto.getUserId()).build())
-                .PlcId(PlcEntity.builder().id(dto.getPlcId()).build())
-                .Content(dto.getContent())
+                .usr(UserEntity.builder().id(dto.getUsr()).build())
+                .plc(PlcEntity.builder().id(dto.getPlc()).build())
+                .content(dto.getContent())
                 .build();
     }
 
