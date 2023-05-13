@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface PlcCmtRepository extends CrudRepository<PlcCmt,Long> {
 
-    @Query(value = "SELECT * FROM  Plc_Cmt WHERE plc_Id = :plcId",nativeQuery = true)
-    List<PlcCmt> findByPlcId(@Param("plcId") Long plcId);
+    @Query(value = "SELECT * FROM  Plc_Cmt WHERE plc = :plc",nativeQuery = true)
+    List<PlcCmt> findByPlcId(@Param("plc") Long plc);
 
 
     //UPDATE [테이블] SET [열] = '변경할값' WHERE [조건]
