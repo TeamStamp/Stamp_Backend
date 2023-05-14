@@ -19,7 +19,7 @@ public interface CrsRepository extends JpaRepository<Crs,Long> {
 
 
    @Modifying
-   @Query(value="DELETE FROM Crs_Entity WHERE id = :id",nativeQuery = true)
+   @Query(value="DELETE FROM Crs WHERE id = :id",nativeQuery = true)
    void deleteBytarget(@Param("id") Long id);
 
 }
