@@ -79,7 +79,7 @@ public class CrsServiceImpl implements CrsService {
             Crs crs = target.get();
 
 
-            // CrsEntity와 연관된 DayEntity의 참조를 수정하여 삭제
+            // CrsEntity와 연관된 aDayEntity의 참조를 수정하여 삭제
             for (aDay day : crs.getDays()) {
                 // DayEntity와 연관된 DayInPlc의 참조를 수정하여 삭제
                 for (DayInPlc dayInPlc : day.getPlc()) {

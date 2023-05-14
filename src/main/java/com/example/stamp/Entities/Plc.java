@@ -1,8 +1,8 @@
 package com.example.stamp.Entities;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import javax.persistence.*;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 @Builder
@@ -36,14 +36,13 @@ public class Plc {
     private Usr usr;
 
 
-    @OneToMany(mappedBy = "plc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<DayInPlc> dayInPlcs;
+    @OneToMany(mappedBy = "plc", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY,orphanRemoval = true)
+    private Set<DayInPlc> dayInPlcs = new HashSet<>();
+
+    @OneToMany(mappedBy = "plc",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    private List<PlcCmt> cmt = new ArrayList<>();
 
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(plcName);
-    }
 
     @Override
     public boolean equals(Object o) {

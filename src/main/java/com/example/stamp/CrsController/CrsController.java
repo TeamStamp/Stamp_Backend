@@ -12,17 +12,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CrsController {
 
-    private final CrsService CrsLoadService;
+    private final CrsService CrsService;
     //코스 전체 조회
     @GetMapping("/api/courses")
-    public List<ResponseCrsDto.ResponseAllCrsCmtDto> index(){return CrsLoadService.getAllCrs();}
+    public List<ResponseCrsDto.ResponseAllCrsCmtDto> index(){return CrsService.getAllCrs();}
 
 
     @PostMapping("/api/course")
     public ResponseCrsDto.ResponseOneCrsDto getCrs(@RequestBody RequestCrsDto dto){
-        return CrsLoadService.getCrs(dto);
+        return CrsService.getCrs(dto);
     }
 
     @PostMapping("/api/deleteCrs")
-    public void deleteCrs(@RequestBody RequestCrsDto dto){CrsLoadService.deleteCrs(dto);};
+    public void deleteCrs(@RequestBody RequestCrsDto dto){
+        CrsService.deleteCrs(dto);}
 }

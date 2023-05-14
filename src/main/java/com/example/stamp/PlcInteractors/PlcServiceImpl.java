@@ -1,11 +1,13 @@
 package com.example.stamp.PlcInteractors;
-import com.example.stamp.Entities.Plc;
+import com.example.stamp.CrsInteractors.RequestCrsDto;
+import com.example.stamp.Entities.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -40,5 +42,44 @@ public class PlcServiceImpl implements PlcService {
     public ResponsePlcDto getPlc(RequestPlcDto requestDto){
         ResponsePlcDto responseDto = of(repository.findById(requestDto.getId()).get());
         return responseDto;}
+
+    @Transactional
+    //장소 삭제
+    public void deletePlc(RequestPlcDto dto) {
+        Plc target = repository.findById(dto.getId()).get();
+
+
+            // PlcEntity와 연관된 dayinPlc의 참조를 수정하여 삭제
+
+            for (DayInPlc dayInPlc : target.getDayInPlcs()) {
+                dayInPlc.setPlc(null);
+
+            }
+
+        target.getDayInPlcs().clear();
+
+
+
+            // PlcEntity와 연관된 PlcCmt의 참조를 수정하여 삭제
+            for (PlcCmt plcCmt : target.getCmt()) {
+
+                plcCmt.setPlc(null);
+            }
+
+        target.getCmt().clear();
+
+            // PlcEntity와 연관된 UserEntity의 참조를 수정하여 삭제
+            if (target.getUsr() != null) {
+                Usr user = target.getUsr();
+                user.getCrs().remove(target);
+                target.setUsr(null);
+            }
+
+            // Plc 삭제
+            repository.deleteBytarget(target.getId());
+
+
+
+    }
 
 }

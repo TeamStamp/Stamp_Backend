@@ -24,16 +24,16 @@ public class DayInPlc {
     private Date dateTime;
     @ManyToOne
     @JoinColumn(name = "aDay", nullable = true)
-    private com.example.stamp.Entities.aDay aDay;
+    private aDay aDay;
     @ManyToOne
     @JoinColumn(name = "plc", nullable = true)
     private Plc plc;
 
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(aDay, plc);
-    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(aDay, plc);
+//    }
 
     @Override
     public boolean equals(Object o) {
