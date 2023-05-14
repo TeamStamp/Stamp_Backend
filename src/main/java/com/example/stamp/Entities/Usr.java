@@ -29,7 +29,7 @@ public class Usr {
     private String imgUrl;
 
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "usr",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "usr",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY,orphanRemoval = true)
     @JsonIgnoreProperties("usr")
     private Set<Crs> crs = new HashSet<>();
 
