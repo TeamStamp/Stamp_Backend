@@ -29,7 +29,6 @@ public class UserEntity {
     private String imgUrl;
 
     @EqualsAndHashCode.Exclude
-    @ToString.Exclude
     @OneToMany(mappedBy = "usr",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("usr")
     private Set<CrsEntity> crs = new HashSet<>();

@@ -70,37 +70,43 @@ public class CrsServiceImpl implements CrsService {
                 .cost(entity.getCost())
                 .build();
     }
-
+    @Transactional
     //코스 삭제
     public void deleteCrs(RequestCrsDto dto) {
         Optional<CrsEntity> target = repository.findById(dto.getId());
 
         if (target.isPresent()) {
             CrsEntity crs = target.get();
-//
-//            // CrsEntity와 연관된 DayEntity의 참조를 수정하여 삭제
-//            for (DayEntity day : crs.getDays()) {
-//                // DayEntity와 연관된 DayInPlc의 참조를 수정하여 삭제
-//                for (DayInPlc dayInPlc : day.getPlc()) {
-//                    dayInPlc.setADay(null);
-//                }
-//                day.getPlc().clear();
-//
-//                day.setCrs(null);
-//            }
-//            crs.getDays().clear();
-//
-//
-//
-//            // CrsEntity와 연관된 UserEntity의 참조를 수정하여 삭제
-//            if (crs.getUsr() != null) {
-//                UserEntity user = crs.getUsr();
-//                user.getCrs().remove(crs);
-//                crs.setUsr(null);
-//            }
+
+
+            // CrsEntity와 연관된 DayEntity의 참조를 수정하여 삭제
+            for (DayEntity day : crs.getDays()) {
+                // DayEntity와 연관된 DayInPlc의 참조를 수정하여 삭제
+                for (DayInPlc dayInPlc : day.getPlc()) {
+                    dayInPlc.setADay(null);
+                }
+                day.getPlc().clear();
+
+                day.setCrs(null);
+            }
+            crs.getDays().clear();
+            // CrsEntity와 연관된 CrsCmt의 참조를 수정하여 삭제
+            for (CrsCmt crsCmt : crs.getCmt()) {
+                crsCmt.setCrs(null);
+            }
+            crs.getCmt().clear();
+
+            // CrsEntity와 연관된 UserEntity의 참조를 수정하여 삭제
+            if (crs.getUsr() != null) {
+                UserEntity user = crs.getUsr();
+                user.getCrs().remove(crs);
+                crs.setUsr(null);
+            }
 
             // CrsEntity 삭제
-            repository.delete(crs);
+            repository.deleteBytarget(crs.getId());
+
+
         }
     }
 

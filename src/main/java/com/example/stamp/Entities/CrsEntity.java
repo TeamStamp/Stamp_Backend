@@ -2,7 +2,9 @@ package com.example.stamp.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -32,6 +34,10 @@ public class CrsEntity {
     @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("crs")
     private Set<DayEntity> days = new HashSet<>();
+
+    @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @JsonIgnoreProperties("crs")
+    private List<CrsCmt> cmt = new ArrayList<>();
     public void add(DayEntity Day){
         Day.setCrs(this);       //onwer
         getDays().add(Day);
