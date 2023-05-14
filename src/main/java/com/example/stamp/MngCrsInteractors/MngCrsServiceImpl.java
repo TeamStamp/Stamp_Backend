@@ -2,11 +2,11 @@ package com.example.stamp.MngCrsInteractors;
 
 import com.example.stamp.Entities.Crs;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.Hibernate;
+
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +22,7 @@ public class MngCrsServiceImpl implements MngCrsService {
             x = true;
         repository.acceptCrsById(target.getId(), x);
     }
+
 
 
 }
