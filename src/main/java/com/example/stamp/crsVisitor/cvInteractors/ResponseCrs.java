@@ -8,7 +8,7 @@ import lombok.Data;
 
 import java.util.List;
 
-public class cvResponseCrsDto extends ResponseCrsDto {
+public class ResponseCrs extends ResponseCrsDto {
 
     @Builder
     @Data
@@ -18,9 +18,9 @@ public class cvResponseCrsDto extends ResponseCrsDto {
         private String crsName;
         private String imgUrl;
         private String maker;
-        private List<CrsPlcDto> plcList;
+        private List<CrsPlcListDto> plcList;
 
-        public static cvGetCrsDto toDto(Crs crs, List<CrsPlcDto> plcList){
+        public static cvGetCrsDto toDto(Crs crs, List<CrsPlcListDto> plcList){
             return cvGetCrsDto.builder()
                     .id(crs.getId())
                     .crsName(crs.getCrsName())
@@ -33,7 +33,7 @@ public class cvResponseCrsDto extends ResponseCrsDto {
 
     @Builder
     @Data
-    public static class CrsPlcDto{
+    public static class CrsPlcListDto{
 
         private Long id;
         private String plcName;
@@ -41,8 +41,8 @@ public class cvResponseCrsDto extends ResponseCrsDto {
         private String lng;
         private String imgUrl;
 
-        public static CrsPlcDto toDto(Plc plc){
-            return CrsPlcDto.builder()
+        public static CrsPlcListDto toDto(Plc plc){
+            return CrsPlcListDto.builder()
                     .id(plc.getId())
                     .plcName(plc.getPlcName())
                     .lat(plc.getLat())

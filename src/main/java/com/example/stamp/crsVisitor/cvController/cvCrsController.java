@@ -3,7 +3,7 @@ package com.example.stamp.crsVisitor.cvController;
 
 import com.example.stamp.UnknownPersonInteractors.dto.ResponseMessage;
 import com.example.stamp.crsVisitor.cvInteractors.cvCrsService;
-import com.example.stamp.crsVisitor.cvInteractors.cvResponseCrsDto;
+import com.example.stamp.crsVisitor.cvInteractors.ResponseCrs;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class cvCrsController {
 
     @GetMapping("/{crsId}")
     public ResponseEntity<ResponseMessage> cvGetCrs(@PathVariable("crsId") Long crsId){
-        cvResponseCrsDto.cvGetCrsDto response = cvCrsService.getCrs(crsId);
+        ResponseCrs.cvGetCrsDto response = cvCrsService.getCrs(crsId);
 
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .message("Course retrieved successfully.")
