@@ -29,7 +29,7 @@ public class CrsServiceImpl implements CrsService {
                 .id(entity.getId())
                 .crsName(entity.getCrsName())
                 .imgUrl(entity.getImgUrl())
-                .usr(entity.getUsr().getId())
+                .maker(entity.getUsr().getNickname())
                 .build();
     }
 
@@ -43,7 +43,7 @@ public class CrsServiceImpl implements CrsService {
                 .id(entity.getId())
                 .crsName(entity.getCrsName())
                 .imgUrl(entity.getImgUrl())
-                .usr(entity.getUsr().getId())
+                .maker(entity.getUsr().getNickname())
                 .days(entity.getDays().stream().map(CrsServiceImpl::on).collect(Collectors.toSet()))
                 .build();
     }

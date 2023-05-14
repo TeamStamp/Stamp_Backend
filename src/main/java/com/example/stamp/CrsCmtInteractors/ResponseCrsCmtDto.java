@@ -8,6 +8,6 @@ import lombok.Data;
 @Data
 public class ResponseCrsCmtDto {
     private Long id;
-    private Long usr;
+    private String writer;
     private String content;
 }

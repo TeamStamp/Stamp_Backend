@@ -24,7 +24,7 @@ public class CrsCmtServiceImpl implements CrsCmtService {
     private ResponseCrsCmtDto of(CrsCmt entity) {
         return ResponseCrsCmtDto.builder()
                 .id(entity.getId())
-                .usr(entity.getUsr().getId())
+                .writer(entity.getUsr().getNickname())
                 .content(entity.getContent())
                 .build();
     }

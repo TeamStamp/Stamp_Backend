@@ -11,7 +11,7 @@ public  class ResponseCrsDto {
         private Long id;
         private String crsName;
         private String imgUrl;
-        private Long usr;
+        private String maker;
     }
     @Builder
     @Data
@@ -19,7 +19,7 @@ public  class ResponseCrsDto {
         private Long id;
         private String crsName;
         private String imgUrl;
-        private Long usr;
+        private String maker;
         private Set<LinkedDayDto> days;
 
     }
