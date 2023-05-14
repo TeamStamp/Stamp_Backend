@@ -2,8 +2,8 @@ package com.example.stamp.PlcCmtInteractors;
 
 
 import com.example.stamp.Entities.PlcCmt;
-import com.example.stamp.Entities.PlcEntity;
-import com.example.stamp.Entities.UserEntity;
+import com.example.stamp.Entities.Plc;
+import com.example.stamp.Entities.Usr;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,8 +39,8 @@ public class PlcCmtServiceImpl implements PlcCmtService{
     }
     private PlcCmt of(RequestPlcCmtDto.RequestSetPlcCmtDto dto) {
         return PlcCmt.builder()
-                .usr(UserEntity.builder().id(dto.getUsr()).build())
-                .plc(PlcEntity.builder().id(dto.getPlc()).build())
+                .usr(Usr.builder().id(dto.getUsr()).build())
+                .plc(Plc.builder().id(dto.getPlc()).build())
                 .content(dto.getContent())
                 .build();
     }

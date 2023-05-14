@@ -12,14 +12,14 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class DayEntity {
+public class aDay {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer dayx;
     @ManyToOne
     @JoinColumn(name = "crs", nullable = true)
-    private CrsEntity crs;
+    private Crs crs;
 
     @OneToMany(mappedBy = "aDay",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("day")
@@ -33,8 +33,8 @@ public class DayEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DayEntity)) return false;
-        DayEntity day = (DayEntity) o;
+        if (!(o instanceof aDay)) return false;
+        aDay day = (aDay) o;
         return Objects.equals(dayx, day.dayx);
     }
 }

@@ -1,5 +1,5 @@
 package com.example.stamp.PlcInteractors;
-import com.example.stamp.Entities.PlcEntity;
+import com.example.stamp.Entities.Plc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class PlcServiceImpl implements PlcService {
 
     private final PlcRepository repository;
 
-    private ResponsePlcDto of(PlcEntity entity){
+    private ResponsePlcDto of(Plc entity){
         return ResponsePlcDto.builder()
                 .id(entity.getId())
                 .plcName(entity.getPlcName())
@@ -30,7 +30,7 @@ public class PlcServiceImpl implements PlcService {
 
     @Transactional(readOnly = true)
     public List<ResponsePlcDto> getAllPlc() {
-        List<PlcEntity> entityList = repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        List<Plc> entityList = repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
         List<ResponsePlcDto> dtolist = new ArrayList<>();
         entityList.stream().forEach(entity -> dtolist.add(of(entity)));
         return dtolist;

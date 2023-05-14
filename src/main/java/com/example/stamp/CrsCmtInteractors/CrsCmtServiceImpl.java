@@ -1,7 +1,7 @@
 package com.example.stamp.CrsCmtInteractors;
+import com.example.stamp.Entities.Crs;
 import com.example.stamp.Entities.CrsCmt;
-import com.example.stamp.Entities.CrsEntity;
-import com.example.stamp.Entities.UserEntity;
+import com.example.stamp.Entities.Usr;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,8 +36,8 @@ public class CrsCmtServiceImpl implements CrsCmtService {
     }
     private CrsCmt of(RequestCrsCmtDto.RequestSetCrsCmtDto dto) {
          return CrsCmt.builder()
-                        .usr(UserEntity.builder().id(dto.getUsr()).build())
-                        .crs(CrsEntity.builder().id(dto.getCrs()).build())
+                        .usr(Usr.builder().id(dto.getUsr()).build())
+                        .crs(Crs.builder().id(dto.getCrs()).build())
                         .content(dto.getContent())
                         .build();
     }

@@ -11,7 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class UserEntity {
+public class Usr {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,15 +31,15 @@ public class UserEntity {
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "usr",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("usr")
-    private Set<CrsEntity> crs = new HashSet<>();
+    private Set<Crs> crs = new HashSet<>();
 
 
     @OneToMany(mappedBy = "usr",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("usr")
-    private Set<PlcEntity> plc = new HashSet<>();
+    private Set<Plc> plc = new HashSet<>();
 
     @Builder
-    public UserEntity(String email, String password, String nickname, String salt){
+    public Usr(String email, String password, String nickname, String salt){
         this.email = email;
         this.password = password;
         this.nickname = nickname;

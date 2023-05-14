@@ -24,10 +24,10 @@ public class DayInPlc {
     private Date dateTime;
     @ManyToOne
     @JoinColumn(name = "aDay", nullable = true)
-    private DayEntity aDay;
+    private com.example.stamp.Entities.aDay aDay;
     @ManyToOne
     @JoinColumn(name = "plc", nullable = true)
-    private PlcEntity plc;
+    private Plc plc;
 
 
     @Override

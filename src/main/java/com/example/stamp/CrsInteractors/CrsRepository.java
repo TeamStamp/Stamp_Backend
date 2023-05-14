@@ -1,7 +1,7 @@
 package com.example.stamp.CrsInteractors;
 
 
-import com.example.stamp.Entities.CrsEntity;
+import com.example.stamp.Entities.Crs;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,10 +12,10 @@ import java.util.List;
 
 
 @Repository
-public interface CrsRepository extends JpaRepository<CrsEntity,Long> {
+public interface CrsRepository extends JpaRepository<Crs,Long> {
 
 
-   List<CrsEntity> findAll(Sort id);
+   List<Crs> findAll(Sort id);
 
 
    @Modifying

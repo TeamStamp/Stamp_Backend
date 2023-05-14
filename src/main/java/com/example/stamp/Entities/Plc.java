@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 
-public class PlcEntity {
+public class Plc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,7 +33,7 @@ public class PlcEntity {
     private Long cost;
     @ManyToOne
     @JoinColumn(name = "usr")
-    private UserEntity usr;
+    private Usr usr;
 
 
     @OneToMany(mappedBy = "plc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -48,8 +48,8 @@ public class PlcEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PlcEntity)) return false;
-        PlcEntity plc = (PlcEntity) o;
+        if (!(o instanceof Plc)) return false;
+        Plc plc = (Plc) o;
         return Objects.equals(plcName, plc.plcName);
     }
 

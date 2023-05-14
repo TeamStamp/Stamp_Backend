@@ -1,7 +1,7 @@
 package com.example.stamp.PlcInteractors;
 
 
-import com.example.stamp.Entities.PlcEntity;
+import com.example.stamp.Entities.Plc;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -10,9 +10,9 @@ import java.util.List;
 
 
 @Repository
-public interface PlcRepository extends CrudRepository<PlcEntity,Long> {
+public interface PlcRepository extends CrudRepository<Plc,Long> {
 
-   List<PlcEntity> findAll(Sort id);
+   List<Plc> findAll(Sort id);
 
 
 }

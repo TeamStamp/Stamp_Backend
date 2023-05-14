@@ -19,11 +19,11 @@ public class CrsCmt {
 
     @ManyToOne
     @JoinColumn(name = "usr", nullable = true)
-    private UserEntity usr;
+    private Usr usr;
 
     @ManyToOne
     @JoinColumn(name = "crs", nullable = true)
-    private CrsEntity crs;
+    private Crs crs;
 
     @Column
     private String content;

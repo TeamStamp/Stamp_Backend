@@ -20,11 +20,11 @@ public class PlcCmt {
 
     @ManyToOne
     @JoinColumn(name = "usr", nullable = true)
-    private UserEntity usr;
+    private Usr usr;
 
     @ManyToOne
     @JoinColumn(name = "plc", nullable = true)
-    private PlcEntity plc;
+    private Plc plc;
 
     @Column
     private String content;

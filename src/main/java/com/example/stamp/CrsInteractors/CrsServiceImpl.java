@@ -19,12 +19,12 @@ public class CrsServiceImpl implements CrsService {
 // 전체 코스 조회
     @Transactional(readOnly = true)
     public List<ResponseCrsDto.ResponseAllCrsCmtDto> getAllCrs() {
-        List<CrsEntity> entityList = repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        List<Crs> entityList = repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
         List<ResponseCrsDto.ResponseAllCrsCmtDto> dtoList = new ArrayList<>();
         entityList.stream().forEach(entity -> dtoList.add(of(entity)));
         return dtoList;
     }
-        public static ResponseCrsDto.ResponseAllCrsCmtDto of(CrsEntity entity){
+        public static ResponseCrsDto.ResponseAllCrsCmtDto of(Crs entity){
         return ResponseCrsDto.ResponseAllCrsCmtDto.builder()
                 .id(entity.getId())
                 .crsName(entity.getCrsName())
@@ -38,7 +38,7 @@ public class CrsServiceImpl implements CrsService {
     public ResponseCrsDto.ResponseOneCrsDto getCrs(RequestCrsDto dto){
         ResponseCrsDto.ResponseOneCrsDto Dto = on(repository.findById(dto.getId()).get());
         return Dto;}
-    public static ResponseCrsDto.ResponseOneCrsDto on (CrsEntity entity){
+    public static ResponseCrsDto.ResponseOneCrsDto on (Crs entity){
         return ResponseCrsDto.ResponseOneCrsDto.builder()
                 .id(entity.getId())
                 .crsName(entity.getCrsName())
@@ -47,7 +47,7 @@ public class CrsServiceImpl implements CrsService {
                 .days(entity.getDays().stream().map(CrsServiceImpl::on).collect(Collectors.toSet()))
                 .build();
     }
-    public static ResponseCrsDto.LinkedDayDto on(DayEntity entity){
+    public static ResponseCrsDto.LinkedDayDto on(aDay entity){
         return ResponseCrsDto.LinkedDayDto.builder()
                 .id(entity.getId())
                 .dayx(entity.getDayx())
@@ -55,7 +55,7 @@ public class CrsServiceImpl implements CrsService {
                 .build();
     }
 
-    public static ResponseCrsDto.LinkedPlcDto on(PlcEntity entity) {
+    public static ResponseCrsDto.LinkedPlcDto on(Plc entity) {
 
         DayInPlc dayInPlc = entity.getDayInPlcs()
                 .stream()
@@ -73,14 +73,14 @@ public class CrsServiceImpl implements CrsService {
     @Transactional
     //코스 삭제
     public void deleteCrs(RequestCrsDto dto) {
-        Optional<CrsEntity> target = repository.findById(dto.getId());
+        Optional<Crs> target = repository.findById(dto.getId());
 
         if (target.isPresent()) {
-            CrsEntity crs = target.get();
+            Crs crs = target.get();
 
 
             // CrsEntity와 연관된 DayEntity의 참조를 수정하여 삭제
-            for (DayEntity day : crs.getDays()) {
+            for (aDay day : crs.getDays()) {
                 // DayEntity와 연관된 DayInPlc의 참조를 수정하여 삭제
                 for (DayInPlc dayInPlc : day.getPlc()) {
                     dayInPlc.setADay(null);
@@ -98,12 +98,12 @@ public class CrsServiceImpl implements CrsService {
 
             // CrsEntity와 연관된 UserEntity의 참조를 수정하여 삭제
             if (crs.getUsr() != null) {
-                UserEntity user = crs.getUsr();
+                Usr user = crs.getUsr();
                 user.getCrs().remove(crs);
                 crs.setUsr(null);
             }
 
-            // CrsEntity 삭제
+            // Crs 삭제
             repository.deleteBytarget(crs.getId());
 
 

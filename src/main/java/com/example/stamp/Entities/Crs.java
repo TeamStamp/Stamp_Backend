@@ -15,7 +15,7 @@ import java.util.Set;
 @NoArgsConstructor
 
 
-public class CrsEntity {
+public class Crs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,17 +28,17 @@ public class CrsEntity {
     private String imgUrl;
     @ManyToOne
     @JoinColumn(name = "usr", nullable = true)
-    private UserEntity usr;
+    private Usr usr;
 
 
     @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("crs")
-    private Set<DayEntity> days = new HashSet<>();
+    private Set<aDay> days = new HashSet<>();
 
     @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     @JsonIgnoreProperties("crs")
     private List<CrsCmt> cmt = new ArrayList<>();
-    public void add(DayEntity Day){
+    public void add(aDay Day){
         Day.setCrs(this);       //onwer
         getDays().add(Day);
     }
