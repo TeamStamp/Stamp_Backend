@@ -32,15 +32,15 @@ public class Crs {
 
 
     @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
-    @JsonIgnoreProperties("crs")
+   // @JsonIgnoreProperties("crs")
     private Set<aDay> days = new HashSet<>();
 
     @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
-    @JsonIgnoreProperties("crs")
+   // @JsonIgnoreProperties("crs")
     private List<CrsCmt> cmt = new ArrayList<>();
-    public void add(aDay Day){
-        Day.setCrs(this);       //onwer
-        getDays().add(Day);
-    }
+//    public void add(aDay Day){
+//        Day.setCrs(this);       //onwer
+//        getDays().add(Day);
+//    }
 
 }

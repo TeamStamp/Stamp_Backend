@@ -16,15 +16,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PlcController {
 
-    private final PlcService PlcLoadService;
+    private final PlcService PlcService;
     //코스 전체 조회
     @GetMapping("/api/places")
-    public List<ResponsePlcDto> index(){return PlcLoadService.getAllPlc();}
+    public List<ResponsePlcDto> index(){return PlcService.getAllPlc();}
 
 
     @PostMapping("/api/place")
     public ResponsePlcDto getPlc(@RequestBody RequestPlcDto dto){
-        return PlcLoadService.getPlc(dto);
+        return PlcService.getPlc(dto);
     }
 
+    @PostMapping("/api/deletePlc")
+    public void deletePlc(@RequestBody RequestPlcDto dto){
+        PlcService.deletePlc(dto);}
 }

@@ -21,8 +21,7 @@ public class aDay {
     @JoinColumn(name = "crs", nullable = true)
     private Crs crs;
 
-    @OneToMany(mappedBy = "aDay",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
-    @JsonIgnoreProperties("day")
+    @OneToMany(mappedBy = "aDay",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY,orphanRemoval = true)
     private Set<DayInPlc> plc = new HashSet<>();
 
     @Override
