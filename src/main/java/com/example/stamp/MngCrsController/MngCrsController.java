@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class MngCrsController {
-    private final MngCrsService MngCrsService;
+    private final MngCrsService mngCrsService;
     //코스승인
     @PostMapping("api/accept/mngcrs")
-    public void acceptCrs(@RequestBody RequestDto.RequestAcceptDto dto){MngCrsService.acceptCrs(dto);}
+    public void acceptCrs(@RequestBody RequestDto.RequestAcceptDto dto){mngCrsService.acceptCrs(dto);}
 
 
 
