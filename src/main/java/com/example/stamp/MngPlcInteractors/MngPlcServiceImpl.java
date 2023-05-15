@@ -13,8 +13,9 @@ public class MngPlcServiceImpl implements MngPlcService {
 
     @Transactional
     public void acceptPlc(RequestDto.RequestAcceptDto dto){
-        //코스의 아이디를 매개변수로 받아옴
-        Plc target = repository.findById(dto.getPlc()).get();
+        //장소의 아이디를 매개변수로 받아옴
+        System.out.println("dto 서비스: " + dto.getId());
+        Plc target = repository.findById(dto.getId()).get();
         boolean x = false ;
         if(target.getIsAccept() == false)
             x = true;

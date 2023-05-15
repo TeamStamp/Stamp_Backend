@@ -17,12 +17,11 @@ import java.util.List;
 public  class MngCrsController {
     private final MngCrsFacade mngCrsFacade;
     @PostMapping("api/accept/mngcrs")
-
-    void acceptCrs(RequestDto.RequestAcceptDto dto){
+    public void acceptCrs(@RequestBody RequestDto.RequestAcceptDto dto){
         mngCrsFacade.acceptCrs(dto);
     }
     @GetMapping("/api/mngcourses")
-    public List<ResponseCrsDto.ResponseAllCrsCmtDto> index(){return mngCrsFacade.getAllCrs();}
+    public List<ResponseCrsDto.ResponseAllCrsDto> getAllCrs(){return mngCrsFacade.getAllCrs();}
 
     @PostMapping("/api/mngcourse")
     public ResponseCrsDto.ResponseOneCrsDto getCrs(@RequestBody RequestCrsDto dto){
