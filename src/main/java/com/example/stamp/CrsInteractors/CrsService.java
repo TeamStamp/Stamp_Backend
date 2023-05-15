@@ -6,7 +6,7 @@ import java.util.List;
 public interface CrsService {
 
 
-    List<ResponseCrsDto.ResponseAllCrsCmtDto> getAllCrs();
+    List<ResponseCrsDto.ResponseAllCrsDto> getAllCrs();
 
     ResponseCrsDto.ResponseOneCrsDto getCrs(RequestCrsDto dto);
 

@@ -1,10 +1,6 @@
 package com.example.stamp.PlcInteractors;
 
 
-
-
-import com.example.stamp.CrsInteractors.RequestCrsDto;
-
 import java.util.List;
 
 public interface PlcService {

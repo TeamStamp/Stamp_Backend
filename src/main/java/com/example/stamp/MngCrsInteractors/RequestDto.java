@@ -5,7 +5,7 @@ import lombok.*;
 public class RequestDto {
     @Data
     public static class RequestAcceptDto{
-        private Long Crs;
+        private Long id;
 
     }
 }

@@ -15,7 +15,7 @@ public class CrsController {
     private final CrsService CrsService;
     //코스 전체 조회
     @GetMapping("/api/courses")
-    public List<ResponseCrsDto.ResponseAllCrsCmtDto> index(){return CrsService.getAllCrs();}
+    public List<ResponseCrsDto.ResponseAllCrsDto> index(){return CrsService.getAllCrs();}
 
 
     @PostMapping("/api/course")

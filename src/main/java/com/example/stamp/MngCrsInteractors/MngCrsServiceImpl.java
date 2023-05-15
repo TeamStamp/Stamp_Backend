@@ -16,7 +16,7 @@ public class MngCrsServiceImpl implements MngCrsService {
     @Transactional
     public void acceptCrs(RequestDto.RequestAcceptDto dto){
         //코스의 아이디를 매개변수로 받아옴
-        Crs target = repository.findById(dto.getCrs()).get();
+        Crs target = repository.findById(dto.getId()).get();
         boolean x = false ;
         if(target.getIsAccept() == false)
             x = true;

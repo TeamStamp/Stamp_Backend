@@ -21,13 +21,10 @@ public class MngCrsFacade {
 
     private final CrsCmtService crsCmtService;
 
-    void acceptCrs(RequestDto.RequestAcceptDto dto){
-
-        mngCrsService.acceptCrs(dto);
-    }
+    void acceptCrs(RequestDto.RequestAcceptDto dto){mngCrsService.acceptCrs(dto);}
 
 
-    List<ResponseCrsDto.ResponseAllCrsCmtDto> getAllCrs(){return crsService.getAllCrs();}
+    List<ResponseCrsDto.ResponseAllCrsDto> getAllCrs(){return crsService.getAllCrs();}
 
     ResponseCrsDto.ResponseOneCrsDto getCrs(RequestCrsDto dto){return crsService.getCrs(dto);}
 

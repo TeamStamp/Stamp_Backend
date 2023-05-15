@@ -18,14 +18,14 @@ public class CrsServiceImpl implements CrsService {
     private final CrsRepository repository;
 // 전체 코스 조회
     @Transactional(readOnly = true)
-    public List<ResponseCrsDto.ResponseAllCrsCmtDto> getAllCrs() {
+    public List<ResponseCrsDto.ResponseAllCrsDto> getAllCrs() {
         List<Crs> entityList = repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-        List<ResponseCrsDto.ResponseAllCrsCmtDto> dtoList = new ArrayList<>();
+        List<ResponseCrsDto.ResponseAllCrsDto> dtoList = new ArrayList<>();
         entityList.stream().forEach(entity -> dtoList.add(of(entity)));
         return dtoList;
     }
-        public static ResponseCrsDto.ResponseAllCrsCmtDto of(Crs entity){
-        return ResponseCrsDto.ResponseAllCrsCmtDto.builder()
+        public static ResponseCrsDto.ResponseAllCrsDto of(Crs entity){
+        return ResponseCrsDto.ResponseAllCrsDto.builder()
                 .id(entity.getId())
                 .crsName(entity.getCrsName())
                 .imgUrl(entity.getImgUrl())

@@ -7,7 +7,7 @@ import java.util.Set;
 public  class ResponseCrsDto {
     @Builder
     @Data
-    public static class ResponseAllCrsCmtDto {
+    public static class ResponseAllCrsDto {
         private Long id;
         private String crsName;
         private String imgUrl;
