@@ -1,6 +1,6 @@
 package com.example.stamp.crsVisitor.cvInteractors;
 
-import com.example.stamp.CrsInteractors.ResponseCrsDto;
+
 import com.example.stamp.Entities.Crs;
 import com.example.stamp.Entities.Plc;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import lombok.Data;
 
 import java.util.List;
 
-public class ResponseCrs extends ResponseCrsDto {
+public class ResponseCrs{
 
     @Builder
     @Data

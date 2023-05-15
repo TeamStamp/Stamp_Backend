@@ -16,14 +16,40 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class cvVisitedCrsServiceImpl implements cvVisitedCrsService {
+public class cvVisitedPlcServiceImpl implements cvVisitedPlcService {
 
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
     private final CrsRepository repository;
     private final VisitedPlcRepository vPlcRepository;
 
     @Override
-    public List<ResponseVisitedCrs.VPlcListDto> getVisitedCrs(Optional<String> token, Long crsId) {
+    public List<ResponseVisitedPlc.VPlcListDto> createVisitedPlc(Optional<String> token, Long crsId) {
+        String email = null;
+        if(token.isPresent()){
+            JwtAuthToken jwtAuthToken = jwtAuthTokenProvider.convertAuthToken(token.get());
+            email = jwtAuthToken.getClaims().getSubject();
+        }
+        Optional<Crs> optionalCrs = repository.findById(crsId);
+        VisitedPlc vPlc = null;
+        List<VisitedPlc> vPlcList = new ArrayList<>();
+        List<ResponseVisitedPlc.VPlcListDto> vPlcListDto = new ArrayList<>();
+        Crs crs = null;
+        if (optionalCrs.isPresent()) {
+            crs = optionalCrs.get();
+            for (aDay day : crs.getDays()) {
+                for (DayInPlc dayInPlc : day.getPlc()){
+                    vPlc = RequestVisitedPlc.VPlcRq.toEntity(email, dayInPlc.getPlc().getId());
+                    vPlcRepository.save(vPlc);
+                    vPlcListDto.add(ResponseVisitedPlc.VPlcListDto.toDto(vPlc));
+                }
+            }
+        }
+
+        return vPlcListDto;
+    }
+
+    @Override
+    public List<ResponseVisitedPlc.VPlcListDto> getVisitedPlc(Optional<String> token, Long crsId) {
 
         String email = null;
         if(token.isPresent()){
@@ -33,18 +59,20 @@ public class cvVisitedCrsServiceImpl implements cvVisitedCrsService {
         Optional<Crs> optionalCrs = repository.findById(crsId);
         VisitedPlc vPlc = null;
         List<VisitedPlc> vPlcList = new ArrayList<>();
-        List<ResponseVisitedCrs.VPlcListDto> vPlcListDto = new ArrayList<>();
+        List<ResponseVisitedPlc.VPlcListDto> vPlcListDto = new ArrayList<>();
         Crs crs = null;
         if (optionalCrs.isPresent()) {
             crs = optionalCrs.get();
             for (aDay day : crs.getDays()) {
                 for (DayInPlc dayInPlc : day.getPlc()){
                     vPlc = vPlcRepository.findByUsrEmailAndPlcId(email, dayInPlc.getPlc().getId());
-                    vPlcListDto.add(ResponseVisitedCrs.VPlcListDto.toDto(vPlc));
+                    vPlcListDto.add(ResponseVisitedPlc.VPlcListDto.toDto(vPlc));
                 }
             }
         }
 //        vPlcList.stream().forEach(a -> vPlcListDto.add(ResponseVisitedCrs.VPlcListDto.toDto(a)));
         return vPlcListDto;
     }
+
+
 }

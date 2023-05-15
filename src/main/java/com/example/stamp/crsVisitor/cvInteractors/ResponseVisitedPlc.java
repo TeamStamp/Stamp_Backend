@@ -7,18 +7,18 @@ import lombok.Data;
 
 import java.util.List;
 
-public class ResponseVisitedCrs {
+public class ResponseVisitedPlc {
 
     @Data
     @Builder
-    public static class RpGetVCrsDto{
+    public static class VCrsInfoDto{
 
         private Long usrId;
         private Long crsId;
         private List<VisitedPlc> vPlcList;
 
-        public static RpGetVCrsDto toDto(VisitedCrs visitedCrs, List<VisitedPlc> visitedPlcList){
-            return RpGetVCrsDto.builder()
+        public static VCrsInfoDto toDto(VisitedCrs visitedCrs, List<VisitedPlc> visitedPlcList){
+            return VCrsInfoDto.builder()
                     .usrId(visitedCrs.getUsrId())
                     .crsId(visitedCrs.getCrsId())
                     .vPlcList(visitedPlcList)

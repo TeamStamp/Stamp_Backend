@@ -20,6 +20,7 @@ INSERT INTO Day_In_Plc (date_Time,a_Day,plc) VALUES ('2023-05-11T12:02:00',1,1);
 INSERT INTO Day_In_Plc (date_Time,a_Day,plc) VALUES ('2023-05-12T07:45:00',2,3);
 INSERT INTO Day_In_Plc (date_Time,a_Day,plc) VALUES ('2023-05-13T07:45:00',3,5);
 INSERT INTO Day_In_Plc (date_Time,a_Day,plc) VALUES ('2023-05-12T09:45:00',3,4);
+INSERT INTO Day_In_Plc (date_Time,a_Day,plc) VALUES ('2023-05-12T09:45:00',4,1);
 INSERT INTO Plc_Cmt (usr,plc,content) VALUES (1,2,'ㅋㅋㅋㅋㅋㅋㅋ');
 INSERT INTO Plc_Cmt (usr,plc,content) VALUES (1,2,'ㅎㅇ요');
 INSERT INTO Plc_Cmt (usr,plc,content) VALUES (1,2,'ㄹㅈㄷ');
