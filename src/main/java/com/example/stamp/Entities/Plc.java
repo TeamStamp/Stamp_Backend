@@ -28,7 +28,7 @@ public class Plc {
     @Column
     private String category;
     @Column
-    private Boolean isAccept;
+    private Boolean isAccept = false;
     @Column
     private Long cost;
     @ManyToOne

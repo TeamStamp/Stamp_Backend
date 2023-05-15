@@ -23,7 +23,7 @@ public class Crs {
     @Column
     private  String crsName;
     @Column
-    private Boolean isAccept;
+    private Boolean isAccept = false;
     @Column
     private String imgUrl;
     @ManyToOne
