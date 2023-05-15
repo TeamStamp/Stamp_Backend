@@ -38,4 +38,11 @@ public class MngUsrServiceImpl implements MngUsrService {
                 .imgUrl(entity.getImgUrl()).build();
     }
 
+    @Transactional
+    public void deleteUsr(RequestDto.RequestDeleteDto dto){
+
+        Usr target = repository.findById(dto.getId()).get();
+        repository.delete(target);
+
+    }
 }

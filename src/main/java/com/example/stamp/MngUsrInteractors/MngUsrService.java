@@ -8,4 +8,6 @@ public interface MngUsrService {
 
     List<ResponseDto.UsrDto> getUsr();
 
+    void deleteUsr(RequestDto.RequestDeleteDto dto);
+
 }
