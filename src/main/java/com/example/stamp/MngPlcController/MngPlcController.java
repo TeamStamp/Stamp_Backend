@@ -1,5 +1,6 @@
 package com.example.stamp.MngPlcController;
 import com.example.stamp.MngPlcInteractors.RequestDto;
+import com.example.stamp.MngPlcInteractors.ResponseDto;
 import com.example.stamp.PlcCmtInteractors.RequestPlcCmtDto;
 import com.example.stamp.PlcCmtInteractors.ResponsePlcCmtDto;
 import com.example.stamp.PlcInteractors.RequestPlcDto;
@@ -39,5 +40,6 @@ public class MngPlcController {
         mngPlcFacade.deleteCmt(dto);
     }
 
-
+    @PostMapping("api/mngsearch/plc")
+    public List<ResponseDto.plcSearchDto> searchPlc(@RequestBody RequestDto.RequestSearchDto dto){return mngPlcFacade.searchPlc(dto);}
 }

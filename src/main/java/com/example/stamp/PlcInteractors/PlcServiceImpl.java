@@ -33,9 +33,9 @@ public class PlcServiceImpl implements PlcService {
     @Transactional(readOnly = true)
     public List<ResponsePlcDto> getAllPlc() {
         List<Plc> entityList = repository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-        List<ResponsePlcDto> dtolist = new ArrayList<>();
-        entityList.stream().forEach(entity -> dtolist.add(of(entity)));
-        return dtolist;
+        List<ResponsePlcDto> dtoList = new ArrayList<>();
+        entityList.stream().forEach(entity -> dtoList.add(of(entity)));
+        return dtoList;
     }
 
     @Transactional(readOnly = true)
