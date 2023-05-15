@@ -28,6 +28,9 @@ public class Usr {
     @Column
     private String imgUrl;
 
+    @Column
+    private boolean isAdmin;
+
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "usr",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY,orphanRemoval = true)
     @JsonIgnoreProperties("usr")
@@ -39,13 +42,16 @@ public class Usr {
     private Set<Plc> plc = new HashSet<>();
 
     @Builder
-    public Usr(String email, String password, String nickname, String salt){
+    public Usr(String email, String password, String nickname, String salt,boolean isAdmin){
         this.email = email;
         this.password = password;
         this.nickname = nickname;
         this.salt = salt;
+        this.isAdmin=isAdmin = false;
     }
-
+    public boolean getIsAdmin(){
+        return isAdmin;
+    }
     public void update(String password, String nickname, String salt){
         this.password = password;
         this.nickname = nickname;
