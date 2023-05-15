@@ -16,21 +16,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public  class MngCrsController {
     private final MngCrsFacade mngCrsFacade;
-    @PostMapping("api/accept/mngcrs")
+    @PostMapping("api/mngaccept/crs")
     public void acceptCrs(@RequestBody RequestDto.RequestAcceptDto dto){
         mngCrsFacade.acceptCrs(dto);
     }
-    @GetMapping("/api/mngcourses")
+    @GetMapping("/api/mng/courses")
     public List<ResponseCrsDto.ResponseAllCrsDto> getAllCrs(){return mngCrsFacade.getAllCrs();}
 
-    @PostMapping("/api/mngcourse")
+    @PostMapping("/api/mng/course")
     public ResponseCrsDto.ResponseOneCrsDto getCrs(@RequestBody RequestCrsDto dto){
         return mngCrsFacade.getCrs(dto);
     }
-    @PostMapping("/api/mngdeleteCrs")
+    @PostMapping("/api/mngdelete/crs")
     public void deleteCrs(@RequestBody RequestCrsDto dto){
         mngCrsFacade.deleteCrs(dto);}
-    @PostMapping("/api/mngcrscmt")
+    @PostMapping("/api/mng/crscmt")
     public List<ResponseCrsCmtDto> getCmt(@RequestBody RequestCrsCmtDto.RequestLoadCrsCmtDto dto){
         return mngCrsFacade.getCmt(dto);
     }

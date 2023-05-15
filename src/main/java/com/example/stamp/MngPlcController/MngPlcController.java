@@ -16,21 +16,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MngPlcController {
     private final MngPlcFacade mngPlcFacade;
-    @PostMapping("api/accept/mngplc")
+    @PostMapping("api/mngaccept/plc")
     void acceptPlc(@RequestBody RequestDto.RequestAcceptDto dto){
         mngPlcFacade.acceptPlc(dto);
     }
-    @GetMapping("/api/mngplaces")
+    @GetMapping("/api/mng/places")
     public List<ResponsePlcDto> getAllPlc(){return mngPlcFacade.getAllPlc();}
 
-    @PostMapping("/api/mngplace")
+    @PostMapping("/api/mng/place")
     public ResponsePlcDto getPlc(@RequestBody RequestPlcDto dto){
         return mngPlcFacade.getPlc(dto);
     }
-    @PostMapping("/api/mngdeletePlc")
+    @PostMapping("/api/mngdelete/plc")
     public void deletePlc(@RequestBody RequestPlcDto dto){
         mngPlcFacade.deletePlc(dto);}
-    @PostMapping("/api/mngplccmt")
+    @PostMapping("/api/mng/plccmt")
     public List<ResponsePlcCmtDto> getCmt(@RequestBody RequestPlcCmtDto.RequestLoadPlcCmtDto dto){
         return mngPlcFacade.getCmt(dto);
     }

@@ -22,5 +22,5 @@ public class MngUsrFacade {
     //전체 회원 리스트 조회
     List<ResponseDto.UsrDto> getUsr(){return mngUsrService.getUsr();}
     //사용자 삭제
-
+    void deleteUsr(RequestDto.RequestDeleteDto dto){mngUsrService.deleteUsr(dto);}
 }

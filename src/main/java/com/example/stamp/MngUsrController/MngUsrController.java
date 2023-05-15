@@ -18,11 +18,14 @@ public  class MngUsrController {
     private final MngUsrFacade mngUsrFacade;
 
 
-    @PostMapping("api/accept/mngusr")
+    @PostMapping("api/mngaccept/usr")
     public void acceptUsr(@RequestBody RequestDto.RequestAcceptDto dto){
         mngUsrFacade.acceptUsr(dto);
     }
 
-    @GetMapping("api/mng/usrload")
+    @GetMapping("api/mngload/usr")
     public List<ResponseDto.UsrDto> getUsr(){return mngUsrFacade.getUsr();}
+
+    @PostMapping("api/mngdelete/usr")
+    public void deleteUsr(@RequestBody RequestDto.RequestDeleteDto dto){mngUsrFacade.deleteUsr(dto);}
 }
