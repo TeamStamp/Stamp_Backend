@@ -18,9 +18,9 @@ public class ResponseCrs extends ResponseCrsDto {
         private String crsName;
         private String imgUrl;
         private String maker;
-        private List<CrsPlcListDto> plcList;
+        private List<ResponseCrs.CrsPlcListDto> plcList;
 
-        public static cvGetCrsDto toDto(Crs crs, List<CrsPlcListDto> plcList){
+        public static cvGetCrsDto toDto(Crs crs, List<ResponseCrs.CrsPlcListDto> plcList){
             return cvGetCrsDto.builder()
                     .id(crs.getId())
                     .crsName(crs.getCrsName())

@@ -23,6 +23,9 @@ public class Usr {
     private String password;
 
     @Column
+    private Long stamp = 0L;
+
+    @Column
     private String salt;
 
     @Column

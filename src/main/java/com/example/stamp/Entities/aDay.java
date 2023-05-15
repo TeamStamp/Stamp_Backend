@@ -2,9 +2,7 @@ package com.example.stamp.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -22,7 +20,7 @@ public class aDay {
     private Crs crs;
 
     @OneToMany(mappedBy = "aDay",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY,orphanRemoval = true)
-    private Set<DayInPlc> plc = new HashSet<>();
+    private List<DayInPlc> plc = new ArrayList<>();
 
     @Override
     public int hashCode() {

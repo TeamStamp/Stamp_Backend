@@ -3,14 +3,14 @@ package com.example.stamp.crsVisitor.cvInteractors;
 import com.example.stamp.CrsInteractors.CrsRepository;
 import com.example.stamp.Entities.Crs;
 import com.example.stamp.Entities.DayInPlc;
+import com.example.stamp.Entities.Plc;
 import com.example.stamp.Entities.aDay;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -41,6 +41,8 @@ public class cvCrsServiceImpl implements cvCrsService{
 //                day.getPlc().forEach(dayInPlc -> plcList.add(dayInPlc.getPlc()));
             }
         }
+
+
         return ResponseCrs.cvGetCrsDto.toDto(crs, plcList);
     }
 }

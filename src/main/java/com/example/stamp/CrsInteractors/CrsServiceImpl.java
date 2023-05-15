@@ -44,14 +44,14 @@ public class CrsServiceImpl implements CrsService {
                 .crsName(entity.getCrsName())
                 .imgUrl(entity.getImgUrl())
                 .maker(entity.getUsr().getNickname())
-                .days(entity.getDays().stream().map(CrsServiceImpl::on).collect(Collectors.toSet()))
+                .days(entity.getDays().stream().map(CrsServiceImpl::on).collect(Collectors.toList()))
                 .build();
     }
     public static ResponseCrsDto.LinkedDayDto on(aDay entity){
         return ResponseCrsDto.LinkedDayDto.builder()
                 .id(entity.getId())
                 .dayx(entity.getDayx())
-                .plc(entity.getPlc().stream().map(DayInPlc::getPlc).map(CrsServiceImpl::on).collect(Collectors.toSet()))
+                .plc(entity.getPlc().stream().map(DayInPlc::getPlc).map(CrsServiceImpl::on).collect(Collectors.toList()))
                 .build();
     }
 

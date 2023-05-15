@@ -31,9 +31,9 @@ public class Crs {
     private Usr usr;
 
 
-    @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
+    @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY,orphanRemoval = true)
    // @JsonIgnoreProperties("crs")
-    private Set<aDay> days = new HashSet<>();
+    private List<aDay> days = new ArrayList<>();
 
     @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
    // @JsonIgnoreProperties("crs")
