@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,5 +24,30 @@ public class MngPlcServiceImpl implements MngPlcService {
         repository.acceptPlcById(target.getId(), x);
     }
 
+    @Transactional
+    public List<ResponseDto.plcSearchDto> searchPlc(RequestDto.RequestSearchDto dto){
+        System.out.println("입력: "+dto.getSearch());
+        List<Plc> entityList = repository.findPlcByName(dto.getSearch());
+       if(entityList.isEmpty())
+           System.out.println("출력: 비었음");
+       else
+        System.out.println("출력: "+ entityList.get(0).getPlcName());
+        List<ResponseDto.plcSearchDto> dtoList = new ArrayList<>();
+        entityList.stream().forEach(entity -> dtoList.add(of(entity)));
+        return dtoList;
+    }
+    private ResponseDto.plcSearchDto of(Plc entity){
+        return ResponseDto.plcSearchDto.builder()
+                .id(entity.getId())
+                .plcName(entity.getPlcName())
+                .lat(entity.getLat())
+                .lng(entity.getLng())
+                .imgUrl(entity.getImgUrl())
+                .category(entity.getCategory())
+                .cost(entity.getCost())
+                .usr(entity.getUsr().getId())
+                .build();
+
+    }
 
 }
