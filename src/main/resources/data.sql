@@ -1,5 +1,6 @@
 
-INSERT INTO Usr(nickname,email,is_Admin,password,salt,img_Url) VALUES ('문공표','asdasd@gmail.com',false,'asdasd','aaaaaaaaaa','sadasdasfxc');
+INSERT INTO Usr(nickname,email,is_Admin,password,salt,img_Url) VALUES ('문공표','asdasd@gmail.com',true,'asdasd','aaaaaaaaaa','sadasdasfxc');
+INSERT INTO Usr(nickname,email,is_Admin,password,salt,img_Url) VALUES ('김경모','avoijdkan@gmail.com',false,'kkkkkkkk','bbbbbbbb','mklwndvlinsd');
 INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr) VALUES ('Crs1',true,'sadasd',1);
 INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr) VALUES ('Crs2',false,'sadasd',1);
 INSERT INTO a_Day (dayx,crs) VALUES (1,1);

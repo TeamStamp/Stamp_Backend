@@ -3,8 +3,8 @@ import com.example.stamp.Entities.Usr;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
@@ -22,6 +22,20 @@ public class MngUsrServiceImpl implements MngUsrService {
         repository.acceptUsrById(target.getId(), x);
     }
 
-
+    @Transactional
+    public List<ResponseDto.UsrDto> getUsr(){
+        List<Usr> entityList = repository.findAll();
+        List<ResponseDto.UsrDto> dtoList = new ArrayList<>();
+        entityList.forEach(entity -> dtoList.add(of(entity)));
+        return dtoList;
+    }
+    private ResponseDto.UsrDto of (Usr entity){
+        return ResponseDto.UsrDto.builder()
+                .id(entity.getId())
+                .email(entity.getEmail())
+                .nickname(entity.getNickname())
+                .isAdmin(entity.getIsAdmin())
+                .imgUrl(entity.getImgUrl()).build();
+    }
 
 }
