@@ -28,4 +28,7 @@ public  class MngUsrController {
 
     @PostMapping("api/mngdelete/usr")
     public void deleteUsr(@RequestBody RequestDto.RequestDeleteDto dto){mngUsrFacade.deleteUsr(dto);}
+
+    @PostMapping("api/mngsearch/usr")
+    public List<ResponseDto.UsrDto> searchUsr(@RequestBody RequestDto.RequestSearchDto dto){return mngUsrFacade.searchUsr(dto);}
 }

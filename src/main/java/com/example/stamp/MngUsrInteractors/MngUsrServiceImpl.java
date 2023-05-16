@@ -29,14 +29,7 @@ public class MngUsrServiceImpl implements MngUsrService {
         entityList.forEach(entity -> dtoList.add(of(entity)));
         return dtoList;
     }
-    private ResponseDto.UsrDto of (Usr entity){
-        return ResponseDto.UsrDto.builder()
-                .id(entity.getId())
-                .email(entity.getEmail())
-                .nickname(entity.getNickname())
-                .isAdmin(entity.getIsAdmin())
-                .imgUrl(entity.getImgUrl()).build();
-    }
+
 
     @Transactional
     public void deleteUsr(RequestDto.RequestDeleteDto dto){
@@ -44,5 +37,22 @@ public class MngUsrServiceImpl implements MngUsrService {
         Usr target = repository.findById(dto.getId()).get();
         repository.delete(target);
 
+    }
+
+    @Transactional
+    public List<ResponseDto.UsrDto> searchUsr(RequestDto.RequestSearchDto dto){
+        System.out.println("dto"+dto.getSearch());
+        List<Usr> entityList = repository.findUsrByName(dto.getSearch());
+        List<ResponseDto.UsrDto> dtoList = new ArrayList<>();
+        entityList.stream().forEach(entity -> dtoList.add(of(entity)));
+        return dtoList;
+    }
+    private ResponseDto.UsrDto of (Usr entity){
+        return ResponseDto.UsrDto.builder()
+                .id(entity.getId())
+                .email(entity.getEmail())
+                .nickname(entity.getNickname())
+                .isAdmin(entity.getIsAdmin())
+                .imgUrl(entity.getImgUrl()).build();
     }
 }
