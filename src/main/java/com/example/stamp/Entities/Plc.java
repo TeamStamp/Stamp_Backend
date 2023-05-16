@@ -37,7 +37,7 @@ public class Plc {
 
 
     @OneToMany(mappedBy = "plc", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY,orphanRemoval = true)
-    private Set<DayInPlc> dayInPlcs = new HashSet<>();
+    private List<DayInPlc> dayInPlcs = new ArrayList<>();
 
     @OneToMany(mappedBy = "plc",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
     private List<PlcCmt> cmt = new ArrayList<>();

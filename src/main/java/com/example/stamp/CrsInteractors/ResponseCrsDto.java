@@ -1,6 +1,7 @@
 package com.example.stamp.CrsInteractors;
 import lombok.*;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 
@@ -20,7 +21,7 @@ public  class ResponseCrsDto {
         private String crsName;
         private String imgUrl;
         private String maker;
-        private Set<LinkedDayDto> days;
+        private List<LinkedDayDto> days;
 
     }
     @Builder
@@ -28,7 +29,7 @@ public  class ResponseCrsDto {
     public static class LinkedDayDto {
         private Long id;
         private Integer dayx;
-        private Set<LinkedPlcDto> plc;
+        private List<LinkedPlcDto> plc;
     }
     @Builder
     @Data
