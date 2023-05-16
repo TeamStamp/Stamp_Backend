@@ -26,12 +26,8 @@ public class MngPlcServiceImpl implements MngPlcService {
 
     @Transactional
     public List<ResponseDto.plcSearchDto> searchPlc(RequestDto.RequestSearchDto dto){
-        System.out.println("입력: "+dto.getSearch());
+
         List<Plc> entityList = repository.findPlcByName(dto.getSearch());
-       if(entityList.isEmpty())
-           System.out.println("출력: 비었음");
-       else
-        System.out.println("출력: "+ entityList.get(0).getPlcName());
         List<ResponseDto.plcSearchDto> dtoList = new ArrayList<>();
         entityList.stream().forEach(entity -> dtoList.add(of(entity)));
         return dtoList;

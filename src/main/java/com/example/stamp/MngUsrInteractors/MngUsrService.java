@@ -10,4 +10,5 @@ public interface MngUsrService {
 
     void deleteUsr(RequestDto.RequestDeleteDto dto);
 
+    List<ResponseDto.UsrDto> searchUsr(RequestDto.RequestSearchDto dto);
 }

@@ -16,11 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MngUsrFacade {
     private final MngUsrService mngUsrService;
-    private final AuthServiceInterface UsrService;
+
     //관리자 권한 부여
     void acceptUsr(RequestDto.RequestAcceptDto dto){mngUsrService.acceptUsr(dto);}
     //전체 회원 리스트 조회
     List<ResponseDto.UsrDto> getUsr(){return mngUsrService.getUsr();}
     //사용자 삭제
     void deleteUsr(RequestDto.RequestDeleteDto dto){mngUsrService.deleteUsr(dto);}
+    //사용자 검색
+    List<ResponseDto.UsrDto> searchUsr(RequestDto.RequestSearchDto dto){return mngUsrService.searchUsr(dto);}
 }
