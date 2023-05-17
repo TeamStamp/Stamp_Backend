@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/CMPlace")
+
 public class PlcRegisterController {
 
     private final PlcRegisterService plcRegisterService;
 
-    @PostMapping("/createPlc")
+    @PostMapping("/api/cmCreate/plc")
     public ResponseEntity createPlc(@RequestBody CMRequestPlcDto.createPlcDto createPlcDto) {
         plcRegisterService.createPlc(createPlcDto);
 
