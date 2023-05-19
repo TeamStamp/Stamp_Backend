@@ -1,6 +1,6 @@
 
-INSERT INTO Usr(nickname,email,password,salt,img_Url,is_Admin) VALUES ('문공표','asdasd@gmail.com','asdasd','aaaaaaaaaa','sadasdasfxc',false);
-INSERT INTO Usr(nickname,email,password,salt,img_Url,is_Admin) VALUES ('tUser0','tUser0','1234','aaaa','sadasdasfxc',false);
+INSERT INTO Usr(nickname,email,password,salt,img_Url,is_Admin,stamp) VALUES ('문공표','asdasd@gmail.com','asdasd','aaaaaaaaaa','sadasdasfxc',false,5);
+INSERT INTO Usr(nickname,email,password,salt,img_Url,is_Admin,stamp) VALUES ('tUser0','tUser0','1234','aaaa','sadasdasfxc',false,2);
 INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr) VALUES ('Crs1',1,'sadasd',1);
 INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr) VALUES ('Crs2',1,'sadfsd',2);
 INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr) VALUES ('Crs3',1,'sreqsd',2);

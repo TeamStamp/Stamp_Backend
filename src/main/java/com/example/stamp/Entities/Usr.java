@@ -44,13 +44,15 @@ public class Usr {
     @JsonIgnoreProperties("usr")
     private Set<Plc> plc = new HashSet<>();
 
-    @Builder
-    public Usr(String email, String password, String nickname, String salt){
-        this.email = email;
-        this.password = password;
-        this.nickname = nickname;
-        this.salt = salt;
-    }
+//    @Builder
+//    public Usr(String email, String password, String nickname, String salt){
+//        this.email = email;
+//        this.password = password;
+//        this.nickname = nickname;
+//        this.salt = salt;
+//        this.isAdmin = false;
+//        this.stamp = 0L;
+//    }
     public boolean getIsAdmin(){
         return isAdmin;
     }

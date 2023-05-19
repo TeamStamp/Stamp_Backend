@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -72,6 +73,16 @@ public class AuthController {
                 .message("Read Success")
                 .data(response)
                 .build(), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/auth/rank")
+    public  ResponseEntity<ResponseMessage> getRankInfo(){
+        List<ResponseAuth.rank> list = authService.getRankInfo();
+        ResponseMessage responseMessage = ResponseMessage.builder()
+                .message("Rank info read success")
+                .data(list)
+                .build();
+        return ResponseEntity.status(HttpStatus.OK).body(responseMessage);
     }
 
 }

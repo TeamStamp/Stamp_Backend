@@ -2,6 +2,7 @@ package com.example.stamp.crsVisitor.cvInteractors;
 
 import com.example.stamp.CrsInteractors.CrsRepository;
 import com.example.stamp.Entities.*;
+import com.example.stamp.UnknownPersonInteractors.repository.AuthRepository;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthToken;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +17,11 @@ public class cvCrsServiceImpl implements cvCrsService{
 
     private final CrsRepository repository;
     private final VisitedPlcRepository vPlcRepository;
+    private final VisitedCrsRepository vCrsRepository;
+    private final AuthRepository aRepository;
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
 
     @Override
-    @Transactional
     public ResponseCrs.cvGetCrsDto getCrs(Long crsId, Optional<String> token) {
         String email = null;
         if(token.isPresent()){
@@ -28,7 +30,6 @@ public class cvCrsServiceImpl implements cvCrsService{
         }
         Optional<Crs> optionalCrs = repository.findById(crsId);
         VisitedPlc vPlc;
-        List<VisitedPlc> vPlcList = new ArrayList<>();
         List<ResponseCrs.CrsPlcListDto> plcList = new ArrayList<>();
         Crs crs = null;
         if (optionalCrs.isPresent()) {
@@ -46,5 +47,30 @@ public class cvCrsServiceImpl implements cvCrsService{
 
         return ResponseCrs.cvGetCrsDto.toDto(crs, plcList);
 
+    }
+
+    @Override
+    public void visitPlc(RequestCrs.VisitPlcDto visitPlcDto, Optional<String> token) {
+        String email = null;
+        if(token.isPresent()){
+            JwtAuthToken jwtAuthToken = jwtAuthTokenProvider.convertAuthToken(token.get());
+            email = jwtAuthToken.getClaims().getSubject();
+        }
+        VisitedCrs vCrs = vCrsRepository.findByUsrEmailAndCrsId(email, visitPlcDto.getCrsId());
+        if (vCrs == null){
+            vCrsRepository.save(RequestCrs.toFirstEntity(email, visitPlcDto.getCrsId()));
+        }
+        else{
+            vCrs.setCrtStamp(vCrs.getCrtStamp()+1);
+            vCrsRepository.save(vCrs);
+        }
+
+        VisitedPlc vPlc = vPlcRepository.findByUsrEmailAndPlcId(email, visitPlcDto.getPlcId());
+        vPlc.setVisited(visitPlcDto.isVisited());
+        vPlcRepository.save(vPlc);
+
+        Usr usr = aRepository.findByEmail(email);
+        usr.setStamp(usr.getStamp()+1);
+        aRepository.save(usr);
     }
 }
