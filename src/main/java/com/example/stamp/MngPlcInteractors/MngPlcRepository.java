@@ -17,7 +17,5 @@ public interface MngPlcRepository extends JpaRepository<Plc,Long> {
     @Query(value = "UPDATE Plc SET is_Accept = :x WHERE id = :id",nativeQuery = true)
     void acceptPlcById(@Param("id") Long id,@Param("x") boolean x);
 
-    @Modifying
-    @Query(value = "SELECT * FROM Plc WHERE REPLACE(LOWER(Plc_Name), ' ', '') LIKE CONCAT('%', REPLACE(LOWER(:search), ' ', ''), '%')", nativeQuery = true)
-    List<Plc> findPlcByName(@Param("search") String search);
+
 }

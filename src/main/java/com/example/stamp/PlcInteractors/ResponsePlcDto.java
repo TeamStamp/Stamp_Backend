@@ -13,4 +13,6 @@ public class ResponsePlcDto {
     private String category;
     private String writer;
     private Long cost;
+
+
 }

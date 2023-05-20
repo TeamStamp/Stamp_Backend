@@ -1,9 +1,8 @@
 package com.example.stamp.MngPlcController;
 import com.example.stamp.MngPlcInteractors.RequestDto;
-import com.example.stamp.MngPlcInteractors.ResponseDto;
 import com.example.stamp.PlcCmtInteractors.RequestPlcCmtDto;
 import com.example.stamp.PlcCmtInteractors.ResponsePlcCmtDto;
-import com.example.stamp.PlcInteractors.RequestPlcDto;
+
 import com.example.stamp.PlcInteractors.ResponsePlcDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +21,7 @@ public class MngPlcController {
     public List<ResponsePlcDto> getAllPlc(){return mngPlcFacade.getAllPlc();}
     //장소 개별 조회
     @PostMapping("/api/mng/place")
-    public ResponsePlcDto getPlc(@RequestBody RequestPlcDto dto){
+    public ResponsePlcDto getPlc(@RequestBody com.example.stamp.PlcInteractors.RequestDto.RequestPlcDto dto){
         return mngPlcFacade.getPlc(dto);
     }
     //장소 승인
@@ -32,7 +31,7 @@ public class MngPlcController {
     }
     //장소 삭제
     @PostMapping("/api/mngdelete/plc")
-    public void deletePlc(@RequestBody RequestPlcDto dto){
+    public void deletePlc(@RequestBody com.example.stamp.PlcInteractors.RequestDto.RequestPlcDto dto){
         mngPlcFacade.deletePlc(dto);}
     //장소 댓글 보기
     @PostMapping("/api/mng/plccmt")
@@ -45,6 +44,6 @@ public class MngPlcController {
         mngPlcFacade.deleteCmt(dto);
     }
 
-    @PostMapping("api/mngsearch/plc")
-    public List<ResponseDto.plcSearchDto> searchPlc(@RequestBody RequestDto.RequestSearchDto dto){return mngPlcFacade.searchPlc(dto);}
+    @PostMapping("/api/mngsearch/plc")
+    public List<ResponsePlcDto> searchPlc(@RequestBody com.example.stamp.PlcInteractors.RequestDto.RequestSearchDto dto){return mngPlcFacade.searchPlc(dto);}
 }

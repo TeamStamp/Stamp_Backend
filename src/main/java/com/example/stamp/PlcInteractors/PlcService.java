@@ -8,7 +8,9 @@ public interface PlcService {
 
     List<ResponsePlcDto> getAllPlc();
 
-    ResponsePlcDto getPlc(RequestPlcDto dto);
+    ResponsePlcDto getPlc(RequestDto.RequestPlcDto dto);
 
-    void deletePlc(RequestPlcDto dto);
+    void deletePlc(RequestDto.RequestPlcDto dto);
+
+    List<ResponsePlcDto> searchPlc(RequestDto.RequestSearchDto dto);
 }

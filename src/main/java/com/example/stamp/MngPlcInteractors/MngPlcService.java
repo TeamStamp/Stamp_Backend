@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface MngPlcService {
     void acceptPlc(RequestDto.RequestAcceptDto dto);
-    List<ResponseDto.plcSearchDto> searchPlc(RequestDto.RequestSearchDto dto);
+
 }

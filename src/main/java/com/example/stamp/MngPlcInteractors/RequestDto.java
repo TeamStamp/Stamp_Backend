@@ -8,8 +8,5 @@ public class RequestDto {
         private Long id;
 
     }
-    @Data
-    public static class RequestSearchDto{
-        private String search;
-    }
+
 }

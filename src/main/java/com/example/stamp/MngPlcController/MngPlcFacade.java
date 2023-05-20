@@ -7,7 +7,6 @@ import com.example.stamp.PlcCmtInteractors.PlcCmtService;
 import com.example.stamp.PlcCmtInteractors.RequestPlcCmtDto;
 import com.example.stamp.PlcCmtInteractors.ResponsePlcCmtDto;
 import com.example.stamp.PlcInteractors.PlcService;
-import com.example.stamp.PlcInteractors.RequestPlcDto;
 import com.example.stamp.PlcInteractors.ResponsePlcDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,14 +28,14 @@ public class MngPlcFacade {
     //모든 장소 조회
     List<ResponsePlcDto> getAllPlc(){return plcService.getAllPlc();}
     //장소조회
-    ResponsePlcDto getPlc(RequestPlcDto dto){return plcService.getPlc(dto);}
+    ResponsePlcDto getPlc(com.example.stamp.PlcInteractors.RequestDto.RequestPlcDto dto){return plcService.getPlc(dto);}
     //장소 삭제
-    void deletePlc(RequestPlcDto dto){ plcService.deletePlc(dto);}
+    void deletePlc(com.example.stamp.PlcInteractors.RequestDto.RequestPlcDto dto){ plcService.deletePlc(dto);}
     //댓글 조회
     List<ResponsePlcCmtDto> getCmt(RequestPlcCmtDto.RequestLoadPlcCmtDto dto){ return plcCmtService.getCmt(dto);}
     //댓글 삭제
     void deleteCmt(RequestPlcCmtDto.RequestDeletePlcCmtDto dto){plcCmtService.deleteCmt(dto);}
 
     //장소 검색
-   List<ResponseDto.plcSearchDto> searchPlc(RequestDto.RequestSearchDto dto){return mngPlcService.searchPlc(dto);}
+   List<ResponsePlcDto> searchPlc(com.example.stamp.PlcInteractors.RequestDto.RequestSearchDto dto){return plcService.searchPlc(dto);}
 }

@@ -2,7 +2,7 @@ package com.example.stamp.CMPlcController;
 
 
 import com.example.stamp.CMPlcInteractors.RequestPlcDto;
-import com.example.stamp.CMPlcInteractors.CMPlcService;
+import com.example.stamp.PlcInteractors.ResponsePlcDto;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -28,7 +29,8 @@ public class CMPlcController {
 
         return ResponseEntity.status(HttpStatus.OK).body("ACCESS");
     }
-
+    @PostMapping("/api/cmsearch/plc")
+    public List<ResponsePlcDto> searchPlc(@RequestBody com.example.stamp.PlcInteractors.RequestDto.RequestSearchDto dto){return cmPlcFacade.searchPlc(dto);}
 }
 
 

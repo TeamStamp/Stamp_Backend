@@ -24,26 +24,5 @@ public class MngPlcServiceImpl implements MngPlcService {
         repository.acceptPlcById(target.getId(), x);
     }
 
-    @Transactional
-    public List<ResponseDto.plcSearchDto> searchPlc(RequestDto.RequestSearchDto dto){
-
-        List<Plc> entityList = repository.findPlcByName(dto.getSearch());
-        List<ResponseDto.plcSearchDto> dtoList = new ArrayList<>();
-        entityList.stream().forEach(entity -> dtoList.add(of(entity)));
-        return dtoList;
-    }
-    private ResponseDto.plcSearchDto of(Plc entity){
-        return ResponseDto.plcSearchDto.builder()
-                .id(entity.getId())
-                .plcName(entity.getPlcName())
-                .lat(entity.getLat())
-                .lng(entity.getLng())
-                .imgUrl(entity.getImgUrl())
-                .category(entity.getCategory())
-                .cost(entity.getCost())
-                .maker(entity.getUsr().getNickname())
-                .build();
-
-    }
 
 }

@@ -21,4 +21,8 @@ public interface PlcRepository extends JpaRepository<Plc,Long> {
    @Modifying
    @Query(value="DELETE FROM Plc WHERE id = :id",nativeQuery = true)
    void deleteBytarget(@Param("id") Long id);
+
+   @Modifying
+   @Query(value = "SELECT * FROM Plc WHERE REPLACE(LOWER(Plc_Name), ' ', '') LIKE CONCAT('%', REPLACE(LOWER(:search), ' ', ''), '%')", nativeQuery = true)
+   List<Plc> findPlcByName(@Param("search") String search);
 }

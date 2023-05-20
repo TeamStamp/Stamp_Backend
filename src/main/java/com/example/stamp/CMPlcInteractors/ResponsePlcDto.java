@@ -16,6 +16,6 @@ public class ResponsePlcDto {
     private String imgUrl;
     private String category;
     private Boolean isAccept;
-    private Long userId;
+
 
 }

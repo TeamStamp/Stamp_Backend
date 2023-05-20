@@ -1,6 +1,7 @@
 package com.example.stamp.PlcInteractors;
 import com.example.stamp.CrsInteractors.RequestCrsDto;
 import com.example.stamp.Entities.*;
+import com.example.stamp.MngPlcInteractors.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -39,13 +40,13 @@ public class PlcServiceImpl implements PlcService {
     }
 
     @Transactional(readOnly = true)
-    public ResponsePlcDto getPlc(RequestPlcDto requestDto){
+    public ResponsePlcDto getPlc(RequestDto.RequestPlcDto requestDto){
         ResponsePlcDto responseDto = of(repository.findById(requestDto.getId()).get());
         return responseDto;}
 
     @Transactional
     //장소 삭제
-    public void deletePlc(RequestPlcDto dto) {
+    public void deletePlc(RequestDto.RequestPlcDto dto) {
         Plc target = repository.findById(dto.getId()).get();
 
 
@@ -80,6 +81,15 @@ public class PlcServiceImpl implements PlcService {
 
 
 
+    }
+    //장소 검색
+    @Transactional
+    public List<ResponsePlcDto> searchPlc(RequestDto.RequestSearchDto dto){
+
+        List<Plc> entityList = repository.findPlcByName(dto.getSearch());
+        List<ResponsePlcDto> dtoList = new ArrayList<>();
+        entityList.stream().forEach(entity -> dtoList.add(of(entity)));
+        return dtoList;
     }
 
 }
