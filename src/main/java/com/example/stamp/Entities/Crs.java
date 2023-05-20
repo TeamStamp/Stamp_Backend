@@ -1,11 +1,8 @@
 package com.example.stamp.Entities;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 @Builder
@@ -23,7 +20,7 @@ public class Crs {
     @Column
     private  String crsName;
     @Column
-    private Boolean isAccept = false;
+    private boolean isAccept = false;
     @Column
     private String imgUrl;
     @ManyToOne
@@ -38,6 +35,10 @@ public class Crs {
     @OneToMany(mappedBy = "crs",cascade = {CascadeType.ALL}, fetch = FetchType.EAGER,orphanRemoval = true)
    // @JsonIgnoreProperties("crs")
     private List<CrsCmt> cmt = new ArrayList<>();
+
+    public boolean getIsAccept(){
+        return isAccept;
+    }
 //    public void add(aDay Day){
 //        Day.setCrs(this);       //onwer
 //        getDays().add(Day);
