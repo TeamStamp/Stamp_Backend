@@ -58,7 +58,8 @@ public class cvCrsServiceImpl implements cvCrsService{
         }
         VisitedCrs vCrs = vCrsRepository.findByUsrEmailAndCrsId(email, visitPlcDto.getCrsId());
         if (vCrs == null){
-            vCrsRepository.save(RequestCrs.toFirstEntity(email, visitPlcDto.getCrsId()));
+            String crsName = repository.findById(visitPlcDto.getCrsId()).get().getCrsName();
+            vCrsRepository.save(RequestCrs.toFirstEntity(email, visitPlcDto.getCrsId(), crsName));
         }
         else{
             vCrs.setCrtStamp(vCrs.getCrtStamp()+1);
@@ -66,11 +67,33 @@ public class cvCrsServiceImpl implements cvCrsService{
         }
 
         VisitedPlc vPlc = vPlcRepository.findByUsrEmailAndPlcId(email, visitPlcDto.getPlcId());
-        vPlc.setVisited(visitPlcDto.isVisited());
-        vPlcRepository.save(vPlc);
+
+        if (vPlc == null){
+            vPlcRepository.save(RequestCrs.toVPlc(visitPlcDto, email));
+        }
+        else {
+            vPlc.setVisited(visitPlcDto.isVisited());
+            vPlcRepository.save(vPlc);
+        }
+
 
         Usr usr = aRepository.findByEmail(email);
         usr.setStamp(usr.getStamp()+1);
         aRepository.save(usr);
+    }
+
+    @Override
+    public List<ResponseCrs.VCrsListDto> getVCrs(Optional<String> token){
+        String email = null;
+        if(token.isPresent()){
+            JwtAuthToken jwtAuthToken = jwtAuthTokenProvider.convertAuthToken(token.get());
+            email = jwtAuthToken.getClaims().getSubject();
+        }
+        List<VisitedCrs> vCrs = vCrsRepository.findAllByUsrEmail(email);
+        List<ResponseCrs.VCrsListDto> DtoList = new ArrayList<>();
+
+        vCrs.stream().forEach(VisitedCrs -> DtoList.add(ResponseCrs.VCrsListDto.toDto(VisitedCrs)));
+
+        return DtoList;
     }
 }

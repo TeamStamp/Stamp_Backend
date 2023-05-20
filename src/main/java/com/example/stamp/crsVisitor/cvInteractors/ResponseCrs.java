@@ -3,6 +3,7 @@ package com.example.stamp.crsVisitor.cvInteractors;
 
 import com.example.stamp.Entities.Crs;
 import com.example.stamp.Entities.Plc;
+import com.example.stamp.Entities.VisitedCrs;
 import lombok.Builder;
 import lombok.Data;
 
@@ -50,6 +51,22 @@ public class ResponseCrs{
                     .lng(plc.getLng())
                     .imgUrl(plc.getImgUrl())
                     .visited(visited)
+                    .build();
+        }
+    }
+
+    @Builder
+    @Data
+    public static class VCrsListDto{
+        private Long crsId;
+        private String crsName;
+        private Long stamp;
+
+        public static VCrsListDto toDto(VisitedCrs vCrs){
+            return VCrsListDto.builder()
+                    .crsId(vCrs.getCrsId())
+                    .crsName(vCrs.getCrsName())
+                    .stamp(vCrs.getCrtStamp())
                     .build();
         }
     }

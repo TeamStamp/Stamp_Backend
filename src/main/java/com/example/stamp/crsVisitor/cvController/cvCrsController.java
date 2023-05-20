@@ -12,11 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/cv/crs")
+@RequestMapping("/api/cv")
 public class cvCrsController {
 
     private final cvCrsService cvCrsService;
@@ -41,6 +42,18 @@ public class cvCrsController {
 
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .message("Place visited successfully.")
+                .build();
+        return ResponseEntity.status(HttpStatus.OK).body(responseMessage);
+    }
+
+    @GetMapping("getVCrs")
+    public ResponseEntity<ResponseMessage> getVCrs(HttpServletRequest request){
+        Optional<String> token = jwtAuthTokenProvider.getAuthToken(request);
+        List<ResponseCrs.VCrsListDto> list = cvCrsService.getVCrs(token);
+
+        ResponseMessage responseMessage = ResponseMessage.builder()
+                .message("Visited courses retrieved successfully.")
+                .data(list)
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(responseMessage);
     }

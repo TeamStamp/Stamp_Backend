@@ -22,5 +22,8 @@ public class VisitedCrs {
     private Long crsId;
 
     @Column
+    private String crsName;
+
+    @Column
     private Long crtStamp = 0L;
 }
