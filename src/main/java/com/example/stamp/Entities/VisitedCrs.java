@@ -1,7 +1,6 @@
 package com.example.stamp.Entities;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +10,8 @@ import javax.persistence.Id;
 @Builder
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class VisitedCrs {
 
     @Id

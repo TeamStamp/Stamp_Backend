@@ -50,7 +50,7 @@ public class Usr {
         this.password = password;
         this.nickname = nickname;
         this.salt = salt;
-        this.isAdmin=isAdmin = false;
+        this.isAdmin = false;
     }
     public boolean getIsAdmin(){
         return isAdmin;
