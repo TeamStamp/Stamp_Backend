@@ -1,4 +1,4 @@
-package com.example.stamp.PlcRegisterInteractors;
+package com.example.stamp.CMPlcInteractors;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @Data
 @Getter
 @Setter
-public class CMResponsePlcDto {
+public class ResponsePlcDto {
     private Long id;
     private String plcName;
     private String lat;
