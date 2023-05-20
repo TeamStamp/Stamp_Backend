@@ -1,11 +1,16 @@
 package com.example.stamp.CMCrsInteractors;
 import com.example.stamp.CrsCmtInteractors.RequestCrsCmtDto;
 import com.example.stamp.Entities.*;
+import com.example.stamp.UnknownPersonInteractors.repository.AuthRepository;
+import com.example.stamp.UnknownPersonInteractors.security.JwtAuthToken;
+import com.example.stamp.UnknownPersonInteractors.security.JwtAuthTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CMCrsServiceImpl implements CMCrsService {
@@ -14,10 +19,21 @@ public class CMCrsServiceImpl implements CMCrsService {
     private final aDayRepository repository2;
     private final dayInPlcRepository repository3;
 
-    //crs, day 동시 생성 day생성 시 day 정보와 코스 정보 입력 안됨, 반환값으로 day의 아이디값 전달
-    public ResponseDto.CrsCreateDto crsCreate(RequestDto.CrsCreateDto dto) {
+    private final JwtAuthTokenProvider jwtAuthTokenProvider;
+    private final AuthRepository authRepository;
 
-        Crs target = repository.save(of(dto));
+    private String getEmail(Optional<String> token){
+        String email = null;
+        if(token.isPresent()){
+            JwtAuthToken jwtAuthToken = jwtAuthTokenProvider.convertAuthToken(token.get());
+            email = jwtAuthToken.getClaims().getSubject();
+        }
+        return email;
+    }
+
+    public ResponseDto.CrsCreateDto crsCreate(RequestDto.CrsCreateDto dto, Optional<String> token) {
+
+        Crs target = repository.save(of(dto,getEmail(token)));
         Long countDay = dto.getCountDay();
         Long[] days = new Long[countDay.intValue()];
         for(int i =0; i < countDay; i++) {
@@ -49,13 +65,13 @@ public class CMCrsServiceImpl implements CMCrsService {
     }
 
 
-    private Crs of(RequestDto.CrsCreateDto dto) {
+    private Crs of(RequestDto.CrsCreateDto dto,String email) {
 
         return
                 Crs.builder()
                         .crsName(dto.getCrsName())
                         .imgUrl(dto.getImgUrl())
-                        .usr(Usr.builder().id(dto.getUsr()).build())
+                        .usr(authRepository.findByEmail(email))
                         .build();
     }
 }

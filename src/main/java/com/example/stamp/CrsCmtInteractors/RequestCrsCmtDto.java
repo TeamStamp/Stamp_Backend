@@ -26,7 +26,6 @@ public class RequestCrsCmtDto {
     @Data
     public static class RequestSetCrsCmtDto {
 
-            private Long usr;
             private Long crs;
             private String content;
 

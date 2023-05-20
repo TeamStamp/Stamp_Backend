@@ -11,6 +11,6 @@ public class ResponsePlcDto {
     private String lng;
     private String imgUrl;
     private String category;
-    private Long usr;
+    private String writer;
     private Long cost;
 }

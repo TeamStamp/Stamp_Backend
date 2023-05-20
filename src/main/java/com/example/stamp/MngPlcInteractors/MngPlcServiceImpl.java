@@ -41,7 +41,7 @@ public class MngPlcServiceImpl implements MngPlcService {
                 .imgUrl(entity.getImgUrl())
                 .category(entity.getCategory())
                 .cost(entity.getCost())
-                .usr(entity.getUsr().getId())
+                .maker(entity.getUsr().getNickname())
                 .build();
 
     }

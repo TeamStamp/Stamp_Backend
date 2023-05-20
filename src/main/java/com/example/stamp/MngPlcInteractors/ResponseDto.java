@@ -22,6 +22,6 @@ public class ResponseDto {
 
         private Long cost;
 
-        private Long usr;
+        private String maker;
     }
 }

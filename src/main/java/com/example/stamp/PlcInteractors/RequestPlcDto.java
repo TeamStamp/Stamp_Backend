@@ -3,6 +3,6 @@ import lombok.Data;
 
 @Data
 public class RequestPlcDto {
-    private Long id;
+    private Long id; //장소의 아이디
 
 }

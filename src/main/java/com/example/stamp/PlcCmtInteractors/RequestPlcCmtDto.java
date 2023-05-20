@@ -16,7 +16,7 @@ public class RequestPlcCmtDto {
     @Data
     public static class RequestSetPlcCmtDto {
 
-        private Long usr;
+
         private Long plc;
         private String content;
 
@@ -27,7 +27,7 @@ public class RequestPlcCmtDto {
     public static class RequestUpdatePlcCmtDto {
 
 
-        private Long id;
+        private Long plc;
         private String content;
 
     }

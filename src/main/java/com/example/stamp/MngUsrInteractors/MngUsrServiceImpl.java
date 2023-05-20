@@ -14,7 +14,7 @@ public class MngUsrServiceImpl implements MngUsrService {
 
     @Transactional
     public void acceptUsr(RequestDto.RequestAcceptDto dto){
-        //코스의 아이디를 매개변수로 받아옴
+
         Usr target = repository.findById(dto.getId()).get();
         boolean x = false ;
         if(target.getIsAdmin() == false)

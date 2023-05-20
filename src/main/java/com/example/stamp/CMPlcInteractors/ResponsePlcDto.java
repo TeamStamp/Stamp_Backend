@@ -18,5 +18,4 @@ public class ResponsePlcDto {
     private Boolean isAccept;
     private Long userId;
 
-    // Generate getters and setters
 }

@@ -25,7 +25,7 @@ public class PlcServiceImpl implements PlcService {
                 .lng(entity.getLng())
                 .imgUrl(entity.getImgUrl())
                 .category(entity.getCategory())
-                .usr(entity.getUsr().getId())
+                .writer(entity.getUsr().getNickname())
                 .cost(entity.getCost())
                 .build();
     }
