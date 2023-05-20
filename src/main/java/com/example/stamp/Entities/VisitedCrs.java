@@ -2,10 +2,7 @@ package com.example.stamp.Entities;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Builder
 @Entity
@@ -15,12 +12,15 @@ import javax.persistence.Id;
 public class VisitedCrs {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long usrId;
+    @Column
+    private String usrEmail;
 
+    @Column
     private Long crsId;
 
-    private Long crtStamp;
+    @Column
+    private Long crtStamp = 0L;
 }

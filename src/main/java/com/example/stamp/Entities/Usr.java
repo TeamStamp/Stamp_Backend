@@ -32,7 +32,7 @@ public class Usr {
     private String imgUrl;
 
     @Column
-    private boolean isAdmin;
+    private boolean isAdmin = false;
 
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "usr",cascade = {CascadeType.ALL}, fetch = FetchType.LAZY,orphanRemoval = true)
@@ -44,14 +44,15 @@ public class Usr {
     @JsonIgnoreProperties("usr")
     private Set<Plc> plc = new HashSet<>();
 
-    @Builder
-    public Usr(String email, String password, String nickname, String salt,boolean isAdmin){
-        this.email = email;
-        this.password = password;
-        this.nickname = nickname;
-        this.salt = salt;
-        this.isAdmin = false;
-    }
+//    @Builder
+//    public Usr(String email, String password, String nickname, String salt){
+//        this.email = email;
+//        this.password = password;
+//        this.nickname = nickname;
+//        this.salt = salt;
+//        this.isAdmin = false;
+//        this.stamp = 0L;
+//    }
     public boolean getIsAdmin(){
         return isAdmin;
     }

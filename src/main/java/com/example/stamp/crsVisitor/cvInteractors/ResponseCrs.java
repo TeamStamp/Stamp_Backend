@@ -40,15 +40,19 @@ public class ResponseCrs{
         private String lat;
         private String lng;
         private String imgUrl;
+        private boolean visited;
 
-        public static CrsPlcListDto toDto(Plc plc){
+        public static CrsPlcListDto toDto(Plc plc, boolean visited){
             return CrsPlcListDto.builder()
                     .id(plc.getId())
                     .plcName(plc.getPlcName())
                     .lat(plc.getLat())
                     .lng(plc.getLng())
                     .imgUrl(plc.getImgUrl())
+                    .visited(visited)
                     .build();
         }
     }
+
+
 }

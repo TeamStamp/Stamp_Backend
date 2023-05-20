@@ -12,12 +12,15 @@ import com.example.stamp.UnknownPersonInteractors.exception.error.LoginFailedExc
 import com.example.stamp.UnknownPersonInteractors.exception.error.NotFoundUserException;
 import com.example.stamp.UnknownPersonInteractors.exception.error.RegisterFailedException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,6 +54,7 @@ public class AuthService implements AuthServiceInterface{
                 .password(encryptedPassword)
                 .nickname(registerDto.getNickname())
                 .salt(salt)
+                .stamp(0L)
                 .build();
         authRepository.save(user);
     }
@@ -105,7 +109,18 @@ public class AuthService implements AuthServiceInterface{
         ResponseAuth.info response = ResponseAuth.info.builder()
                 .email(user.getEmail())
                 .nickname(user.getNickname())
+                .stamp(user.getStamp())
                 .build();
         return response;
     }
+
+    @Override
+    @Transactional
+    public List<ResponseAuth.rank> getRankInfo(){
+        List<Usr> usrList = authRepository.findAll(Sort.by(Sort.Direction.DESC, "stamp"));
+        List<ResponseAuth.rank> rankList = new ArrayList<>();
+        usrList.stream().forEach(usr -> rankList.add(ResponseAuth.rank.toDto(usr)));
+        return rankList;
+    }
+
 }
