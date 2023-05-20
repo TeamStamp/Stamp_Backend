@@ -16,4 +16,6 @@ public class CMCrsController {
     public ResponseDto.CrsCreateDto crsCreate(@RequestBody RequestDto.CrsCreateDto dto){
         return cmCrsFacade.crsCreate(dto);
     }
+    @PostMapping("/api/cmMatchPlc/crs")
+    void matchDayPlc(@RequestBody RequestDto.matchDayPlcDto dto){cmCrsFacade.matchDayPlc(dto);}
 }

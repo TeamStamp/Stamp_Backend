@@ -4,6 +4,7 @@ import com.example.stamp.Entities.aDay;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
 import java.util.List;
 
 public class ResponseDto {
@@ -11,13 +12,15 @@ public class ResponseDto {
     @Data
     public static class CrsCreateDto{
         private Long crs;
-        private List<aDayDto> days;
+        private Long[] days;
     }
 
     @Builder
     @Data
-    public static class aDayDto{
-        private Integer dayx;
+    public static class matchDayPlcDto{
+        private Long aDay;
+        private Long plc;
+        private Date dateTime;
 
     }
 }

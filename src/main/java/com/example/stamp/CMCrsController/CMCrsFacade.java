@@ -16,4 +16,6 @@ public class CMCrsFacade {
     ResponseDto.CrsCreateDto crsCreate(RequestDto.CrsCreateDto dto){
         return cmCrsService.crsCreate(dto);
     }
+
+    void matchDayPlc(RequestDto.matchDayPlcDto dto){cmCrsService.matchDayPlc(dto);}
 }
