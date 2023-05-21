@@ -46,7 +46,7 @@ public class cvCrsController {
         return ResponseEntity.status(HttpStatus.OK).body(responseMessage);
     }
 
-    @GetMapping("getVCrs")
+    @GetMapping("/getVCrs")
     public ResponseEntity<ResponseMessage> getVCrs(HttpServletRequest request){
         Optional<String> token = jwtAuthTokenProvider.getAuthToken(request);
         List<ResponseCrs.VCrsListDto> list = cvCrsService.getVCrs(token);
