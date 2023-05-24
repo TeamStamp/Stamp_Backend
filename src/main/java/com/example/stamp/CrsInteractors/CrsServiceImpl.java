@@ -30,6 +30,9 @@ public class CrsServiceImpl implements CrsService {
                 .crsName(entity.getCrsName())
                 .imgUrl(entity.getImgUrl())
                 .maker(entity.getUsr().getNickname())
+                .firstDay(entity.getFirstDay())
+                .lastDay(entity.getLastDay())
+                .period((entity.getLastDay().getTime() - entity.getFirstDay().getTime())/1000/(24*60*60) + 1)
                 .build();
     }
 
@@ -44,6 +47,9 @@ public class CrsServiceImpl implements CrsService {
                 .crsName(entity.getCrsName())
                 .imgUrl(entity.getImgUrl())
                 .maker(entity.getUsr().getNickname())
+                .firstDay(entity.getFirstDay())
+                .lastDay(entity.getLastDay())
+                .period((entity.getLastDay().getTime() - entity.getFirstDay().getTime())/1000/(24*60*60) + 1)
                 .days(entity.getDays().stream().map(CrsServiceImpl::on).collect(Collectors.toList()))
                 .build();
     }

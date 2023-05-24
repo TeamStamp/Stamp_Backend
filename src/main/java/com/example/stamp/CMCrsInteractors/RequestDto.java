@@ -12,9 +12,10 @@ public class RequestDto {
     @Data
     public static class CrsCreateDto {
 
-       private Long countDay;
+
        private String crsName;
-       private String imgUrl;
+        private Date firstDay;
+        private Date lastDay;
     }
     @Builder
     @Data

@@ -16,11 +16,10 @@ public class RequestPlcDto {
         private String plcName;
         private String lat;
         private String lng;
-        private String imgUrl;
         private String category;
         private Long cost;
 
-        private Long usr;
+
 
 
 

@@ -5,9 +5,12 @@ import com.example.stamp.Entities.Usr;
 import com.example.stamp.UnknownPersonInteractors.repository.AuthRepository;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthToken;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthTokenProvider;
+import com.example.stamp.imgTest.S3Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Optional;
 
 
@@ -19,6 +22,9 @@ public class CMPlcServiceImpl implements CMPlcService {
 
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
     private final AuthRepository authRepository;
+
+    private final S3Service s3Service;
+
     private String getEmail(Optional<String> token){
         String email = null;
         if(token.isPresent()){
@@ -27,16 +33,16 @@ public class CMPlcServiceImpl implements CMPlcService {
         }
         return email;
     }
-    public void createPlc(RequestPlcDto.createPlcDto dto, Optional<String> token) {
-
-        CMPlcRepository.save(of(dto,getEmail(token)));
+    public void createPlc(RequestPlcDto.createPlcDto dto, Optional<String> token, MultipartFile multipartFile) throws IOException {
+        String imageUrl = s3Service.upload(multipartFile,"Plc");
+        CMPlcRepository.save(of(dto,getEmail(token),imageUrl));
     }
-    private Plc of(RequestPlcDto.createPlcDto dto,String email) {
+    private Plc of(RequestPlcDto.createPlcDto dto,String email,String imageUrl) {
         return Plc.builder()
                 .plcName(dto.getPlcName())
                 .lat(dto.getLat())
                 .lng(dto.getLng())
-                .imgUrl(dto.getImgUrl())
+                .imgUrl(imageUrl)
                 .category(dto.getCategory())
                 .cost(dto.getCost())
                 .isAccept(false)

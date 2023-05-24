@@ -8,12 +8,11 @@ import com.example.stamp.UnknownPersonInteractors.security.JwtAuthTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,9 +24,9 @@ public class CMPlcController {
     private final CMPlcFacade cmPlcFacade;
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
     @PostMapping("/api/cmCreate/plc")
-    public ResponseEntity createPlc(@RequestBody RequestPlcDto.createPlcDto dto, HttpServletRequest request) {
+    public ResponseEntity createPlc(@ModelAttribute RequestPlcDto.createPlcDto dto, HttpServletRequest request,@RequestPart MultipartFile file) throws IOException {
         Optional<String> token = jwtAuthTokenProvider.getAuthToken(request);
-        cmPlcFacade.createPlc(dto,token);
+        cmPlcFacade.createPlc(dto,token,file);
 
         return ResponseEntity.status(HttpStatus.OK).body("ACCESS");
     }

@@ -9,7 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +20,8 @@ import java.util.Optional;
 public class CMPlcFacade {
     private final CMPlcService cmPlcService;
     private final PlcService plcService;
-    void createPlc(RequestPlcDto.createPlcDto dto, Optional<String> token){
-        cmPlcService.createPlc(dto,token);
+    void createPlc(RequestPlcDto.createPlcDto dto, Optional<String> token, MultipartFile multipartFile) throws IOException {
+        cmPlcService.createPlc(dto,token,multipartFile);
 
     }
     //장소 검색

@@ -6,14 +6,17 @@ import com.example.stamp.CrsInteractors.RequestCrsDto;
 import com.example.stamp.CrsInteractors.ResponseCrsDto;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthTokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,10 +25,16 @@ import java.util.Optional;
 public class CMCrsController {
     private final CMCrsFacade cmCrsFacade;
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
     @PostMapping("/api/cmCreate/crs")
-    public ResponseDto.CrsCreateDto crsCreate(@RequestBody RequestDto.CrsCreateDto dto,HttpServletRequest request){
+    public ResponseDto.CrsCreateDto crsCreate(@ModelAttribute RequestDto.CrsCreateDto dto, HttpServletRequest request,@RequestPart  MultipartFile file) throws IOException {
         Optional<String> token = jwtAuthTokenProvider.getAuthToken(request);
-        return cmCrsFacade.crsCreate(dto,token);
+
+        return cmCrsFacade.crsCreate(dto,token,file);
     }
     @PostMapping("/api/cmMatchPlc/crs")
     void matchDayPlc(@RequestBody RequestDto.matchDayPlcDto dto){cmCrsFacade.matchDayPlc(dto);}

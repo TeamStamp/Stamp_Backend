@@ -8,7 +8,9 @@ import com.example.stamp.CrsInteractors.RequestCrsDto;
 import com.example.stamp.CrsInteractors.ResponseCrsDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +21,8 @@ public class CMCrsFacade {
     private final CMCrsService cmCrsService;
     private final CrsService CrsService;
 
-    ResponseDto.CrsCreateDto crsCreate(RequestDto.CrsCreateDto dto, Optional<String> token){
-        return cmCrsService.crsCreate(dto,token);
+    ResponseDto.CrsCreateDto crsCreate(RequestDto.CrsCreateDto dto, Optional<String> token, MultipartFile multipartFile) throws IOException {
+        return cmCrsService.crsCreate(dto,token,multipartFile);
     }
 
     void matchDayPlc(RequestDto.matchDayPlcDto dto){cmCrsService.matchDayPlc(dto);}

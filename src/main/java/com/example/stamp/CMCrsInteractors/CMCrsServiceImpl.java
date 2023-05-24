@@ -1,14 +1,16 @@
 package com.example.stamp.CMCrsInteractors;
-import com.example.stamp.CrsCmtInteractors.RequestCrsCmtDto;
 import com.example.stamp.Entities.*;
 import com.example.stamp.UnknownPersonInteractors.repository.AuthRepository;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthToken;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthTokenProvider;
+import com.example.stamp.imgTest.S3Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -21,7 +23,7 @@ public class CMCrsServiceImpl implements CMCrsService {
 
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
     private final AuthRepository authRepository;
-
+    private final S3Service s3Service;
     private String getEmail(Optional<String> token){
         String email = null;
         if(token.isPresent()){
@@ -31,12 +33,15 @@ public class CMCrsServiceImpl implements CMCrsService {
         return email;
     }
 
-    public ResponseDto.CrsCreateDto crsCreate(RequestDto.CrsCreateDto dto, Optional<String> token) {
+    public ResponseDto.CrsCreateDto crsCreate(RequestDto.CrsCreateDto dto, Optional<String> token,MultipartFile multipartFile) throws IOException {
 
-        Crs target = repository.save(of(dto,getEmail(token)));
-        Long countDay = dto.getCountDay();
-        Long[] days = new Long[countDay.intValue()];
-        for(int i =0; i < countDay; i++) {
+        String imageUrl = s3Service.upload(multipartFile,"Crs");
+        Crs target = repository.save(of(dto,getEmail(token),imageUrl));
+
+
+        Long period = (target.getLastDay().getTime() - target.getFirstDay().getTime())/1000/(24*60*60) + 1;
+        Long[] days = new Long[period.intValue()];
+        for(int i =0; i < period; i++) {
             aDay aDayEntity = aDay.builder() // builder() 호출
                     .dayx(i + 1)
                     .crs(target)
@@ -44,9 +49,10 @@ public class CMCrsServiceImpl implements CMCrsService {
 
             repository2.save(aDayEntity);
             days[i] = aDayEntity.getId();
+
         }
 
-        ResponseDto.CrsCreateDto Dto = new ResponseDto.CrsCreateDto(target.getId(), days);
+        ResponseDto.CrsCreateDto Dto = new ResponseDto.CrsCreateDto(target.getId(), days,target.getFirstDay(),target.getLastDay(),period);
         return Dto;
     }
 
@@ -65,13 +71,15 @@ public class CMCrsServiceImpl implements CMCrsService {
     }
 
 
-    private Crs of(RequestDto.CrsCreateDto dto,String email) {
+    private Crs of(RequestDto.CrsCreateDto dto,String email,String imageUrl) {
 
         return
                 Crs.builder()
                         .crsName(dto.getCrsName())
-                        .imgUrl(dto.getImgUrl())
+                        .imgUrl(imageUrl)
                         .usr(authRepository.findByEmail(email))
+                        .firstDay(dto.getFirstDay())
+                        .lastDay(dto.getLastDay())
                         .build();
     }
 }

@@ -1,11 +1,11 @@
 
 INSERT INTO Usr(nickname,email,password,salt,img_Url,is_Admin,stamp) VALUES ('문공표','asdasd@gmail.com','asdasd','aaaaaaaaaa','sadasdasfxc',false,5);
 INSERT INTO Usr(nickname,email,password,salt,img_Url,is_Admin,stamp) VALUES ('tUser0','tUser0','1234','aaaa','sadasdasfxc',false,2);
-INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr) VALUES ('Crs1',1,'sadasd',1);
-INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr) VALUES ('Crs2',1,'sadfsd',2);
-INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr) VALUES ('Crs3',1,'sreqsd',2);
-INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr) VALUES ('Crs4',1,'sadazx',1);
-INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr) VALUES ('Crs5',1,'nbvasd',2);
+INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr,first_Day,last_Day) VALUES ('Crs1',1,'sadasd',1,'2023-05-20T07:47:34.644','2023-05-24T07:47:34.644');
+INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr,first_Day,last_Day) VALUES ('Crs2',1,'sadfsd',2,'2023-05-20T07:47:34.644','2023-05-24T07:47:34.644');
+INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr,first_Day,last_Day) VALUES ('Crs3',1,'sreqsd',2,'2023-05-20T07:47:34.644','2023-05-24T07:47:34.644');
+INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr,first_Day,last_Day) VALUES ('Crs4',1,'sadazx',1,'2023-05-20T07:47:34.644','2023-05-24T07:47:34.644');
+INSERT INTO Crs (crs_Name,is_Accept,img_Url,usr,first_Day,last_Day) VALUES ('Crs5',1,'nbvasd',2,'2023-05-20T07:47:34.644','2023-05-24T07:47:34.644');
 INSERT INTO a_Day (dayx,crs) VALUES (1,1);
 INSERT INTO a_Day (dayx,crs) VALUES (2,1);
 INSERT INTO a_Day (dayx,crs) VALUES (3,1);

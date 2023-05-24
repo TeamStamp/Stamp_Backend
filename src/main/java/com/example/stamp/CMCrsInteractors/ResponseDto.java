@@ -13,6 +13,11 @@ public class ResponseDto {
     public static class CrsCreateDto{
         private Long crs;
         private Long[] days;
+
+        private Date firstDay;
+        private Date lastDay;
+        private Long period;
+
     }
 
     @Builder

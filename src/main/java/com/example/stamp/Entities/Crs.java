@@ -2,6 +2,7 @@ package com.example.stamp.Entities;
 import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,6 +24,10 @@ public class Crs {
     private boolean isAccept = false;
     @Column
     private String imgUrl;
+    @Column
+    private Date firstDay;
+    @Column
+    private Date lastDay;
     @ManyToOne
     @JoinColumn(name = "usr", nullable = true)
     private Usr usr;

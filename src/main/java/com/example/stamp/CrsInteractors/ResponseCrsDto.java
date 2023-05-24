@@ -13,6 +13,12 @@ public  class ResponseCrsDto {
         private String crsName;
         private String imgUrl;
         private String maker;
+
+        private Date firstDay;
+
+        private Date lastDay;
+
+        private Long period;
     }
     @Builder
     @Data
@@ -22,6 +28,11 @@ public  class ResponseCrsDto {
         private String imgUrl;
         private String maker;
         private List<LinkedDayDto> days;
+        private Date firstDay;
+
+        private Date lastDay;
+
+        private Long period;
 
     }
     @Builder
