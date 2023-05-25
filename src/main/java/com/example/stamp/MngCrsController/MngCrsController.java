@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 
@@ -32,7 +34,7 @@ public  class MngCrsController {
     }
     //코스 삭제
     @PostMapping("/api/mngdelete/crs")
-    public void deleteCrs(@RequestBody RequestCrsDto dto){
+    public void deleteCrs(@RequestBody RequestCrsDto dto) throws UnsupportedEncodingException {
         mngCrsFacade.deleteCrs(dto);}
     //코스 댓글 조회
     @PostMapping("/api/mng/crscmt")

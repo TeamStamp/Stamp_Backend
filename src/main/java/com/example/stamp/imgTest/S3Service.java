@@ -13,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -64,10 +66,10 @@ public class S3Service {
         return Optional.empty();
     }
 
-    public void deleteFile(String url){
+    public void deleteFile(String url) throws UnsupportedEncodingException {
         String[] fileName = url.split("/");
         System.out.println(fileName[3]+fileName[4]);
-        DeleteObjectRequest request = new DeleteObjectRequest(bucket, fileName[3]+"/"+fileName[4]);
+        DeleteObjectRequest request = new DeleteObjectRequest(bucket, fileName[3]+"/"+ URLDecoder.decode(fileName[4], "utf-8"));
         amazonS3Client.deleteObject(request);
     }
 

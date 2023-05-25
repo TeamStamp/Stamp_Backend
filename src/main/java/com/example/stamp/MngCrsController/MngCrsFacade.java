@@ -11,6 +11,7 @@ import com.example.stamp.MngCrsInteractors.RequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Service
@@ -28,7 +29,7 @@ public class MngCrsFacade {
 
     ResponseCrsDto.ResponseOneCrsDto getCrs(RequestCrsDto dto){return crsService.getCrs(dto);}
 
-    void deleteCrs(RequestCrsDto dto){ crsService.deleteCrs(dto);}
+    void deleteCrs(RequestCrsDto dto) throws UnsupportedEncodingException { crsService.deleteCrs(dto);}
 
     List<ResponseCrsCmtDto> getCmt(RequestCrsCmtDto.RequestLoadCrsCmtDto dto){ return crsCmtService.getCmt(dto);}
 

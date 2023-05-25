@@ -1,9 +1,12 @@
 package com.example.stamp.CrsInteractors;
 import com.example.stamp.Entities.*;
+import com.example.stamp.imgTest.S3Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +18,7 @@ import java.util.stream.Collectors;
 
 public class CrsServiceImpl implements CrsService {
 
+    private final S3Service s3Service;
     private final CrsRepository repository;
 // 전체 코스 조회
     @Transactional(readOnly = true)
@@ -78,7 +82,7 @@ public class CrsServiceImpl implements CrsService {
     }
     @Transactional
     //코스 삭제
-    public void deleteCrs(RequestCrsDto dto) {
+    public void deleteCrs(RequestCrsDto dto) throws UnsupportedEncodingException {
         Optional<Crs> target = repository.findById(dto.getId());
 
         if (target.isPresent()) {
@@ -108,9 +112,13 @@ public class CrsServiceImpl implements CrsService {
                 user.getCrs().remove(crs);
                 crs.setUsr(null);
             }
-
+            //버킷에서 이미지 삭제
+            //if(target.get().getImgUrl()!="")
+            s3Service.deleteFile(target.get().getImgUrl());
             // Crs 삭제
             repository.deleteBytarget(crs.getId());
+
+
 
 
         }

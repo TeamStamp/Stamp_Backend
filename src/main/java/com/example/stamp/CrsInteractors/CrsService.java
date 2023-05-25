@@ -1,6 +1,7 @@
 package com.example.stamp.CrsInteractors;
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public interface CrsService {
@@ -10,5 +11,5 @@ public interface CrsService {
 
     ResponseCrsDto.ResponseOneCrsDto getCrs(RequestCrsDto dto);
 
-    void deleteCrs(RequestCrsDto dto);
+    void deleteCrs(RequestCrsDto dto) throws UnsupportedEncodingException;
 }

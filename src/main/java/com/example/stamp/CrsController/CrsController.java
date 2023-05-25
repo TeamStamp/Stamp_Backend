@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,6 @@ public class CrsController {
     }
 
     @PostMapping("/api/deleteCrs")
-    public void deleteCrs(@RequestBody RequestCrsDto dto){
+    public void deleteCrs(@RequestBody RequestCrsDto dto) throws UnsupportedEncodingException {
         CrsService.deleteCrs(dto);}
 }

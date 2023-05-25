@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -62,7 +63,7 @@ public class CMCrsController {
     }
     //코스 삭제
     @PostMapping("/api/cmdelete/crs")
-    public void deleteCrs(@RequestBody RequestCrsDto dto){
+    public void deleteCrs(@RequestBody RequestCrsDto dto) throws UnsupportedEncodingException {
      //   Optional<String> token = jwtAuthTokenProvider.getAuthToken(request);
 
 //        if(token)
