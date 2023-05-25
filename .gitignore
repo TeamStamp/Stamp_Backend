@@ -37,5 +37,6 @@ out/
 .vscode/
 
 ###비밀키###
-secrets/
+src/main/resources/secret/**
+
 
