@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class MngPlcController {
     }
     //장소 삭제
     @PostMapping("/api/mngdelete/plc")
-    public void deletePlc(@RequestBody com.example.stamp.PlcInteractors.RequestDto.RequestPlcDto dto){
+    public void deletePlc(@RequestBody com.example.stamp.PlcInteractors.RequestDto.RequestPlcDto dto) throws UnsupportedEncodingException {
         mngPlcFacade.deletePlc(dto);}
     //장소 댓글 보기
     @PostMapping("/api/mng/plccmt")

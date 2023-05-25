@@ -11,6 +11,7 @@ import com.example.stamp.PlcInteractors.ResponsePlcDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Service
@@ -30,7 +31,7 @@ public class MngPlcFacade {
     //장소조회
     ResponsePlcDto getPlc(com.example.stamp.PlcInteractors.RequestDto.RequestPlcDto dto){return plcService.getPlc(dto);}
     //장소 삭제
-    void deletePlc(com.example.stamp.PlcInteractors.RequestDto.RequestPlcDto dto){ plcService.deletePlc(dto);}
+    void deletePlc(com.example.stamp.PlcInteractors.RequestDto.RequestPlcDto dto) throws UnsupportedEncodingException { plcService.deletePlc(dto);}
     //댓글 조회
     List<ResponsePlcCmtDto> getCmt(RequestPlcCmtDto.RequestLoadPlcCmtDto dto){ return plcCmtService.getCmt(dto);}
     //댓글 삭제

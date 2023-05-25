@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +46,7 @@ public class CMPlcController {
     }
     //장소 삭제
     @PostMapping("/api/cmdelete/plc")
-    public void deletePlc(@RequestBody RequestDto.RequestPlcDto dto){
+    public void deletePlc(@RequestBody RequestDto.RequestPlcDto dto) throws UnsupportedEncodingException {
         cmPlcFacade.deletePlc(dto);}
 }
 

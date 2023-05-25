@@ -2,10 +2,13 @@ package com.example.stamp.PlcInteractors;
 import com.example.stamp.CrsInteractors.RequestCrsDto;
 import com.example.stamp.Entities.*;
 import com.example.stamp.MngPlcInteractors.ResponseDto;
+import com.example.stamp.imgTest.S3Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 
 public class PlcServiceImpl implements PlcService {
-
+    private final S3Service s3Service;
     private final PlcRepository repository;
 
     private ResponsePlcDto of(Plc entity){
@@ -46,7 +49,7 @@ public class PlcServiceImpl implements PlcService {
 
     @Transactional
     //장소 삭제
-    public void deletePlc(RequestDto.RequestPlcDto dto) {
+    public void deletePlc(RequestDto.RequestPlcDto dto) throws UnsupportedEncodingException {
         Plc target = repository.findById(dto.getId()).get();
 
 
@@ -76,6 +79,9 @@ public class PlcServiceImpl implements PlcService {
                 target.setUsr(null);
             }
 
+        //버킷에서 이미지 삭제
+        //if(target.get().getImgUrl()!="")
+        s3Service.deleteFile(target.getImgUrl());
             // Plc 삭제
             repository.deleteBytarget(target.getId());
 

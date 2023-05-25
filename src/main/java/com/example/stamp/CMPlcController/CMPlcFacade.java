@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +35,7 @@ public class CMPlcFacade {
     }
 
 
-    void deletePlc(RequestDto.RequestPlcDto dto){
+    void deletePlc(RequestDto.RequestPlcDto dto) throws UnsupportedEncodingException {
         plcService.deletePlc(dto);}
 
 
