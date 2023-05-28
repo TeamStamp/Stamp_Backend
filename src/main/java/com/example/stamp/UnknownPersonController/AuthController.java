@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -76,11 +77,26 @@ public class AuthController {
     }
 
     @GetMapping("/api/auth/rank")
-    public  ResponseEntity<ResponseMessage> getRankInfo(){
+    public ResponseEntity<ResponseMessage> getRankInfo(){
         List<ResponseAuth.rank> list = authService.getRankInfo();
         ResponseMessage responseMessage = ResponseMessage.builder()
                 .message("Rank info read success")
                 .data(list)
+                .build();
+        return ResponseEntity.status(HttpStatus.OK).body(responseMessage);
+    }
+
+    @PostMapping("/api/auth/uploadImg")
+    public ResponseEntity<ResponseMessage> uploadImg(@RequestPart(value = "file")MultipartFile file, HttpServletRequest request){
+        Optional<String> token = jwtAuthTokenProvider.getAuthToken(request);
+        String email = null;
+        if(token.isPresent()){
+            JwtAuthToken jwtAuthToken = jwtAuthTokenProvider.convertAuthToken(token.get());
+            email = jwtAuthToken.getClaims().getSubject();
+        }
+        authService.uploadImg(email, file);
+        ResponseMessage responseMessage = ResponseMessage.builder()
+                .message("Profile image uploaded successfully.")
                 .build();
         return ResponseEntity.status(HttpStatus.OK).body(responseMessage);
     }

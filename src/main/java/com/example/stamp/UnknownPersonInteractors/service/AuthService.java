@@ -11,11 +11,14 @@ import com.example.stamp.UnknownPersonInteractors.util.SHA256Util;
 import com.example.stamp.UnknownPersonInteractors.exception.error.LoginFailedException;
 import com.example.stamp.UnknownPersonInteractors.exception.error.NotFoundUserException;
 import com.example.stamp.UnknownPersonInteractors.exception.error.RegisterFailedException;
+import com.example.stamp.imgTest.S3Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -29,6 +32,7 @@ public class AuthService implements AuthServiceInterface{
 
     private final AuthRepository authRepository;
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
+    private final S3Service s3Service;
 
     //private final S3Service s3Service; // aws
 
@@ -110,6 +114,7 @@ public class AuthService implements AuthServiceInterface{
                 .email(user.getEmail())
                 .nickname(user.getNickname())
                 .stamp(user.getStamp())
+                .imgUrl(user.getImgUrl())
                 .build();
         return response;
     }
@@ -121,6 +126,21 @@ public class AuthService implements AuthServiceInterface{
         List<ResponseAuth.rank> rankList = new ArrayList<>();
         usrList.stream().forEach(usr -> rankList.add(ResponseAuth.rank.toDto(usr)));
         return rankList;
+    }
+
+    @Override
+    @Transactional
+    public void uploadImg(String email, MultipartFile file){
+        Usr user = authRepository.findByEmail(email);
+        String url = "";
+        try {
+            url = s3Service.upload(file,"task");
+        }
+        catch (IOException e){
+            System.out.println("S3 upload failed.");
+        }
+        user.setImgUrl(url);
+        authRepository.save(user);
     }
 
 }
