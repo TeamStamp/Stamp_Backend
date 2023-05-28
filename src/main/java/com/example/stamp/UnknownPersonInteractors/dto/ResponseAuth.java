@@ -17,17 +17,20 @@ public class ResponseAuth {
         private String email;
         private String nickname;
         private Long stamp;
+        private String imgUrl;
     }
 
     @Data
     @Builder
     public static class rank{
         private String email;
+        private String imgUrl;
         private long stamp;
 
         public static rank toDto(Usr usr){
             return rank.builder()
                     .email(usr.getEmail())
+                    .imgUrl(usr.getImgUrl())
                     .stamp(usr.getStamp())
                     .build();
         }
