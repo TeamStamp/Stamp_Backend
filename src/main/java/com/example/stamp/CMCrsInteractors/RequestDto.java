@@ -25,4 +25,13 @@ public class RequestDto {
         private Date dateTime;
 
     }
+
+    @Builder
+    @Data
+    public static class updateMatchDto{
+
+        private Long dayInPlc;
+
+        private Long Crs;
+    }
 }

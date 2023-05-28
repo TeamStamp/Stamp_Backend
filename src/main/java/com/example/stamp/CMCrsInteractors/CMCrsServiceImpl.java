@@ -8,9 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -30,6 +29,7 @@ public class CMCrsServiceImpl implements CMCrsService {
             JwtAuthToken jwtAuthToken = jwtAuthTokenProvider.convertAuthToken(token.get());
             email = jwtAuthToken.getClaims().getSubject();
         }
+
         return email;
     }
 
@@ -66,6 +66,7 @@ public class CMCrsServiceImpl implements CMCrsService {
         return DayInPlc.builder()
                 .plc(Plc.builder().id(dto.getPlc()).build())
                 .aDay(aDay.builder().id(dto.getADay()).build())
+                .imgUrl(Plc.builder().id(dto.getPlc()).build().getImgUrl())
                 .dateTime(dto.getDateTime())
                 .build();
     }
@@ -81,5 +82,18 @@ public class CMCrsServiceImpl implements CMCrsService {
                         .firstDay(dto.getFirstDay())
                         .lastDay(dto.getLastDay())
                         .build();
+    }
+
+
+    //등록된 장소 수정
+    //토큰에서 추출한 이메일과 사용자의 이메일이 같을 때만
+
+    @Transactional
+    public void updateMatch(RequestDto.updateMatchDto dto,MultipartFile multipartFile) throws IOException {
+
+        String imageUrl = s3Service.upload(multipartFile,"Crs");
+        repository3.updateImageById(dto.getDayInPlc(),imageUrl);
+        repository.updateIsAcceptById(dto.getCrs(),false);
+
     }
 }

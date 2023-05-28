@@ -76,8 +76,9 @@ public class CrsServiceImpl implements CrsService {
                 .id(entity.getId())
                 .dateTime(dayInPlc.getDateTime())
                 .plcName(entity.getPlcName())
-                .imgUrl(entity.getImgUrl())
+                .imgUrl(dayInPlc.getImgUrl())
                 .cost(entity.getCost())
+                .dayInPlcId(dayInPlc.getId())
                 .build();
     }
     @Transactional

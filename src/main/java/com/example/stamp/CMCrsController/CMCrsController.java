@@ -70,4 +70,9 @@ public class CMCrsController {
 //           throw new CmCrsException(HttpStatus.UNAUTHORIZED,"코스를 제작한 사람만 삭제할 수 있습니다.");
 
         cmCrsFacade.deleteCrs(dto);}
+    //코스 수정(일단 이미지만)
+    @PostMapping("/api/cmupdate/crs")
+    public void updateMatch(@ModelAttribute RequestDto.updateMatchDto dto,@RequestPart MultipartFile multipartFile) throws IOException
+    {cmCrsFacade.updateMatch(dto,multipartFile);}
+
 }

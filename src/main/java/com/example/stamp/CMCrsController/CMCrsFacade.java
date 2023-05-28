@@ -36,4 +36,5 @@ public class CMCrsFacade {
     ResponseCrsDto.ResponseOneCrsDto getCrs(RequestCrsDto dto){return CrsService.getCrs(dto);}
     //코스 삭제
     void deleteCrs(RequestCrsDto dto) throws UnsupportedEncodingException {CrsService.deleteCrs(dto);}
+    void updateMatch(RequestDto.updateMatchDto dto,MultipartFile multipartFile) throws IOException{cmCrsService.updateMatch(dto,multipartFile);}
 }

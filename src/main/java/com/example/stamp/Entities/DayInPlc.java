@@ -22,6 +22,8 @@ public class DayInPlc {
     private Long id;
     @Column
     private Date dateTime;
+    @Column
+    private String imgUrl;
     @ManyToOne
     @JoinColumn(name = "aDay", nullable = true)
     private aDay aDay;
