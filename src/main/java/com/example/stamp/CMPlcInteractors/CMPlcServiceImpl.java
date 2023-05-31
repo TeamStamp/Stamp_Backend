@@ -1,7 +1,6 @@
 package com.example.stamp.CMPlcInteractors;
 
 import com.example.stamp.Entities.Plc;
-import com.example.stamp.Entities.Usr;
 import com.example.stamp.UnknownPersonInteractors.repository.AuthRepository;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthToken;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthTokenProvider;
@@ -33,9 +32,21 @@ public class CMPlcServiceImpl implements CMPlcService {
         }
         return email;
     }
-    public void createPlc(RequestPlcDto.createPlcDto dto, Optional<String> token, MultipartFile multipartFile) throws IOException {
+    public ResponsePlcDto createPlc(RequestPlcDto.createPlcDto dto, Optional<String> token, MultipartFile multipartFile) throws IOException {
         String imageUrl = s3Service.upload(multipartFile,"Plc");
-        CMPlcRepository.save(of(dto,getEmail(token),imageUrl));
+        return of(CMPlcRepository.save(of(dto,getEmail(token),imageUrl)));
+
+    }
+
+    private com.example.stamp.CMPlcInteractors.ResponsePlcDto of(Plc entity){
+        return com.example.stamp.CMPlcInteractors.ResponsePlcDto.builder()
+                .id(entity.getId())
+                .plcName(entity.getPlcName())
+                .lat(entity.getLat())
+                .lng(entity.getLng())
+                .imgUrl(entity.getImgUrl())
+                .category(entity.getCategory())
+                .isAccept(entity.getIsAccept()).build();
     }
     private Plc of(RequestPlcDto.createPlcDto dto,String email,String imageUrl) {
         return Plc.builder()

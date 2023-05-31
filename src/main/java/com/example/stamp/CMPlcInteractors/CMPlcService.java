@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface CMPlcService {
 
-    void createPlc(RequestPlcDto.createPlcDto createPlcDto, Optional<String> token, MultipartFile multipartFile) throws IOException;
+    ResponsePlcDto createPlc(RequestPlcDto.createPlcDto createPlcDto, Optional<String> token, MultipartFile multipartFile) throws IOException;
 
 }

@@ -25,11 +25,11 @@ public class CMPlcController {
     private final CMPlcFacade cmPlcFacade;
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
     @PostMapping("/api/cmCreate/plc")
-    public ResponseEntity createPlc(@ModelAttribute RequestPlcDto.createPlcDto dto, HttpServletRequest request,@RequestPart MultipartFile file) throws IOException {
+    public com.example.stamp.CMPlcInteractors.ResponsePlcDto createPlc(@ModelAttribute RequestPlcDto.createPlcDto dto, HttpServletRequest request, @RequestPart MultipartFile file) throws IOException {
         Optional<String> token = jwtAuthTokenProvider.getAuthToken(request);
-        cmPlcFacade.createPlc(dto,token,file);
+        return cmPlcFacade.createPlc(dto,token,file);
 
-        return ResponseEntity.status(HttpStatus.OK).body("ACCESS");
+
     }
 
     //장소 검색
