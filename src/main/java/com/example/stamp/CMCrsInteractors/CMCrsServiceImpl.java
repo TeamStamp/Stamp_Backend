@@ -1,5 +1,6 @@
 package com.example.stamp.CMCrsInteractors;
 import com.example.stamp.Entities.*;
+import com.example.stamp.PlcInteractors.PlcRepository;
 import com.example.stamp.UnknownPersonInteractors.repository.AuthRepository;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthToken;
 import com.example.stamp.UnknownPersonInteractors.security.JwtAuthTokenProvider;
@@ -19,6 +20,8 @@ public class CMCrsServiceImpl implements CMCrsService {
     private final CMCrsRepository repository;
     private final aDayRepository repository2;
     private final dayInPlcRepository repository3;
+
+    private final PlcRepository repository4;
 
     private final JwtAuthTokenProvider jwtAuthTokenProvider;
     private final AuthRepository authRepository;
@@ -63,12 +66,14 @@ public class CMCrsServiceImpl implements CMCrsService {
    }
 
     private DayInPlc of(RequestDto.matchDayPlcDto dto) {
+        Plc plc = repository4.findById(dto.getPlc()).get();
         return DayInPlc.builder()
-                .plc(Plc.builder().id(dto.getPlc()).build())
+                .plc(plc)
                 .aDay(aDay.builder().id(dto.getADay()).build())
-                .imgUrl(Plc.builder().id(dto.getPlc()).build().getImgUrl())
+                .imgUrl(plc.getImgUrl())
                 .dateTime(dto.getDateTime())
                 .build();
+
     }
 
 

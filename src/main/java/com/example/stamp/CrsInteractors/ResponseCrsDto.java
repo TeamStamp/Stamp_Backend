@@ -50,6 +50,7 @@ public  class ResponseCrsDto {
         private String plcName;
         private String imgUrl;
         private Long cost;
+        private String category;
 
         private Long dayInPlcId;
     }

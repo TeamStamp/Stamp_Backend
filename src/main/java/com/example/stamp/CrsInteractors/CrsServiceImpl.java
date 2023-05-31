@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -79,6 +80,7 @@ public class CrsServiceImpl implements CrsService {
                 .imgUrl(dayInPlc.getImgUrl())
                 .cost(entity.getCost())
                 .dayInPlcId(dayInPlc.getId())
+                .category(entity.getCategory())
                 .build();
     }
     @Transactional
