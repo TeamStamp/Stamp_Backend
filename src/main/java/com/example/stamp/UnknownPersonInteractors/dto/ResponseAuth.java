@@ -23,13 +23,13 @@ public class ResponseAuth {
     @Data
     @Builder
     public static class rank{
-        private String email;
+        private String nickName;
         private String imgUrl;
         private long stamp;
 
         public static rank toDto(Usr usr){
             return rank.builder()
-                    .email(usr.getEmail())
+                    .nickName(usr.getNickname())
                     .imgUrl(usr.getImgUrl())
                     .stamp(usr.getStamp())
                     .build();
